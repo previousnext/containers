@@ -1,10 +1,9 @@
-FROM previousnext/php:7.1
+FROM debian:jessie
 
 WORKDIR /usr/local
 
-# bzip2 is required for phantomjs extract, libfontconfig for phantomjs
 RUN apt-get update && \
-    apt-get install -y bzip2 libfontconfig && \
+    apt-get install -y wget bzip2 libfontconfig git && \
     apt-get clean
 
 RUN cd /tmp && \
@@ -15,10 +14,8 @@ RUN cd /tmp && \
     mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin && \
     rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
-RUN composer require behat/mink:~1.7 && \
-    composer require jcalderonzumba/gastonjs:~1.1.0 && \
-    composer require jcalderonzumba/mink-phantomjs-driver:~0.3.1
+RUN git clone --depth=1 https://github.com/jcalderonzumba/gastonjs /data/gastonjs
 
 EXPOSE 8510
 
-CMD ["/usr/local/bin/phantomjs", "--ssl-protocol=any", "--ignore-ssl-errors=true", "./vendor/jcalderonzumba/gastonjs/src/Client/main.js", "8510", "1024", "768"]
+CMD ["/usr/local/bin/phantomjs", "--ssl-protocol=any", "--ignore-ssl-errors=true", "/data/gastonjs/src/Client/main.js", "8510", "1024", "768"]
