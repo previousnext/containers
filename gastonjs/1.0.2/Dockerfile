@@ -6,7 +6,7 @@ ENV PHANTOMJS_HASH "f8afc8a24eec34c2badccc93812879a3d6f2caf3 phantomjs-2.1.1-lin
 WORKDIR /usr/local
 
 RUN apt-get update && \
-    apt-get install -y wget bzip2 libfontconfig git && \
+    apt-get install -y wget bzip2 libfontconfig && \
     apt-get clean
 
 RUN cd /tmp && \
@@ -17,7 +17,10 @@ RUN cd /tmp && \
     mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin && \
     rm phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
 
-RUN git clone --depth=1 https://github.com/jcalderonzumba/gastonjs /data/gastonjs
+RUN cd /tmp && \
+    wget https://github.com/jcalderonzumba/gastonjs/archive/v1.0.2.zip && \
+    unzip v1.0.2.zip && \
+    mv gastonjs-1.0.2 /data/gastonjs
 
 EXPOSE 8510
 
