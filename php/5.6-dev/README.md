@@ -8,4 +8,4 @@ Comes bundled with developer tools:
 * Xdebug
 * Skipper CLI Toolkit
 
-For more information see this parent containers docuemntation.
+For more information see this parent containers documentation.
