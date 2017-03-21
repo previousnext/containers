@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.2
 MAINTAINER Nick Schuch
 
-ENV OAUTH2_PROXY_VERSION 2.1.linux-amd64.go1.4.2
+ENV OAUTH2_PROXY_VERSION 2.1.linux-amd64.go1.6
 
 RUN apk --update add curl
 
