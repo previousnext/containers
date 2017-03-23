@@ -4,10 +4,12 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 ENV SOLR_VERSION 4.9.1
 ENV JAVA_MEMORY 256m
 
-RUN apk add --no-cache openjdk7-jre tar
+RUN apk add --no-cache openjdk7-jre tar wget
 
-ADD http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz /tmp
-RUN tar -C /tmp --extract --file /tmp/solr-$SOLR_VERSION.tgz && \
+RUN cd /tmp && \
+	wget http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz && \
+ 	tar -C /tmp --extract --file /tmp/solr-$SOLR_VERSION.tgz && \
+ 	rm /tmp/solr-$SOLR_VERSION.tgz && \
     mkdir -p /opt && \
     mv /tmp/solr-$SOLR_VERSION /opt/solr && \
     mv /opt/solr/example /opt/solr/core
