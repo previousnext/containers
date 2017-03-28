@@ -43,7 +43,7 @@ RUN gem install bundler
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
-RUN a2enmod passenger rewrite
+RUN a2enmod passenger rewrite headers
 ADD vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY apache2-foreground /usr/local/bin/
 
