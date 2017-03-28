@@ -12,29 +12,31 @@ RUN apt-get update && \
     echo "deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main" > /etc/apt/sources.list.d/passenger.list
 
 RUN apt-get update && \
-    apt-get install -y git \
+    apt-get install -y \
       apache2 \
-      ruby2.3 \
-      ruby2.3-dev \
-      libapache2-mod-passenger \
+      curl \
+      git \
       imagemagick \
+      libapache2-mod-passenger \
       libapr1-dev \
       libaprutil1-dev \
       libcurl4-openssl-dev \
+      libmagickcore-dev \
+      libmagickwand-dev \
+      libmysqlclient-dev \
       libsqlite3-dev \
       libssl-dev \
-      libmysqlclient-dev \
+      libxml2-dev \
+      libxslt-dev \
+      mysql-client \
       ruby-json \
       ruby-libxml \
       ruby-mysql \
       ruby-nokogiri \
       ruby-rmagick \
-      zlib1g-dev \
-      libxslt-dev \
-      libxml2-dev \
-      libmagickcore-dev \
-      libmagickwand-dev \
-      mysql-client && \
+      ruby2.3 \
+      ruby2.3-dev \
+      zlib1g-dev && \
     apt-get clean
 
 RUN gem install bundler
