@@ -66,6 +66,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
 RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
       chmod +rx /usr/local/bin/tuner
 
+# Backup - https://github.com/previousnext/skipper-backup
+RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0.1/skipper-backup -o /usr/local/bin/backup && \
+      chmod +rx /usr/local/bin/backup
+
 # Script that kicks it all off
 ADD start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
