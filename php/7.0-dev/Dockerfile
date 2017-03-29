@@ -25,6 +25,7 @@ RUN apt-get update && \
                        python \
                        ruby2.1 \
                        ruby2.1-dev && \
+                       libfontconfig && \
     gem2.1 install bundler && \
     apt-get clean
 
