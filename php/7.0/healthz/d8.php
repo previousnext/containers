@@ -5,7 +5,9 @@
  */
 
 // Suspend healthz checks
-if (file_exists('/etc/skpr/healthz.skip') == 0) {
+$skip = realpath('/etc/skpr/healthz.skip');
+clearstatcache(TRUE, $skip);
+if (file_exists($skip)) {
   header('HTTP/1.1 200 OK');
   exit();
 }

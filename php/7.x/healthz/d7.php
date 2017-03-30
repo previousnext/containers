@@ -7,7 +7,9 @@ define('DRUPAL_ROOT', '/data/app');
 ini_set('display_errors', 1);
 
 // Suspend healthz checks
-if (file_exists('/etc/skpr/healthz.skip')) {
+$skip = realpath('/etc/skpr/healthz.skip');
+clearstatcache(TRUE, $skip);
+if (file_exists($skip)) {
   header('HTTP/1.1 200 OK');
   exit();
 }
