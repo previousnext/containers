@@ -36,6 +36,7 @@ RUN apt-get update && \
       ruby-rmagick \
       ruby2.3 \
       ruby2.3-dev \
+      tzdata \
       zlib1g-dev && \
     apt-get clean
 
