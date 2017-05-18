@@ -37,8 +37,3 @@ ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
       rm -rf linux-amd64-latest.tar.gz
-
-ADD start.sh /usr/local/bin/start-dev
-RUN chmod a+x /usr/local/bin/start-dev
-
-CMD ["/usr/local/bin/start-dev"]
