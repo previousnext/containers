@@ -2,7 +2,7 @@ FROM        alpine:3.4
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 ENV SOLR_VERSION 4.9.1
-ENV JAVA_MEMORY 256m
+ENV SOLR_HEAP 256m
 
 RUN apk add --no-cache openjdk7-jre tar wget
 

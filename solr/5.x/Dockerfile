@@ -1,7 +1,6 @@
 FROM        solr:5.5.4
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
-ENV JAVA_MEMORY 256m
 ENV SOLR_HEAP="256m"
 
 ADD conf /opt/search_api
