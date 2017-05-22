@@ -9,7 +9,7 @@ all: php solr apache2 oauth2
 php: php-5.6 php-7.0 php-7.1 php-7.x
 
 # Builds all Solr containers.
-solr: solr-4.x
+solr: solr-4.x solr-5.x
 
 # Builds Apache2 container.
 apache2:
@@ -50,6 +50,9 @@ clamav:
 # Builds Solr containers.
 solr-4.x:
 	cd solr/4.x && $(DOCKER) -t previousntxt/solr:4.x .
+
+solr-5.x:
+	cd solr/5.x && $(DOCKER) -t previousntxt/solr:5.x .
 
 # Builds Oauth Proxy container.
 oauth2:

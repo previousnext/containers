@@ -6,4 +6,4 @@
 
 cd /opt/solr/core
 
-java -Xmx${JAVA_MEMORY} -jar start.jar
+java -Xms${SOLR_HEAP} -Xmx${SOLR_HEAP} -jar start.jar
