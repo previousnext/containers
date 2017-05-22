@@ -23,6 +23,9 @@ RUN mv /opt/search_api/* /opt/solr/core/solr/collection1/conf/ && \
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
+# Where we store our persistent data.
+RUN mkdir /opt/solr/data
+
 EXPOSE 8983
 
 CMD ["/entrypoint.sh"]
