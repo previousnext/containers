@@ -1,6 +1,7 @@
 FROM       previousnext/php:7.0
 MAINTAINER nick_schuch
 
+ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
 ENV NODE_VERSION 5.11.1
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
