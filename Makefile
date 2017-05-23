@@ -37,25 +37,25 @@ php-7.x:
 
 # Builds Passenger prod container.
 passenger:
-	cd passenger && $(DOCKER) -t previousntxt/passenger:latest .
+	cd passenger && $(DOCKER) -t previousnext/passenger:latest .
 
 # Builds mkdocs container.
 mkdocs:
-	cd mkdocs && $(DOCKER) -t previousntxt/mkdocs:latest .
+	cd mkdocs && $(DOCKER) -t previousnext/mkdocs:latest .
 
 # Builds ClamAV container.
 clamav:
-	cd clamav && $(DOCKER) -t previousntxt/clamav:latest .
+	cd clamav && $(DOCKER) -t previousnext/clamav:latest .
 
 # Builds Solr containers.
 solr-4.x:
-	cd solr/4.x && $(DOCKER) -t previousntxt/solr:4.x .
+	cd solr/4.x && $(DOCKER) -t previousnext/solr:4.x .
 
 solr-5.x:
-	cd solr/5.x && $(DOCKER) -t previousntxt/solr:5.x .
+	cd solr/5.x && $(DOCKER) -t previousnext/solr:5.x .
 
 # Builds Oauth Proxy container.
 oauth2:
 	cd oauth2_proxy/2.1 && $(DOCKER) -t previousntxt/oauth2_proxy:2.1 .
 
-.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x passenger clamav mkdocs
+.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x solr-5.x passenger clamav mkdocs
