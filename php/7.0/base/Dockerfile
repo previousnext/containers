@@ -1,4 +1,4 @@
-FROM       php:5.6-apache
+FROM       php:7.0-apache
 MAINTAINER nick_schuch
 
 WORKDIR /data
@@ -14,25 +14,24 @@ RUN apt-get update && \
       libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
-      vim \
       wget \
       git \
+      vim \
       libfreetype6-dev \
-      libjpeg-dev \
-      sendmail && \
-      apt-get clean
+      libjpeg-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # New Relic
 RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/sources.list.d/newrelic.list && \
     wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add - && \
     apt-get update && \
     apt-get install -y newrelic-php5 && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pecl install apcu-4.0.11
+RUN pecl install apcu
 ADD apcu.ini /usr/local/etc/php/conf.d/apcu.ini
-RUN pecl install memcached-2.2.0 && \
-      echo 'extension = memcached.so' > /usr/local/etc/php/conf.d/memcached.ini
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 RUN docker-php-ext-install \
@@ -99,13 +98,7 @@ RUN apt-get -y remove --purge \
       cpp \
       cpp-4.9
 
-RUN mkdir -p /data/app && echo "Welcome to the Skipper container suite" > /data/app/index.html
-
-# Healthz checks. 
+# Healthz checks.
 COPY healthz /var/www/healthz
-
-# These get run on build.
-ONBUILD ADD . /data
-ONBUILD RUN chown -R www-data:www-data /data
 
 CMD ["/usr/local/bin/start"]

@@ -98,13 +98,7 @@ RUN apt-get -y remove --purge \
       cpp \
       cpp-4.9
 
-RUN mkdir -p /data/app && echo "Welcome to the Skipper container suite" > /data/app/index.html
-
 # Healthz checks.
 COPY healthz /var/www/healthz
-
-# These get run on build.
-ONBUILD ADD . /data
-ONBUILD RUN chown -R www-data:www-data /data
 
 CMD ["/usr/local/bin/start"]

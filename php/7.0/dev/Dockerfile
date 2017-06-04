@@ -1,4 +1,4 @@
-FROM       previousnext/php:7.1
+FROM       previousnext/php:7.0-base
 MAINTAINER nick_schuch
 
 ENV ENV_TYPE     DOCKER

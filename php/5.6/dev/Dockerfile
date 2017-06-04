@@ -1,4 +1,4 @@
-FROM       previousnext/php:7.0
+FROM       previousnext/php:5.6-base
 MAINTAINER nick_schuch
 
 ENV ENV_TYPE     DOCKER
@@ -36,5 +36,4 @@ ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
-      tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
-      rm -rf linux-amd64-latest.tar.gz
+      tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/
