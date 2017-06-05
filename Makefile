@@ -7,6 +7,15 @@ all: php solr apache2 oauth2
 
 # Builds all PHP prod and dev containers.
 php: php-5.6 php-7.0 php-7.1 php-7.x
+php-push:
+	docker push previousnext/php:5.6
+	docker push previousnext/php:5.6-dev
+	docker push previousnext/php:7.0
+	docker push previousnext/php:7.0-dev
+	docker push previousnext/php:7.1
+	docker push previousnext/php:7.1-dev
+	docker push previousnext/php:7.x
+	docker push previousnext/php:7.x-dev
 
 # Builds all Solr containers.
 solr: solr-4.x solr-5.x
