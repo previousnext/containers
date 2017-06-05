@@ -17,27 +17,27 @@ apache2:
 
 # Builds PHP 5.6 prod and dev containers.
 php-5.6:
-	cd php/5.6-base && $(DOCKER) -t previousnext/php:5.6-base .
-	cd php/5.6 && $(DOCKER) -t previousnext/php:5.6 .
-	cd php/5.6-dev && $(DOCKER) -t previousnext/php:5.6-dev .
+	cd php/5.6/base && $(DOCKER) -t previousnext/php:5.6-base .
+	cd php/5.6/prod && $(DOCKER) -t previousnext/php:5.6 .
+	cd php/5.6/dev && $(DOCKER) -t previousnext/php:5.6-dev .
 
 # Builds PHP 7.0 prod and dev containers.
 php-7.0:
-	cd php/7.0-base && $(DOCKER) -t previousnext/php:7.0-base .
-	cd php/7.0 && $(DOCKER) -t previousnext/php:7.0 .
-	cd php/7.0-dev && $(DOCKER) -t previousnext/php:7.0-dev .
+	cd php/7.0/base && $(DOCKER) -t previousnext/php:7.0-base .
+	cd php/7.0/prod && $(DOCKER) -t previousnext/php:7.0 .
+	cd php/7.0/dev && $(DOCKER) -t previousnext/php:7.0-dev .
 
 # Builds PHP 7.1 prod and dev containers.
 php-7.1:
-	cd php/7.1-base && $(DOCKER) -t previousnext/php:7.1-base .
-	cd php/7.1 && $(DOCKER) -t previousnext/php:7.1 .
-	cd php/7.1-dev && $(DOCKER) -t previousnext/php:7.1-dev .
+	cd php/7.1/base && $(DOCKER) -t previousnext/php:7.1-base .
+	cd php/7.1/prod && $(DOCKER) -t previousnext/php:7.1 .
+	cd php/7.1/dev && $(DOCKER) -t previousnext/php:7.1-dev .
 
 # Builds PHP 7.x prod and dev containers.
 php-7.x:
-	cd php/7.x-base && $(DOCKER) -t previousnext/php:7.x-base .
-	cd php/7.x && $(DOCKER) -t previousnext/php:7.x .
-	cd php/7.x-dev && $(DOCKER) -t previousnext/php:7.x-dev .
+	cd php/7.x/base && $(DOCKER) -t previousnext/php:7.x-base .
+	cd php/7.x/prod && $(DOCKER) -t previousnext/php:7.x .
+	cd php/7.x/dev && $(DOCKER) -t previousnext/php:7.x-dev .
 
 # Builds Passenger prod container.
 passenger:
