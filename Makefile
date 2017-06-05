@@ -8,13 +8,13 @@ all: php solr apache2 oauth2
 # Builds all PHP prod and dev containers.
 php: php-5.6 php-7.0 php-7.1 php-7.x
 php-push:
-	docker push previousnext/php:5.6
+	docker push previousnext/php:5.6-apache
 	docker push previousnext/php:5.6-dev
-	docker push previousnext/php:7.0
+	docker push previousnext/php:7.0-apache
 	docker push previousnext/php:7.0-dev
-	docker push previousnext/php:7.1
+	docker push previousnext/php:7.1-apache
 	docker push previousnext/php:7.1-dev
-	docker push previousnext/php:7.x
+	docker push previousnext/php:7.x-apache
 	docker push previousnext/php:7.x-dev
 
 # Builds all Solr containers.
@@ -27,25 +27,25 @@ apache2:
 # Builds PHP 5.6 prod and dev containers.
 php-5.6:
 	cd php/5.6/base && $(DOCKER) -t previousnext/php:5.6-base .
-	cd php/5.6/prod && $(DOCKER) -t previousnext/php:5.6 .
+	cd php/5.6/prod && $(DOCKER) -t previousnext/php:5.6-apache .
 	cd php/5.6/dev && $(DOCKER) -t previousnext/php:5.6-dev .
 
 # Builds PHP 7.0 prod and dev containers.
 php-7.0:
 	cd php/7.0/base && $(DOCKER) -t previousnext/php:7.0-base .
-	cd php/7.0/prod && $(DOCKER) -t previousnext/php:7.0 .
+	cd php/7.0/prod && $(DOCKER) -t previousnext/php:7.0-apache .
 	cd php/7.0/dev && $(DOCKER) -t previousnext/php:7.0-dev .
 
 # Builds PHP 7.1 prod and dev containers.
 php-7.1:
 	cd php/7.1/base && $(DOCKER) -t previousnext/php:7.1-base .
-	cd php/7.1/prod && $(DOCKER) -t previousnext/php:7.1 .
+	cd php/7.1/prod && $(DOCKER) -t previousnext/php:7.1-apache .
 	cd php/7.1/dev && $(DOCKER) -t previousnext/php:7.1-dev .
 
 # Builds PHP 7.x prod and dev containers.
 php-7.x:
 	cd php/7.x/base && $(DOCKER) -t previousnext/php:7.x-base .
-	cd php/7.x/prod && $(DOCKER) -t previousnext/php:7.x .
+	cd php/7.x/prod && $(DOCKER) -t previousnext/php:7.x-apache .
 	cd php/7.x/dev && $(DOCKER) -t previousnext/php:7.x-dev .
 
 # Builds Passenger prod container.
