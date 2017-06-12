@@ -38,3 +38,7 @@ ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
       rm -rf linux-amd64-latest.tar.gz
+
+# Skipper v2 CLI toolkit.
+RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
+      chmod +rx /usr/local/bin/skpr2
