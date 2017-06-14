@@ -20,6 +20,9 @@ php-push:
 # Builds all Solr containers.
 solr: solr-4.x solr-5.x
 
+# Builds all Varnish containers.
+varnish: varnish-4.x
+
 # Builds Apache2 container.
 apache2:
 	cd apache2 && $(DOCKER) -t previousnext/apache2:latest .
@@ -67,8 +70,11 @@ solr-4.x:
 solr-5.x:
 	cd solr/5.x && $(DOCKER) -t previousnext/solr:5.x .
 
+varnish-4.x:
+	cd varnish/4.x/dev && $(DOCKER) -t previousnext/varnish:4.x-dev .
+
 # Builds Oauth Proxy container.
 oauth2:
 	cd oauth2_proxy/2.1 && $(DOCKER) -t previousntxt/oauth2_proxy:2.1 .
 
-.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x solr-5.x passenger clamav mkdocs
+.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x solr-5.x passenger clamav mkdocs varnish-4.x
