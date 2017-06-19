@@ -125,6 +125,10 @@ sub vcl_backend_response {
   # Set ban-lurker friendly custom headers.
   set beresp.http.X-Url = bereq.url;
   set beresp.http.X-Host = bereq.http.host;
+
+  if (beresp.ttl > 30s) {
+    set beresp.ttl = 30s;
+  }
 }
 
 # In the event of an error, show friendlier messages.
