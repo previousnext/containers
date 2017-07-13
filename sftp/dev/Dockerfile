@@ -15,11 +15,17 @@ RUN rm -f /etc/ssh/ssh_host_*key* && \
 
 # Add a developer user.
 RUN useradd $FTP_USER && \
+    usermod -p "*" $FTP_USER && \
     mkdir -p /home/${FTP_USER}/.ssh && \
     chown -R ${FTP_USER}:${FTP_USER} /home/${FTP_USER}
 
 # Configuration.
 COPY sshd_config /etc/ssh/sshd_config
+
+# Data.
+RUN mkdir -p /data && \
+    chown root:root /data && \
+    chmod 755 /data
 
 # Custom on build configuration.
 ONBUILD ADD authorized_keys /home/${FTP_USER}/.ssh/authorized_keys
