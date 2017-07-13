@@ -77,4 +77,8 @@ varnish-4.x:
 oauth2:
 	cd oauth2_proxy/2.1 && $(DOCKER) -t previousntxt/oauth2_proxy:2.1 .
 
-.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x solr-5.x passenger clamav mkdocs varnish-4.x
+# Builds SFTP development container.
+sftp:
+	cd sftp/dev && $(DOCKER) -t previousntxt/sftp:latest .
+
+.PHONY: php-5.6 php-7.0 php-7.1 php-7.x solr-4.x solr-5.x passenger clamav mkdocs varnish-4.x sftp
