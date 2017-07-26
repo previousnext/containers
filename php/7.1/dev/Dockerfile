@@ -30,8 +30,8 @@ RUN apt-get update && \
     gem2.1 install bundler && \
     apt-get clean
 
-RUN echo "[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-              . /usr/share/bash-completion/bash_completion" >> ~/.bashrc
+RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+              . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
 # https://github.com/docker-library/php/issues/77#issuecomment-88936146
 RUN pecl install -o -f xdebug && \
