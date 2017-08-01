@@ -101,4 +101,7 @@ RUN apt-get -y remove --purge \
 # Healthz checks.
 COPY healthz /var/www/healthz
 
+# Github.
+RUN mkdir -p /root/.ssh && ssh-keyscan github.com >> /root/.ssh/known_hosts
+
 CMD ["/usr/local/bin/start"]
