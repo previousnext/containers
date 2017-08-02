@@ -8,7 +8,19 @@ jobs:
     environment:
       IMAGE_NAME: php-5.6
     steps:
-      <<: *build_image_deploy_steps
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+      - run:
+          name: Build image
+          command: |
+            make php-5.6
+      - deploy:
+          name: Maybe Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make php-5.6-push
+            fi
 
   php_70:
     docker:
@@ -16,7 +28,19 @@ jobs:
     environment:
       IMAGE_NAME: php-7.0
     steps:
-      <<: *build_image_deploy_steps
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+      - run:
+          name: Build image
+          command: |
+            make php-5.6
+      - deploy:
+          name: Maybe Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make php-5.6-push
+            fi
 
   php_71:
     docker:
@@ -24,7 +48,19 @@ jobs:
     environment:
       IMAGE_NAME: php-7.1
     steps:
-      <<: *build_image_deploy_steps
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+      - run:
+          name: Build image
+          command: |
+            make php-5.6
+      - deploy:
+          name: Maybe Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make php-5.6-push
+            fi
 
   php_7x:
     docker:
@@ -32,7 +68,19 @@ jobs:
     environment:
       IMAGE_NAME: php-7.x
     steps:
-      <<: *build_image_deploy_steps
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+      - run:
+          name: Build image
+          command: |
+            make php-5.6
+      - deploy:
+          name: Maybe Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make php-5.6-push
+            fi
 
   solr:
     docker:
@@ -63,21 +111,6 @@ jobs:
           reusable: true
       - run: |
           make oauth2
-
-build_image_deploy_steps: &build_image_deploy_steps
-  - checkout
-  - setup_remote_docker:
-      reusable: true
-  - run:
-      name: Build image
-      command: |
-        make ${IMAGE_NAME}
-  - deploy:
-      name: Maybe Deploy
-      command: |
-        if [ "${CIRCLE_BRANCH}" == "master" ]; then
-          make ${IMAGE_NAME}-push
-        fi
 
 workflows:
   version: 2
