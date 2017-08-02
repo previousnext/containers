@@ -6,6 +6,7 @@ jobs:
       - image: circleci/golang:1.8
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          reusable: true
       - run: |
           make all
