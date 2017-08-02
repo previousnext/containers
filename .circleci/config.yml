@@ -23,6 +23,7 @@ jobs:
       IMAGE_NAME: php-7.1
     steps: *build_image_deploy_steps
 
+
   php_7x:
     docker:
       - image: circleci/golang:1.8
@@ -60,18 +61,6 @@ jobs:
       - run: |
           make oauth2
 
-workflows:
-  version: 2
-  build_and_push:
-    jobs:
-      - php_56
-      - php_70
-      - php_71
-      - php_7x
-      - solr
-      - apache2
-      - oauth2
-
 build_image_deploy_steps: &build_image_deploy_steps
   - checkout
   - setup_remote_docker:
@@ -86,3 +75,15 @@ build_image_deploy_steps: &build_image_deploy_steps
         if [ "${CIRCLE_BRANCH}" == "master" ]; then
           make ${IMAGE_NAME}-push
         fi
+
+workflows:
+  version: 2
+  build_and_push:
+    jobs:
+      - php_56
+      - php_70
+      - php_71
+      - php_7x
+      - solr
+      - apache2
+      - oauth2
