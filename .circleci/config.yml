@@ -7,29 +7,32 @@ jobs:
       - image: circleci/golang:1.8
     environment:
       IMAGE_NAME: php-5.6
-    steps: *build_image_deploy_steps
+    steps:
+      <<: *build_image_deploy_steps
 
   php_70:
     docker:
       - image: circleci/golang:1.8
     environment:
       IMAGE_NAME: php-7.0
-    steps: *build_image_deploy_steps
+    steps:
+      <<: *build_image_deploy_steps
 
   php_71:
     docker:
       - image: circleci/golang:1.8
     environment:
       IMAGE_NAME: php-7.1
-    steps: *build_image_deploy_steps
-
+    steps:
+      <<: *build_image_deploy_steps
 
   php_7x:
     docker:
       - image: circleci/golang:1.8
     environment:
       IMAGE_NAME: php-7.x
-    steps: *build_image_deploy_steps
+    steps:
+      <<: *build_image_deploy_steps
 
   solr:
     docker:
