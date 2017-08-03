@@ -10,26 +10,35 @@ jobs:
           name: Build image
           command: |
             make $PLATFORM
+            if [[ "$CIRCLE_BRANCH" == "master" && -n "$PUSH_IMAGE"]]
+            then
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              make $PLATFORM-push
+            fi
 
   php_56:
     <<: *build_image
     environment:
       - PLATFORM: php-5.6
+      - PUSH_IMAGE: true
 
   php_70:
     <<: *build_image
     environment:
       - PLATFORM: php-7.0
+      - PUSH_IMAGE: true
 
   php_71:
     <<: *build_image
     environment:
       - PLATFORM: php-7.1
+      - PUSH_IMAGE: true
 
   php_7x:
     <<: *build_image
     environment:
       - PLATFORM: php-7.x
+      - PUSH_IMAGE: true
 
   solr:
     <<: *build_image
