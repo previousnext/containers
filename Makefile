@@ -8,6 +8,7 @@ all: php solr apache2 oauth2
 # Builds all PHP prod and dev containers.
 php: php-5.6 php-7.0 php-7.1 php-7.x
 
+# Release new php images.
 php-push: php-5.6-push php-7.0-push php-7.1-push php-7.x-push
 
 php-5.6-push:
@@ -29,12 +30,21 @@ php-7.x-push:
 # Builds all Solr containers.
 solr: solr-4.x solr-5.x
 
+# Release new solr images.
+solr-push:
+	docker push previousnext/solr:4.x
+	docker push previousnext/solr:5.x
+
 # Builds all Varnish containers.
 varnish: varnish-4.x
 
 # Builds Apache2 container.
 apache2:
 	cd apache2 && $(DOCKER) -t previousnext/apache2:latest .
+
+# Release a new apache2 image.
+apache2-push:
+	docker push previousnext/apache2:latest
 
 # Builds PHP 5.6 prod and dev containers.
 php-5.6:
@@ -84,7 +94,11 @@ varnish-4.x:
 
 # Builds Oauth Proxy container.
 oauth2:
-	cd oauth2_proxy/2.1 && $(DOCKER) -t previousntxt/oauth2_proxy:2.1 .
+	cd oauth2_proxy/2.1 && $(DOCKER) -t previousnext/oauth2_proxy:2.1 .
+
+# Release a new oauth2 image.
+oauth2-push:
+	docker push previousnext/oauth2_proxy:2.1
 
 # Builds SFTP development container.
 sftp:
