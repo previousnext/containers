@@ -10,6 +10,10 @@ jobs:
           name: Build image
           command: |
             make $PLATFORM
+            if [ "$CIRCLE_BRANCH" == "master" ]; then
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              make $PLATFORM-push
+            fi
 
   php_56:
     <<: *build_image

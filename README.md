@@ -1,6 +1,8 @@
 Containers
 ==========
 
+[![CircleCI](https://circleci.com/gh/previousnext/containers.svg?style=svg)](https://circleci.com/gh/previousnext/containers)
+
 The official container suite for PreviousNext inhouse container management solution, Skipper.
 
 Goals of this respository:
