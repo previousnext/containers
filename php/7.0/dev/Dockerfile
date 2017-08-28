@@ -37,6 +37,8 @@ RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
 RUN pecl install -o -f xdebug && \
     rm -rf /tmp/pear
 ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+ADD scripts/xdebug-set.sh /usr/local/bin/xdebug-set.sh
+RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
