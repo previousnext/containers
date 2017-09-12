@@ -47,3 +47,7 @@ RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
 # Skipper v2 CLI toolkit.
 RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
       chmod +rx /usr/local/bin/skpr2
+
+# Notify - https://github.com/nickschuch/notify
+RUN curl -L https://github.com/nickschuch/notify/releases/download/1.0.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+      chmod +rx /usr/local/bin/notify
