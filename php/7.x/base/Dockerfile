@@ -71,6 +71,9 @@ RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-
 RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0.1/skipper-backup-linux-amd64 -o /usr/local/bin/backup && \
       chmod +rx /usr/local/bin/backup
 
+RUN curl -L https://s3.amazonaws.com/pnx-bins/m8s-cli-0.2.1_linux_amd64 -o /usr/local/bin/m8s && \
+      chmod +rw /usr/local/bin/m8s
+
 # Script that kicks it all off
 ADD start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
