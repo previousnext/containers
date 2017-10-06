@@ -3,7 +3,7 @@ MAINTAINER nick_schuch
 
 ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
-ENV NODE_VERSION 7.10.1
+ENV NODE_VERSION 6.11.4
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:$PATH
 
