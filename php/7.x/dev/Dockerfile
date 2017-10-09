@@ -50,7 +50,7 @@ RUN curl -L https://s3.amazonaws.com/pnx-bins/m8s-cli-0.2.1_linux_amd64 -o /usr/
       chmod a+x /usr/local/bin/m8s
 
 # Github deploy status
-RUN curl -L https://s3.amazonaws.com/pnx-bins/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
+RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha1/deploy-status_linux_amd64-1.0.0-alpha1 -o /usr/local/bin/deploy-status && \
       chmod a+x /usr/local/bin/deploy-status
 
 # Skipper v2 CLI toolkit.
