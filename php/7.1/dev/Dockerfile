@@ -5,7 +5,7 @@ ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
 ENV NODE_VERSION 8.6.0
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:$PATH
+ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:/data/bin:$PATH
 
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
