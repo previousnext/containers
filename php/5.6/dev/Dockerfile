@@ -44,6 +44,10 @@ RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/
 
+# Temporary environment builder.
+RUN curl -L https://s3.amazonaws.com/pnx-bins/m8s-cli-0.2.1_linux_amd64 -o /usr/local/bin/m8s && \
+      chmod a+x /usr/local/bin/m8s
+
 # Skipper v2 CLI toolkit.
 RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
       chmod +rx /usr/local/bin/skpr2
