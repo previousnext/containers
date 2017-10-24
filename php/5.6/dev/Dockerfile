@@ -3,7 +3,7 @@ MAINTAINER nick_schuch
 
 ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
-ENV NODE_VERSION 5.11.1
+ENV NODE_VERSION 8.6.0
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:$PATH
 
@@ -43,6 +43,14 @@ RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/
+
+# Temporary environment builder.
+RUN curl -L https://s3.amazonaws.com/pnx-bins/m8s-cli-0.2.1_linux_amd64 -o /usr/local/bin/m8s && \
+      chmod a+x /usr/local/bin/m8s
+
+# Github deploy status
+RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha2/deploy-status_linux_amd64-1.0.0-alpha2 -o /usr/local/bin/deploy-status && \
+      chmod a+x /usr/local/bin/deploy-status
 
 # Skipper v2 CLI toolkit.
 RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
