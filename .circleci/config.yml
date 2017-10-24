@@ -55,6 +55,11 @@ jobs:
     environment:
       - PLATFORM: golang
 
+  circleci-docker:
+    <<: *build_image
+    environment:
+      - PLATFORM: circleci-docker
+
 workflows:
   version: 2
   build:
@@ -67,3 +72,4 @@ workflows:
       - apache2
       - oauth2
       - golang
+      - circleci-docker
