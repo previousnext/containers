@@ -110,6 +110,6 @@ golang-push:
 
 # Build & push go build container.
 pnx-packager-push:
-	cd circleci-docker && make build && make push
+	cd pnx-packager && make build && make push
 
-.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push circleci-docker-push
+.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
