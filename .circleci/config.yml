@@ -55,6 +55,11 @@ jobs:
     environment:
       - PLATFORM: golang
 
+  pnx-packager:
+    <<: *build_image
+    environment:
+      - PLATFORM: pnx-packager
+
 workflows:
   version: 2
   build:
@@ -67,3 +72,4 @@ workflows:
       - apache2
       - oauth2
       - golang
+      - pnx-packager
