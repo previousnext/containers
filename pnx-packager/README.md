@@ -1,6 +1,6 @@
 # Container
 
-## CircleCI Docker Builder
+## PreviousNext Packager
 
 Container image for building docker images and packaging skipper projects.
 

@@ -55,10 +55,10 @@ jobs:
     environment:
       - PLATFORM: golang
 
-  circleci-docker:
+  pnx-packager:
     <<: *build_image
     environment:
-      - PLATFORM: circleci-docker
+      - PLATFORM: pnx-packager
 
 workflows:
   version: 2
@@ -72,4 +72,4 @@ workflows:
       - apache2
       - oauth2
       - golang
-      - circleci-docker
+      - pnx-packager

@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-IMAGE=previousnext/circleci-docker
+IMAGE=previousnext/pnx-packager
 VERSION=$(shell git describe --tag --always)
 
 default: build push
