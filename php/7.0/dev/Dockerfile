@@ -6,6 +6,8 @@ ENV NVM_DIR      /usr/local/nvm
 ENV NODE_VERSION 8.6.0
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:$PATH
+ENV HUB_VERSION  2.2.9
+ENV HUB_NAME     hub-linux-amd64-$HUB_VERSION
 
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -56,3 +58,10 @@ RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1
 # Skipper v2 CLI toolkit.
 RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
       chmod +rx /usr/local/bin/skpr2
+
+# Github Hub
+RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v$HUB_VERSION/$HUB_NAME.tgz && \
+      tar -zxf $HUB_NAME.tgz && \
+      mv $HUB_NAME/bin/hub /usr/local/bin/ && \
+      chmod +x /usr/local/bin/hub && \
+      rm -rf /tmp/$HUB_NAME
