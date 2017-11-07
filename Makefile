@@ -2,7 +2,7 @@
 
 DOCKER=docker build -f Dockerfile
 
-include Makefile.php
+include Makefile-php
 
 # Builds all containers.
 all: solr apache2 oauth2 golang

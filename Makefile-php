@@ -27,6 +27,7 @@ php-cleanup:
 	# Cleaning up generated Dockerfile...
 	rm php/7.x/base/Dockerfile
 
+# To be removed at a later date.
 php-legacy:
 	# Building base container...
 	cd php/5.6/base && $(DOCKER) -t previousnext/php:5.6-base .
@@ -35,6 +36,7 @@ php-legacy:
 	# Building development container...
 	cd php/5.6/dev && $(DOCKER) -t previousnext/php:5.6-dev .
 
+# To be removed at a later date.
 php-legacy-push:
 	# Pushing production container...
 	docker push previousnext/php:7.$(PHP_MINOR_VERSION)-apache
