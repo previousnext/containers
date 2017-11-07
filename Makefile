@@ -2,30 +2,10 @@
 
 DOCKER=docker build -f Dockerfile
 
+include Makefile.php
+
 # Builds all containers.
-all: php solr apache2 oauth2 golang
-
-# Builds all PHP prod and dev containers.
-php: php-5.6 php-7.0 php-7.1 php-7.x
-
-# Release new php images.
-php-push: php-5.6-push php-7.0-push php-7.1-push php-7.x-push
-
-php-5.6-push:
-	docker push previousnext/php:5.6-apache
-	docker push previousnext/php:5.6-dev
-
-php-7.0-push:
-	docker push previousnext/php:7.0-apache
-	docker push previousnext/php:7.0-dev
-
-php-7.1-push:
-	docker push previousnext/php:7.1-apache
-	docker push previousnext/php:7.1-dev
-
-php-7.x-push:
-	docker push previousnext/php:7.x-apache
-	docker push previousnext/php:7.x-dev
+all: solr apache2 oauth2 golang
 
 # Builds all Solr containers.
 solr: solr-4.x solr-5.x
@@ -45,30 +25,6 @@ apache2:
 # Release a new apache2 image.
 apache2-push:
 	docker push previousnext/apache2:latest
-
-# Builds PHP 5.6 prod and dev containers.
-php-5.6:
-	cd php/5.6/base && $(DOCKER) -t previousnext/php:5.6-base .
-	cd php/5.6/prod && $(DOCKER) -t previousnext/php:5.6-apache .
-	cd php/5.6/dev && $(DOCKER) -t previousnext/php:5.6-dev .
-
-# Builds PHP 7.0 prod and dev containers.
-php-7.0:
-	cd php/7.0/base && $(DOCKER) -t previousnext/php:7.0-base .
-	cd php/7.0/prod && $(DOCKER) -t previousnext/php:7.0-apache .
-	cd php/7.0/dev && $(DOCKER) -t previousnext/php:7.0-dev .
-
-# Builds PHP 7.1 prod and dev containers.
-php-7.1:
-	cd php/7.1/base && $(DOCKER) -t previousnext/php:7.1-base .
-	cd php/7.1/prod && $(DOCKER) -t previousnext/php:7.1-apache .
-	cd php/7.1/dev && $(DOCKER) -t previousnext/php:7.1-dev .
-
-# Builds PHP 7.x prod and dev containers.
-php-7.x:
-	cd php/7.x/base && $(DOCKER) -t previousnext/php:7.x-base .
-	cd php/7.x/prod && $(DOCKER) -t previousnext/php:7.x-apache .
-	cd php/7.x/dev && $(DOCKER) -t previousnext/php:7.x-dev .
 
 # Builds Passenger prod container.
 passenger:
@@ -112,4 +68,4 @@ golang-push:
 pnx-packager-push:
 	cd pnx-packager && make build && make push
 
-.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
+.PHONY: solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push

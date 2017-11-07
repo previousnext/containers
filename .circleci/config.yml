@@ -2,6 +2,19 @@ version: 2
 
 jobs:
 
+  build_php: &build_php
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build PHP image
+          command: |
+            make php
+            if [ "$CIRCLE_BRANCH" == "master" ]; then
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              make php-push
+            fi
+
   build_image: &build_image
     machine: true
     steps:
@@ -15,25 +28,20 @@ jobs:
               make $PLATFORM-push
             fi
 
+  php_70:
+    <<: *build_php
+    environment:
+      - PHP_MINOR_VERSION: "0"
+
+  php_71:
+    <<: *build_php
+    environment:
+      - PHP_MINOR_VERSION: "1"
+
   php_56:
     <<: *build_image
     environment:
-      - PLATFORM: php-5.6
-
-  php_70:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.0
-
-  php_71:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.1
-
-  php_7x:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.x
+      - PLATFORM: php-legacy
 
   solr:
     <<: *build_image
