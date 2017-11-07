@@ -38,7 +38,7 @@ jobs:
     environment:
       - PHP_MINOR_VERSION: "1"
 
-  php_56:
+  php_legacy:
     <<: *build_image
     environment:
       - PLATFORM: php-legacy
@@ -72,10 +72,9 @@ workflows:
   version: 2
   build:
     jobs:
-      - php_56
+      - php_legacy
       - php_70
       - php_71
-      - php_7x
       - solr
       - apache2
       - oauth2
