@@ -65,3 +65,7 @@ RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v$HUB_
       mv $HUB_NAME/bin/hub /usr/local/bin/ && \
       chmod +x /usr/local/bin/hub && \
       rm -rf /tmp/$HUB_NAME
+
+# gosu
+RUN curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 -o /usr/local/bin/gosu && \
+      chmod a+x /usr/local/bin/gosu
