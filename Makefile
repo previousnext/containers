@@ -76,6 +76,10 @@ passenger:
 	cd passenger/dev && $(DOCKER) -t previousnext/passenger:latest-dev .
 	cd passenger/prod && $(DOCKER) -t previousnext/passenger:latest .
 
+passenger-push:
+	docker push previousnext/passenger:latest
+	docker push previousnext/passenger:latest-dev
+
 # Builds mkdocs container.
 mkdocs:
 	cd mkdocs && $(DOCKER) -t previousnext/mkdocs:latest .

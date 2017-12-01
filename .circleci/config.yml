@@ -60,6 +60,11 @@ jobs:
     environment:
       - PLATFORM: pnx-packager
 
+  passenger:
+    <<: *build_image
+    environment:
+      - PLATFORM: passenger
+
 workflows:
   version: 2
   build:
