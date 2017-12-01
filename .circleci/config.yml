@@ -11,7 +11,7 @@ jobs:
           command: |
             make $PLATFORM
             if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
               make $PLATFORM-push
             fi
 
