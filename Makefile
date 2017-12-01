@@ -72,7 +72,9 @@ php-7.x:
 
 # Builds Passenger prod container.
 passenger:
-	cd passenger && $(DOCKER) -t previousnext/passenger:latest .
+	cd passenger/base && $(DOCKER) -t previousnext/passenger:base .
+	cd passenger/dev && $(DOCKER) -t previousnext/passenger:latest-dev .
+	cd passenger/prod && $(DOCKER) -t previousnext/passenger:latest .
 
 # Builds mkdocs container.
 mkdocs:
