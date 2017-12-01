@@ -14,7 +14,6 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y \
       apache2 \
-      bash-completion \
       curl \
       git \
       imagemagick \
@@ -62,9 +61,5 @@ RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0
 # Script that kicks it all off
 ADD start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
-
-# These get run on build.
-ONBUILD ADD . /data
-ONBUILD RUN chown -R www-data:www-data /data
 
 CMD ["start"]
