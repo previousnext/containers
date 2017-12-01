@@ -11,6 +11,9 @@ RUN apt-get update && \
       wget && \
     apt-get clean
 
+RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+              . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
+
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
