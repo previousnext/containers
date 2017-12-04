@@ -46,6 +46,9 @@ RUN docker-php-ext-install \
       pcntl \
       bcmath
 
+RUN pecl install memcached && \
+      echo 'extension = memcached.so' > /usr/local/etc/php/conf.d/memcached.ini
+
 RUN a2enmod rewrite actions negotiation headers authz_groupfile
 ADD apache2.conf /etc/apache2/apache2.conf
 ADD status.conf /etc/apache2/conf-enabled/status.conf
