@@ -62,8 +62,4 @@ RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0
 ADD start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
 
-# These get run on build.
-ONBUILD ADD . /data
-ONBUILD RUN chown -R www-data:www-data /data
-
 CMD ["start"]

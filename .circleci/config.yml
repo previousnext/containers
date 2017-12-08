@@ -11,7 +11,7 @@ jobs:
           command: |
             make $PLATFORM
             if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
               make $PLATFORM-push
             fi
 
@@ -50,6 +50,21 @@ jobs:
     environment:
       - PLATFORM: oauth2
 
+  golang:
+    <<: *build_image
+    environment:
+      - PLATFORM: golang
+
+  pnx-packager:
+    <<: *build_image
+    environment:
+      - PLATFORM: pnx-packager
+
+  passenger:
+    <<: *build_image
+    environment:
+      - PLATFORM: passenger
+
 workflows:
   version: 2
   build:
@@ -61,3 +76,6 @@ workflows:
       - solr
       - apache2
       - oauth2
+      - golang
+      - pnx-packager
+      - passenger

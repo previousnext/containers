@@ -3,7 +3,7 @@
 DOCKER=docker build -f Dockerfile
 
 # Builds all containers.
-all: php solr apache2 oauth2
+all: php solr apache2 oauth2 golang
 
 # Builds all PHP prod and dev containers.
 php: php-5.6 php-7.0 php-7.1 php-7.x
@@ -72,7 +72,13 @@ php-7.x:
 
 # Builds Passenger prod container.
 passenger:
-	cd passenger && $(DOCKER) -t previousnext/passenger:latest .
+	cd passenger/base && $(DOCKER) -t previousnext/passenger:base .
+	cd passenger/dev && $(DOCKER) -t previousnext/passenger:latest-dev .
+	cd passenger/prod && $(DOCKER) -t previousnext/passenger:latest .
+
+passenger-push:
+	docker push previousnext/passenger:latest
+	docker push previousnext/passenger:latest-dev
 
 # Builds mkdocs container.
 mkdocs:
@@ -104,5 +110,12 @@ oauth2-push:
 sftp:
 	cd sftp/dev && $(DOCKER) -t previousnext/sftp:latest .
 
-.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp
+# Build & push go build container.
+golang-push:
+	cd golang && make build && make push
 
+# Build & push go build container.
+pnx-packager-push:
+	cd pnx-packager && make build && make push
+
+.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
