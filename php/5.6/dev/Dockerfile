@@ -69,6 +69,6 @@ RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v$HUB_
 RUN curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 -o /usr/local/bin/gosu && \
       chmod a+x /usr/local/bin/gosu
 
-# Notify - https://github.com/nickschuch/notify
-RUN curl -L https://github.com/nickschuch/notify/releases/download/1.0.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+# Notify - https://github.com/previousnext/notify
+RUN curl -L https://github.com/previousnext/notify/releases/download/1.0.1/notify_linux_amd64 -o /usr/local/bin/notify && \
       chmod +rx /usr/local/bin/notify
