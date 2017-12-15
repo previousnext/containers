@@ -8,9 +8,7 @@ It uses the [request-log-analyzer](https://github.com/wvanbergen/request-log-ana
 
 ### Usage
 
-Step 1: Obtain CloudFront logs from s3 bucket.
-
-<script src="https://gist.github.com/nicksantamaria/ee6322161e6469daf31a2214d8fa9f80.js"></script>
+Step 1: [Obtain CloudFront logs from s3 bucket](https://gist.github.com/nicksantamaria/ee6322161e6469daf31a2214d8fa9f80.js).
 
 Step 2: Run `cf-log-analyzer` tool to parse logs.
 
