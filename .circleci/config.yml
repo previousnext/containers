@@ -60,6 +60,11 @@ jobs:
     environment:
       - PLATFORM: pnx-packager
 
+  cf-log-analyzer:
+    <<: *build_image
+    environment:
+      - PLATFORM: cf-log-analyzer
+
   passenger:
     <<: *build_image
     environment:
@@ -78,4 +83,5 @@ workflows:
       - oauth2
       - golang
       - pnx-packager
+      - cf-log-analyzer
       - passenger
