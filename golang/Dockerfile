@@ -1,4 +1,5 @@
-FROM circleci/golang:1.8
+ARG GO_VERSION=1.8
+FROM circleci/golang:${GO_VERSION}
 
 RUN go get github.com/tcnksm/ghr && \
     go get github.com/mitchellh/gox && \

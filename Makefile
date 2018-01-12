@@ -112,7 +112,8 @@ sftp:
 
 # Build & push go build container.
 golang-push:
-	cd golang && make build && make push
+	cd golang && make GO_VERSION=1.8
+	cd golang && make GO_VERSION=1.9
 
 # Build & push go build container.
 pnx-packager-push:
