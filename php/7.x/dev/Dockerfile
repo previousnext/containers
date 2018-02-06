@@ -1,4 +1,5 @@
-FROM       previousnext/php:7.x-base
+ARG PHP_VERSION=7.0
+FROM       previousnext/php:${PHP_VERSION}-base
 MAINTAINER nick_schuch
 
 ENV ENV_TYPE     DOCKER

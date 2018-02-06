@@ -1,4 +1,5 @@
-FROM       php:7.1-apache
+ARG PHP_VERSION=7.0
+FROM       php:${PHP_VERSION}-apache
 MAINTAINER nick_schuch
 
 WORKDIR /data
