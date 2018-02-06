@@ -70,7 +70,7 @@ RUN curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 -o 
       chmod a+x /usr/local/bin/gosu
 
 # Notify - https://github.com/previousnext/notify
-RUN curl -L https://github.com/previousnext/notify/releases/download/2.0.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
       chmod +rx /usr/local/bin/notify
 
 # MicroCron - https://github.com/previousnext/microcron
