@@ -36,7 +36,7 @@ RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
 # https://github.com/docker-library/php/issues/77#issuecomment-88936146
-RUN pecl install -o -f xdebug && \
+RUN pecl install -o -f xdebug-2.5.5 && \
     rm -rf /tmp/pear
 ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 ADD scripts/xdebug-set.sh /usr/local/bin/xdebug-set.sh
