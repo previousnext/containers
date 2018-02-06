@@ -6,10 +6,10 @@ DOCKER=docker build -f Dockerfile
 all: php solr apache2 oauth2 golang
 
 # Builds all PHP prod and dev containers.
-php: php-5.6 php-7.0 php-7.1 php-7.x
+php: php-5.6 php-7.0 php-7.1 php-7.2
 
 # Release new php images.
-php-push: php-5.6-push php-7.0-push php-7.1-push php-7.x-push
+php-push: php-5.6-push php-7.0-push php-7.1-push php-7.2-push
 
 php-5.6-push:
 	docker push previousnext/php:5.6-apache
@@ -23,9 +23,9 @@ php-7.1-push:
 	docker push previousnext/php:7.1-apache
 	docker push previousnext/php:7.1-dev
 
-php-7.x-push:
-	docker push previousnext/php:7.x-apache
-	docker push previousnext/php:7.x-dev
+php-7.2-push:
+	docker push previousnext/php:7.2-apache
+	docker push previousnext/php:7.2-dev
 
 # Builds all Solr containers.
 solr: solr-4.x solr-5.x
@@ -64,7 +64,7 @@ php-7.1:
 	cd php/7.x/prod && $(DOCKER) --build-arg PHP_VERSION=7.1 -t previousnext/php:7.1-apache .
 	cd php/7.x/dev && $(DOCKER) --build-arg PHP_VERSION=7.1 -t previousnext/php:7.1-dev .
 
-# Builds PHP 7.x prod and dev containers.
+# Builds PHP 7.2 prod and dev containers.
 php-7.2:
 	cd php/7.x/base && $(DOCKER) --build-arg PHP_VERSION=7.2 -t previousnext/php:7.2-base .
 	cd php/7.x/prod && $(DOCKER) --build-arg PHP_VERSION=7.2 -t previousnext/php:7.2-apache .
@@ -119,4 +119,4 @@ golang-push:
 pnx-packager-push:
 	cd pnx-packager && make build && make push
 
-.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.x php-7.x-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
+.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.2 php-7.2-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
