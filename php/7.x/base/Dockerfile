@@ -17,6 +17,7 @@ RUN apt-get update && \
       libxml2-dev \
       wget \
       git \
+      gnupg \
       vim \
       libfreetype6-dev \
       libjpeg-dev && \
