@@ -43,6 +43,9 @@ ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 ADD scripts/xdebug-set.sh /usr/local/bin/xdebug-set.sh
 RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 
+# Overrides for local development.
+ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
+
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
