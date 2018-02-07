@@ -30,6 +30,11 @@ jobs:
     environment:
       - PLATFORM: php-7.1
 
+  php_72:
+    <<: *build_image
+    environment:
+      - PLATFORM: php-7.2
+
   solr:
     <<: *build_image
     environment:
@@ -72,6 +77,7 @@ workflows:
       - php_56
       - php_70
       - php_71
+      - php_72
       - solr
       - apache2
       - oauth2
