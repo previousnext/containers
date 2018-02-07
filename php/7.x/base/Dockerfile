@@ -1,4 +1,5 @@
-FROM       php:7.1-apache
+ARG PHP_VERSION=7.0
+FROM       php:${PHP_VERSION}-apache
 MAINTAINER nick_schuch
 
 WORKDIR /data
@@ -11,11 +12,11 @@ RUN apt-get update && \
       mysql-client \
       zlib1g-dev \
       libpng-dev \
-      libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
       wget \
       git \
+      gnupg \
       vim \
       libfreetype6-dev \
       libjpeg-dev && \
@@ -38,7 +39,6 @@ RUN docker-php-ext-install \
       zip \
       pdo \
       pdo_mysql \
-      mcrypt \
       gd \
       mbstring \
       opcache \
@@ -83,7 +83,6 @@ RUN chmod a+x /usr/local/bin/configure-new-relic
 RUN apt-get -y remove --purge \
       zlib1g-dev \
       libpng-dev \
-      libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
       libfreetype6-dev \
