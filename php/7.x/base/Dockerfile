@@ -12,7 +12,6 @@ RUN apt-get update && \
       mysql-client \
       zlib1g-dev \
       libpng-dev \
-      libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
       wget \
@@ -40,7 +39,6 @@ RUN docker-php-ext-install \
       zip \
       pdo \
       pdo_mysql \
-      mcrypt \
       gd \
       mbstring \
       opcache \
@@ -85,7 +83,6 @@ RUN chmod a+x /usr/local/bin/configure-new-relic
 RUN apt-get -y remove --purge \
       zlib1g-dev \
       libpng-dev \
-      libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
       libfreetype6-dev \
