@@ -14,6 +14,7 @@ RUN apt-get update && \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
+      libmcrypt-dev \
       wget \
       git \
       gnupg \
@@ -86,6 +87,7 @@ RUN apt-get -y remove --purge \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
+      libmcrypt-dev \
       libfreetype6-dev \
       libjpeg-dev \
       libc-dev-bin \
