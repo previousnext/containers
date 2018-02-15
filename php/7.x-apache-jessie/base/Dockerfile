@@ -14,6 +14,7 @@ RUN apt-get update && \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
+      libmcrypt-dev \
       wget \
       git \
       gnupg \
@@ -44,7 +45,8 @@ RUN docker-php-ext-install \
       opcache \
       soap \
       pcntl \
-      bcmath
+      bcmath \
+      mcrypt
 
 RUN a2enmod rewrite actions negotiation headers authz_groupfile
 ADD apache2.conf /etc/apache2/apache2.conf
@@ -85,6 +87,7 @@ RUN apt-get -y remove --purge \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
+      libmcrypt-dev \
       libfreetype6-dev \
       libjpeg-dev \
       libc-dev-bin \

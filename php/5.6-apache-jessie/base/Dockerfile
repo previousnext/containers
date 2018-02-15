@@ -45,7 +45,8 @@ RUN docker-php-ext-install \
       opcache \
       soap \
       pcntl \
-      bcmath
+      bcmath \
+      mcrypt
 
 RUN a2enmod rewrite actions negotiation headers authz_groupfile
 ADD apache2.conf /etc/apache2/apache2.conf
