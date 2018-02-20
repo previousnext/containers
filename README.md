@@ -19,5 +19,3 @@ To build all the containers run the following command:
 ```bash
 $ make all
 ```
-
-For a great make experience, install https://github.com/tj/mmake
