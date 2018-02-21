@@ -19,7 +19,7 @@ project-name
 The Dockerfile will look like this:
 
 ```
-FROM  previousnext/sftp:latest
+FROM  previousnext/sftp
 LABEL maintainer="you@yourdomain.com"
 ```
 
