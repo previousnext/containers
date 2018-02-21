@@ -80,10 +80,6 @@ passenger-push:
 	docker push previousnext/passenger:latest
 	docker push previousnext/passenger:latest-dev
 
-# Builds mkdocs container.
-mkdocs:
-	cd mkdocs && $(DOCKER) -t previousnext/mkdocs:latest .
-
 # Builds ClamAV container.
 clamav:
 	cd clamav && $(DOCKER) -t previousnext/clamav:latest .
@@ -119,4 +115,4 @@ golang-push:
 pnx-packager-push:
 	cd pnx-packager && make build && make push
 
-.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.2 php-7.2-push solr-4.x solr-5.x apache2 oauth2 mkdocs passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
+.PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.2 php-7.2-push solr-4.x solr-5.x apache2 oauth2 passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
