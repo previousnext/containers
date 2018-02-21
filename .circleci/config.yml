@@ -3,7 +3,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - replicated/dockerfilelint
+      - image: replicated/dockerfilelint
     working_directory: /data
     environment:
       DOCKERFILE_LIST: /tmp/dockerfiles.txt
