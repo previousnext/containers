@@ -1,6 +1,21 @@
 version: 2
 
 jobs:
+  lint:
+    docker:
+      - replicated/dockerfilelint
+    working_directory: /data
+    environment:
+      DOCKERFILE_LIST: /tmp/dockerfiles.txt
+    steps:
+      - checkout
+      - run:
+          name: Lint dockerfiles
+          command: |
+            find * -name Dockerfile > ${DOCKERFILE_LIST}
+            while read DOCKERFILE; do
+              echo linting $DOCKERFILE;
+            done < ${DOCKERFILE_LIST}
 
   build_image: &build_image
     machine: true
@@ -74,6 +89,7 @@ workflows:
   version: 2
   build:
     jobs:
+      - lint
       - php_56
       - php_70
       - php_71
