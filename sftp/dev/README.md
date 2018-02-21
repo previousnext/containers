@@ -19,8 +19,8 @@ project-name
 The Dockerfile will look like this:
 
 ```
-FROM       previousnext/sftp:latest
-MAINTAINER YOUR NAME <you@domain>
+FROM  previousnext/sftp:latest
+LABEL maintainer="you@yourdomain.com"
 ```
 
 Now build the container and run it:

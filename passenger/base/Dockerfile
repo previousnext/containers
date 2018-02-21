@@ -1,5 +1,5 @@
-FROM       ubuntu:16.04
-MAINTAINER nick_schuch
+FROM  ubuntu:16.04
+LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data
 

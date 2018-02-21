@@ -1,5 +1,5 @@
-FROM       php:5.6-apache
-MAINTAINER nick_schuch
+FROM  php:5.6-apache
+LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data
 

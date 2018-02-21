@@ -1,5 +1,5 @@
-FROM       alpine:3.4
-MAINTAINER Nick Schuch
+FROM  alpine:3.4
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV FTP_USER=dev
 

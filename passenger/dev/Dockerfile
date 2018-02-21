@@ -1,5 +1,5 @@
-FROM       previousnext/passenger:base
-MAINTAINER nick_schuch
+FROM  previousnext/passenger:base
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV HUB_VERSION  2.2.9
 ENV HUB_NAME     hub-linux-amd64-$HUB_VERSION

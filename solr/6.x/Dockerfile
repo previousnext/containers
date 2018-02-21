@@ -1,5 +1,5 @@
-FROM        solr:5.5.4
-MAINTAINER  Nick Schuch <nick@previousnext.com.au>
+FROM  solr:5.5.4
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV SOLR_HEAP="256m"
 

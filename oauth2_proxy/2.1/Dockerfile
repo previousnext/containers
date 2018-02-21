@@ -1,5 +1,5 @@
-FROM gliderlabs/alpine:3.2
-MAINTAINER Nick Schuch
+FROM  gliderlabs/alpine:3.2
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV OAUTH2_PROXY_VERSION 2.1.linux-amd64.go1.6
 

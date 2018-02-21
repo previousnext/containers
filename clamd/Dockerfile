@@ -1,5 +1,5 @@
-FROM       alpine:3.3
-MAINTAINER Nick Schuch
+FROM  alpine:3.3
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV DEBIAN_FRONTEND noninteractive
 
