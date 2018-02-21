@@ -14,8 +14,8 @@ jobs:
           command: |
             find * -name Dockerfile > ${DOCKERFILE_LIST}
             while read DOCKERFILE; do
-              echo linting $DOCKERFILE;
-              /dockerfilelint/bin/dockerfilelint < $DOCKERFILE
+              echo linting ${DOCKERFILE};
+              /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
             done < ${DOCKERFILE_LIST}
 
   build_image: &build_image
