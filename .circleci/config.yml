@@ -16,7 +16,7 @@ jobs:
             while read DOCKERFILE; do
               echo linting ${DOCKERFILE};
               # @todo remove the || once lint issues all resolved.
-              /dockerfilelint/bin/dockerfilelint ${DOCKERFILE} || echo "${DOCKERFILE} failed linting - continuing"
+              /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
             done < ${DOCKERFILE_LIST}
 
   build_image: &build_image
