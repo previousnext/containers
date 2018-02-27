@@ -1,10 +1,9 @@
-FROM       alpine:3.3
-MAINTAINER Nick Schuch
+FROM  alpine:3.3
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apk update && \
-    apk add -u clamav-daemon python py-pip wget clamav-libunrar unrar
+RUN apk add --no-cache -u clamav-daemon python py-pip wget clamav-libunrar unrar
 
 RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \

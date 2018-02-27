@@ -1,4 +1,4 @@
-FROM ruby:latest
+FROM ruby:2-stretch
 
 RUN gem install request-log-analyzer
 COPY ./cloud_front.rb /root/cloud_front.rb

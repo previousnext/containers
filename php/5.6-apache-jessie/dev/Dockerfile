@@ -1,5 +1,5 @@
-FROM       previousnext/php:5.6-base
-MAINTAINER nick_schuch
+FROM  previousnext/php:5.6-base
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm

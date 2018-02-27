@@ -1,5 +1,5 @@
-FROM        alpine:3.4
-MAINTAINER  Nick Schuch <nick@previousnext.com.au>
+FROM  alpine:3.4
+LABEL maintainer="admin@previousnext.com.au"
 
 ENV SOLR_VERSION 4.9.1
 ENV SOLR_HEAP 256m

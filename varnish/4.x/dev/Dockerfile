@@ -1,5 +1,5 @@
-FROM       alpine:3.5
-MAINTAINER Nick Schuch nick@previousnext.com.au
+FROM  alpine:3.5
+LABEL maintainer="admin@previousnext.com.au"
 
 EXPOSE 8080
 

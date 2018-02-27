@@ -1,5 +1,5 @@
-FROM       ubuntu:16.04
-MAINTAINER Nick Schuch
+FROM  ubuntu:16.04
+LABEL maintainer="admin@previousnext.com.au"
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends apache2 && \

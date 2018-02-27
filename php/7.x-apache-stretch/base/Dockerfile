@@ -1,6 +1,6 @@
 ARG PHP_VERSION=7.2
-FROM       php:${PHP_VERSION}-apache
-MAINTAINER nick_schuch
+FROM  php:${PHP_VERSION}-apache
+LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data
 
