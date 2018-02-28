@@ -47,7 +47,8 @@ ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
 
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
-      tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/
+      tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
+      rm -rf linux-amd64-latest.tar.gz
 
 # Temporary environment builder.
 RUN curl -L https://github.com/previousnext/m8s/releases/download/v0.7.0-alpha1/m8s_linux_amd64 -o /usr/local/bin/m8s && \
