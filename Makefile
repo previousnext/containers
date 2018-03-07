@@ -115,4 +115,10 @@ golang-push:
 pnx-packager-push:
 	cd pnx-packager && make build && make push
 
+lint:
+	for file in $$(find . -type f -name Dockerfile) ; do \
+		echo $$file ; \
+    docker run -v `pwd`/$$file:/Dockerfile replicated/dockerfilelint /Dockerfile ; \
+	done
+
 .PHONY: php php-push php-5.6 php-5.6-push php-7.0 php-7.0-push php-7.1 php-7.1-push php-7.2 php-7.2-push solr-4.x solr-5.x apache2 oauth2 passenger clamav mkdocs varnish-4.x sftp golang-push pnx-packager-push
