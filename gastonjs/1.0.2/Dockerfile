@@ -6,8 +6,13 @@ ENV PHANTOMJS_HASH "f8afc8a24eec34c2badccc93812879a3d6f2caf3 phantomjs-2.1.1-lin
 WORKDIR /usr/local
 
 RUN apt-get update && \
-    apt-get install -y wget bzip2 libfontconfig unzip && \
-    apt-get clean
+    apt-get install --no-install-recommends -y \
+    wget \
+    bzip2 \
+    libfontconfig \
+    unzip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
     echo $PHANTOMJS_HASH > phantomjs.sha1 && \
