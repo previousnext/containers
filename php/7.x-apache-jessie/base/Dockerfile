@@ -11,10 +11,13 @@ RUN apt-get update && \
     apt-get install -y \
       mysql-client \
       zlib1g-dev \
+      jpegoptim \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
       libmcrypt-dev \
+      optipng \
+      openssh-client \
       wget \
       git \
       gnupg \
