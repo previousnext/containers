@@ -8,13 +8,15 @@ ENV PATH "$PATH:/data/bin"
 
 # Apache + PHP
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install  --no-install-recommends -y \
       mysql-client \
       zlib1g-dev \
+      jpegoptim \
       libpng-dev \
       libmemcached-dev \
       libxml2-dev \
       libmcrypt-dev \
+      optipng \
       wget \
       git \
       gnupg \

@@ -7,20 +7,23 @@ ENV PATH "$PATH:/data/bin"
 
 # Apache + PHP
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
       mysql-client \
       zlib1g-dev \
+      jpegoptim \
       libpng-dev \
       libmcrypt-dev \
       libmemcached-dev \
       libxml2-dev \
+      optipng \
       vim \
       wget \
       git \
       libfreetype6-dev \
       libjpeg-dev \
       sendmail && \
-      apt-get clean
+      apt-get clean && \
+      rm -rf /var/lib/apt/lists/*
 
 # New Relic
 RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/sources.list.d/newrelic.list && \
@@ -101,7 +104,7 @@ RUN apt-get -y remove --purge \
       cpp \
       cpp-4.9
 
-# Healthz checks. 
+# Healthz checks.
 COPY healthz /var/www/healthz
 
 # Github.
