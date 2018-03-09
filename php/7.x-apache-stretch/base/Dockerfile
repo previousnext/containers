@@ -16,6 +16,7 @@ RUN apt-get update && \
       libmemcached-dev \
       libxml2-dev \
       optipng \
+      openssh-client \
       wget \
       git \
       gnupg \

@@ -17,6 +17,7 @@ RUN apt-get update && \
       libxml2-dev \
       libmcrypt-dev \
       optipng \
+      openssh-client \
       wget \
       git \
       gnupg \
