@@ -73,10 +73,6 @@ RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-
 RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0.1/skipper-backup-linux-amd64 -o /usr/local/bin/backup && \
       chmod +rx /usr/local/bin/backup
 
-# Script that kicks it all off
-ADD start.sh /usr/local/bin/start
-RUN chmod a+x /usr/local/bin/start
-
 # New Relic.
 ADD scripts/configure-new-relic.sh /usr/local/bin/configure-new-relic
 RUN chmod a+x /usr/local/bin/configure-new-relic
@@ -101,10 +97,13 @@ RUN apt-get -y remove --purge \
       cpp \
       cpp-4.9
 
-# Healthz checks. 
+# Healthz checks.
 COPY healthz /var/www/healthz
 
 # Github.
 RUN mkdir -p /root/.ssh && ssh-keyscan github.com >> /root/.ssh/known_hosts
 
-CMD ["/usr/local/bin/start"]
+ADD start.sh /usr/local/bin/start
+RUN chmod a+x /usr/local/bin/start
+
+CMD ["start"]

@@ -85,3 +85,9 @@ RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notif
 # MicroCron - https://github.com/previousnext/microcron
 RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
       chmod +rx /usr/local/bin/microcron
+
+ADD scripts/basic-auth.sh /usr/local/bin/basic-auth
+RUN chmod a+x /usr/local/bin/basic-auth
+
+# Execute the basic-auth prior to starting the container.
+CMD ["/bin/sh", "-c", "basic-auth && start"]
