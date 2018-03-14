@@ -33,6 +33,13 @@ RUN apt-get update && \
 RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
+# Add proxy rules which will allow us to acces Mailhog and Solr.
+#   /mailhog -> https://127.0.0.1:8025
+#   /solr    -> https://127.0.0.1:8983
+# This is handy for consistency between our local and m8s environments.
+ADD proxy.conf /etc/apache2/conf-enabled/proxy.conf
+RUN a2enmod proxy proxy_http proxy_wstunnel
+
 # https://github.com/docker-library/php/issues/77#issuecomment-88936146
 RUN pecl install -o -f xdebug && \
     rm -rf /tmp/pear
