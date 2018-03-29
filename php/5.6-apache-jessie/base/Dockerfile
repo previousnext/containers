@@ -17,6 +17,7 @@ RUN apt-get update && \
       libxml2-dev \
       optipng \
       openssh-client \
+      pngquant \
       vim \
       wget \
       git \
