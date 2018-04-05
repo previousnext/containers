@@ -54,6 +54,7 @@ RUN docker-php-ext-install \
 
 RUN a2enmod rewrite actions negotiation headers authz_groupfile
 ADD apache2.conf /etc/apache2/apache2.conf
+ADD security.conf /etc/apache2/conf-enabled/security.conf
 ADD status.conf /etc/apache2/conf-enabled/status.conf
 ADD other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
 ADD php.ini /usr/local/etc/php/php.ini
