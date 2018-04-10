@@ -18,6 +18,7 @@ RUN apt-get update && \
       libmcrypt-dev \
       optipng \
       openssh-client \
+      pngquant \
       wget \
       git \
       gnupg \
