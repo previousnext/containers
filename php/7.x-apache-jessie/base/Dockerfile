@@ -6,6 +6,11 @@ WORKDIR /data
 
 ENV PATH "$PATH:/data/bin"
 
+# Add backport apt repository for git.
+RUN echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main" >> /etc/apt/sources.list && \
+    echo "deb-src http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main" >> /etc/apt/sources.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1DF1F24
+
 # Apache + PHP
 RUN apt-get update && \
     apt-get install -y \
