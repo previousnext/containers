@@ -70,6 +70,12 @@ php-7.2:
 	cd php/7.x-apache-stretch/prod && $(DOCKER) --build-arg PHP_VERSION=7.2 -t previousnext/php:7.2-apache .
 	cd php/7.x-apache-stretch/dev && $(DOCKER) --build-arg PHP_VERSION=7.2 -t previousnext/php:7.2-dev .
 
+PHP_TAG=7.1-3.x
+
+php-alpine:
+	cd php/alpine/apache && $(DOCKER) -t previousnext/php-apache:${PHP_TAG} .
+	cd php/alpine/dev && $(DOCKER) --build-arg BASE_IMAGE=previousnext/php-apache:${PHP_TAG} -t previousnext/php-apache:${PHP_TAG}-dev .
+
 # Builds Passenger prod container.
 passenger:
 	cd passenger/base && $(DOCKER) -t previousnext/passenger:base .
