@@ -48,7 +48,8 @@ RUN apk update && \
             wget \
             vim \
             bash \
-            make && \
+            make \
+            unzip && \
     rm -rf /var/cache/apk/*
 
 ADD httpd.conf /etc/apache2/httpd.conf
@@ -80,14 +81,16 @@ RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-
     chmod +rx /usr/local/bin/tuner
 
 # These volumes allow us to run our containers in "readonly" mode.
-VOLUME /run
-VOLUME /var/run
+VOLUME /run/apache2
+VOLUME /run/lock/apache2
 VOLUME /tmp
 VOLUME /var/log/newrelic
+VOLUME /var/run/tuner/apache2
+VOLUME /var/run/tuner/php
 
 WORKDIR /data
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]

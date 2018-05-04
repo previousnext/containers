@@ -19,7 +19,6 @@ if [ "$NEW_RELIC_LICENSE_KEY" != "" ] && [ "$NEW_RELIC_APP_NAME" != "" ]; then
   echo "New Relic: Enabled"
 fi
 
-mkdir -p /var/run/tuner/{apache2,php}
 tuner --conf=apache > /var/run/tuner/apache2/tuner.conf
 tuner --conf=php > /var/run/tuner/php/tuner.ini
 

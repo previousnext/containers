@@ -2,10 +2,13 @@ ARG BASE_IMAGE=previousnext/php-apache:latest
 
 FROM ${BASE_IMAGE}
 
-RUN apk update && \
-    apk upgrade && \
-    apk add unzip \
-            php7-xdebug && \
+ENV PATH "$PATH:/data/node_modules/.bin"
+
+RUN apk add -u php7-xdebug \
+               nodejs \
+               yarn \
+               python \
+               g++ && \
     rm -rf /var/cache/apk/*
 
 ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
