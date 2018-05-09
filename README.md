@@ -14,8 +14,12 @@ Documentation for each container can be found in its respective directory.
 
 ## Building
 
-To build all the containers run the following command:
+Each container has a Makefile in its directory with the workflow:
 
 ```bash
-$ make all
+# Build all versions
+make
+
+# Release to Docker Hub
+make release
 ```

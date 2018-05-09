@@ -1,5 +1,19 @@
 version: 2
 
+build: &build
+  machine: true
+  steps:
+    - checkout
+    - run:
+        name: Build and Test
+        command: |
+          cd $DIR
+          make
+          if [ "$CIRCLE_BRANCH" == "master" ]; then
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            make release
+          fi
+
 jobs:
   lint:
     docker:
@@ -19,67 +33,45 @@ jobs:
               /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
             done < ${DOCKERFILE_LIST}
 
-  build_image: &build_image
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build image
-          command: |
-            make $PLATFORM
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              make $PLATFORM-push
-            fi
-
   php-apache:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build image
-          command: |
-            cd php/alpine/apache
-            make 7.1 7.2
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              make release
-            fi
+    <<: *build
+    environment:
+      - DIR: php/apache
 
   solr:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: solr
+      - DIR: solr
 
   apache2:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: apache2
+      - DIR: apache2
 
   oauth2:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: oauth2
+      - DIR: oauth2
 
   golang:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: golang
+      - DIR: golang
 
   pnx-packager:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: pnx-packager
+      - DIR: pnx-packager
 
   cf-log-analyzer:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: cf-log-analyzer
+      - DIR: cf-log-analyzer
 
   passenger:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: passenger
+      - DIR: passenger
 
 workflows:
   version: 2

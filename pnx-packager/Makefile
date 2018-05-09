@@ -1,13 +1,14 @@
 #!/usr/bin/make -f
 
 IMAGE=previousnext/pnx-packager
-VERSION=$(shell git describe --tag --always)
+VERSION=latest
 
-default: build push
-
+# Build and tests
 build:
-	docker build -t $(IMAGE):latest -t $(IMAGE):$(VERSION) .
+	docker build -t $(IMAGE):$(VERSION) .
 
-push:
-	docker push $(IMAGE):latest
+# Build and release
+release: build
 	docker push $(IMAGE):$(VERSION)
+
+.PHONY: build release

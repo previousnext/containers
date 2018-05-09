@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-IMAGE=previousnext/cf-log-analyzer
+IMAGE=previousnext/apache2
 VERSION=latest
 
 # Build and tests

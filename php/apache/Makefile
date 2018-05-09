@@ -11,7 +11,7 @@ define build_test
 	                                                     --config tests/drush.yml \
 	                                                     --config tests/tuner.yml
 	# Building and testing DEV...
-	docker build --build-arg FROM=$(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(VERSION)-dev dev
+	docker build -f dev/Dockerfile --build-arg FROM=$(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(VERSION)-dev dev
 	structure-test test --image $(IMAGE):$(1)-$(VERSION)-dev --config dev/tests/frontend.yml \
 	                                                         --config dev/tests/tools.yml
 endef
@@ -23,6 +23,9 @@ define push
 	docker push $(IMAGE):$(1)-$(VERSION)-dev
 endef
 
+# Build all PHP versions
+build: 7.1 7.2
+
 # Build PHP 7.1
 7.1:
 	$(call build_test,7.1,3.7)
@@ -30,8 +33,10 @@ endef
 # Build PHP 7.2
 7.2:
 	$(call build_test,7.2,edge)
-	
+
 # Build and release
-release: 7.1 7.2
+release: build
 	$(call push,7.1)
 	$(call push,7.2)
+
+.PHONY: build 7.1 7.2 release
