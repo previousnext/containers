@@ -6,8 +6,8 @@ define('DRUPAL_ROOT', '/data/app');
 // This script is never exposed outside of the deployment.
 ini_set('display_errors', 1);
 
-// Suspend healthz checks
-$skip = realpath('/etc/skpr/healthz.skip');
+// Suspend liveness checks
+$skip = realpath('/etc/skpr/liveness.skip');
 clearstatcache(TRUE, $skip);
 if (file_exists($skip)) {
   header('HTTP/1.1 200 OK');
@@ -67,11 +67,11 @@ foreach ($vars as $type => $var) {
     continue;
   }
 
-  $file = $real_dir . '/healthz_' . drupal_random_key(6) . '.txt';
+  $file = $real_dir . '/liveness_' . drupal_random_key(6) . '.txt';
 
   // Attempt to write the file to disk.
   $fp = fopen($file, 'w');
-  $success = fwrite($fp, 'healthz ' . $type);
+  $success = fwrite($fp, 'liveness ' . $type);
   fclose($fp);
   if (!$success) {
     $errors[] = 'Could not write to file: ' . $file;

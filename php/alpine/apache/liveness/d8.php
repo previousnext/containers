@@ -4,8 +4,8 @@
  * Health check for D8.
  */
 
-// Suspend healthz checks
-$skip = realpath('/etc/skpr/healthz.skip');
+// Suspend liveness checks
+$skip = realpath('/etc/skpr/liveness.skip');
 clearstatcache(TRUE, $skip);
 if (file_exists($skip)) {
   header('HTTP/1.1 200 OK');
@@ -79,11 +79,11 @@ foreach ($schemes as $name => $scheme) {
     $errors[] = 'Could not find the directory: ' . $name;
     continue;
   }
-  $file = $real_dir . '/healthz_' . Crypt::randomBytesBase64(6) . '.txt';
+  $file = $real_dir . '/liveness_' . Crypt::randomBytesBase64(6) . '.txt';
 
   // Attempt to write the file to disk.
   $fp = fopen($file, 'w');
-  $success = fwrite($fp, 'healthz ' . $name);
+  $success = fwrite($fp, 'liveness ' . $name);
   fclose($fp);
   if (!$success) {
     $errors[] = 'Could not write to file: ' . $file;
