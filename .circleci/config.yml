@@ -17,24 +17,6 @@ build: &build
           fi
 
 jobs:
-  lint:
-    docker:
-      - image: replicated/dockerfilelint
-    working_directory: /data
-    environment:
-      DOCKERFILE_LIST: /tmp/dockerfiles.txt
-    steps:
-      - checkout
-      - run:
-          name: Lint dockerfiles
-          command: |
-            find * -name Dockerfile > ${DOCKERFILE_LIST}
-            while read DOCKERFILE; do
-              echo linting ${DOCKERFILE};
-              # @todo remove the || once lint issues all resolved.
-              /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
-            done < ${DOCKERFILE_LIST}
-
   php-legacy:
     <<: *build
     environment:
@@ -84,7 +66,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - lint
       - php-legacy
       - php-apache
       - solr

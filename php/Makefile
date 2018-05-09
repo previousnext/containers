@@ -6,9 +6,9 @@
 IMAGE=previousnext/php
 
 define build_test
-	docker build -f 7.x-apache-$(2)/base --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-base .
-	docker build -f 7.x-apache-$(2)/prod --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-apache .
-	docker build -f 7.x-apache-$(2)/dev --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-dev .
+	docker build -f 7.x-apache-$(2)/base/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-base 7.x-apache-$(2)/base
+	docker build -f 7.x-apache-$(2)/prod/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-apache 7.x-apache-$(2)/prod
+	docker build -f 7.x-apache-$(2)/dev/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-dev 7.x-apache-$(2)/dev
 endef
 
 define push
