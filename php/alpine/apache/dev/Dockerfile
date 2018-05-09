@@ -1,6 +1,6 @@
-ARG BASE_IMAGE=previousnext/php-apache:latest
+ARG FROM=previousnext/php-apache:latest
 
-FROM ${BASE_IMAGE}
+FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
 
@@ -8,6 +8,9 @@ RUN apk add -u php7-xdebug \
                nodejs \
                yarn \
                python \
+               git \
+               make \
+               wget \
                g++ && \
     rm -rf /var/cache/apk/*
 

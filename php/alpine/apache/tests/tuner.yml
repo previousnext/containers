@@ -1,0 +1,7 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'command exists'
+    command: "which"
+    args: ["tuner"]
+    expectedOutput: ["/usr/local/bin/tuner\n"]

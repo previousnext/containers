@@ -1,17 +1,21 @@
-FROM alpine
+ARG ALPINE_VERSION=3.7
+
+FROM alpine:${ALPINE_VERSION}
 
 ENV PATH "$PATH:/data/bin"
-
-ENV NR_INSTALL_SILENT=true
-ENV NR_INSTALL_USE_CP_NOT_LN=true
 
 ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
 
 RUN apk update && \
     apk upgrade && \
-    apk add apache2 \
+    apk add curl \
+            vim \
+            bash \
+            unzip \
+            rsync \
+            mysql-client \
+            apache2 \
             apache2-utils \
-            curl \
             php7 \
             php7-apache2 \
             php7-openssl \
@@ -42,14 +46,7 @@ RUN apk update && \
             php7-sqlite3 \
             php7-xml \
             php7-xmlreader \
-            php7-xmlwriter \
-            mysql-client \
-            git \
-            wget \
-            vim \
-            bash \
-            make \
-            unzip && \
+            php7-xmlwriter && \
     rm -rf /var/cache/apk/*
 
 ADD httpd.conf /etc/apache2/httpd.conf
@@ -62,7 +59,9 @@ ADD apcu.ini /etc/php7/conf.d/apcu.ini
 COPY liveness /var/www/liveness
 
 # New Relic
-RUN curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
+RUN export NR_INSTALL_SILENT=true && \
+    export NR_INSTALL_USE_CP_NOT_LN=true && \
+    curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
     cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
     rm -fR /newrelic-php5-8.1.0.209-linux-musl
 ADD newrelic.ini /etc/php7/conf.d/newrelic.ini 
