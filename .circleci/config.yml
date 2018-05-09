@@ -32,25 +32,19 @@ jobs:
               make $PLATFORM-push
             fi
 
-  php_56:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-5.6
-
-  php_70:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.0
-
-  php_71:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.1
-
-  php_72:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.2
+  php-apache:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: |
+            cd php/alpine/apache
+            make 7.1 7.2
+            if [ "$CIRCLE_BRANCH" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              make release
+            fi
 
   solr:
     <<: *build_image
@@ -92,10 +86,7 @@ workflows:
   build:
     jobs:
       - lint
-      - php_56
-      - php_70
-      - php_71
-      - php_72
+      - php-apache
       - solr
       - apache2
       - oauth2
