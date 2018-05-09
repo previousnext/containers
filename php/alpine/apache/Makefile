@@ -16,7 +16,7 @@ define build_test
 	                                                         --config dev/tests/tools.yml
 endef
 
-define deploy
+define push
 	# Pushing PROD...
 	docker push $(IMAGE):$(1)-$(VERSION)
 	# Pushing DEV...
@@ -33,5 +33,5 @@ endef
 	
 # Build and release
 release: 7.1 7.2
-	$(call release,7.1)
-	$(call release,7.2)
+	$(call push,7.1)
+	$(call push,7.2)
