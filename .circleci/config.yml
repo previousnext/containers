@@ -48,10 +48,10 @@ jobs:
     environment:
       - DIR: apache2
 
-  oauth2:
+  oauth2_proxy:
     <<: *build
     environment:
-      - DIR: oauth2
+      - DIR: oauth2_proxy
 
   golang:
     <<: *build
@@ -81,7 +81,7 @@ workflows:
       - php-apache
       - solr
       - apache2
-      - oauth2
+      - oauth2_proxy
       - golang
       - pnx-packager
       - cf-log-analyzer
