@@ -20,6 +20,7 @@ RUN apt-get update && \
       pngquant \
       wget \
       git \
+      rsync \
       gnupg \
       vim \
       libfreetype6-dev \
