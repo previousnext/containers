@@ -85,6 +85,7 @@ workflows:
   build:
     jobs:
       - lint
+      - php-legacy
       - php-apache
       - solr
       - apache2
