@@ -5,7 +5,8 @@ FROM ${FROM}
 ENV PATH "$PATH:/data/node_modules/.bin"
 
 RUN apk add -u php7-xdebug \
-               nodejs \
+               nodejs-current \
+               nodejs-current-npm \
                yarn \
                python \
                git \

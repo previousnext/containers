@@ -4,4 +4,4 @@ commandTests:
   - name: 'command exists'
     command: "which"
     args: ["composer"]
-    expectedOutput: ["/usr/local/bin/composer\n"]
+    expectedOutput: ["/usr/local/bin/composer"]

@@ -12,7 +12,8 @@ define build_test
 	                                                     --config tests/tuner.yml
 	# Building and testing DEV...
 	docker build --build-arg FROM=$(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(VERSION)-dev dev
-	structure-test test --image $(IMAGE):$(1)-$(VERSION)-dev --config dev/tests.yml
+	structure-test test --image $(IMAGE):$(1)-$(VERSION)-dev --config dev/tests/frontend.yml \
+	                                                         --config dev/tests/tools.yml
 endef
 
 define deploy

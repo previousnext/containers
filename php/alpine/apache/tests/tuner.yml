@@ -4,4 +4,4 @@ commandTests:
   - name: 'command exists'
     command: "which"
     args: ["tuner"]
-    expectedOutput: ["/usr/local/bin/tuner\n"]
+    expectedOutput: ["/usr/local/bin/tuner"]

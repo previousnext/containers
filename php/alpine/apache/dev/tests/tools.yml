@@ -1,0 +1,7 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'command exists: git'
+    command: "which"
+    args: ["git"]
+    expectedOutput: ["/usr/bin/git"]
