@@ -35,6 +35,11 @@ jobs:
               /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
             done < ${DOCKERFILE_LIST}
 
+  php-legacy:
+    <<: *build
+    environment:
+      - DIR: php
+
   php-apache:
     <<: *build
     environment:
