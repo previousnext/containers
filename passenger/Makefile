@@ -1,13 +1,13 @@
 #!/usr/bin/make -f
 
-IMAGE=previousnext/apache2
+IMAGE=previousnext/passenger
 VERSION=latest
 
 # Build and tests
 build:
-	docker build -f base/Dockerfile -t previousnext/passenger:base base
-	docker build -f prod/Dockerfile -t previousnext/passenger:$(VERSION) prod
-	docker build -f dev/Dockerfile -t previousnext/passenger:$(VERSION)-dev dev
+	docker build -f base/Dockerfile -t $(IMAGE):base base
+	docker build -f prod/Dockerfile -t $(IMAGE):$(VERSION) prod
+	docker build -f dev/Dockerfile -t $(IMAGE):$(VERSION)-dev dev
 
 # Build and release
 release: build
