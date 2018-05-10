@@ -12,7 +12,7 @@ define build_test
 endef
 
 define push
-	docker push $(IMAGE):$(1)
+	docker push $(IMAGE):$(1)-apache
 	docker push $(IMAGE):$(1)-dev
 endef
 
