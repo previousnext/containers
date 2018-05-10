@@ -1,0 +1,7 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'command exists'
+    command: "which"
+    args: ["composer"]
+    expectedOutput: ["/usr/local/bin/composer"]

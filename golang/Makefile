@@ -1,13 +1,30 @@
 #!/usr/bin/make -f
 
 IMAGE=previousnext/golang
-GO_VERSION=1.8
 
-default: build push
+define build_test
+	docker build --build-arg GO_VERSION=$(1) -t $(IMAGE):$(1) .
+	# @todo, Add tests.
+endef
 
-build:
-	docker build --build-arg GO_VERSION=$(GO_VERSION) -t $(IMAGE):$(GO_VERSION) .
+define push
+	docker push $(IMAGE):$(1)
+endef
 
-push:
-	docker push $(IMAGE):latest
-	docker push $(IMAGE):$(GO_VERSION)
+# Build all Go
+build: 1.9 1.10
+
+# Build Go 1.9
+1.9:
+	$(call build_test,1.9)
+
+# Build Go 1.10
+1.10:
+	$(call build_test,1.10)
+
+# Build and release
+release: build
+	$(call push,1.9)
+	$(call push,1.10)
+
+.PHONY: build 1.9 1.10 release

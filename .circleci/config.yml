@@ -1,104 +1,76 @@
 version: 2
 
+build: &build
+  docker:
+    - image: previousnext/container-builder:latest
+  steps:
+    - setup_remote_docker
+    - checkout
+    - run:
+        name: Build, Test and Release
+        command: |
+          cd $DIR
+          make
+          if [ "$CIRCLE_BRANCH" == "master" ]; then
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            make release
+          fi
+
 jobs:
-  lint:
-    docker:
-      - image: replicated/dockerfilelint
-    working_directory: /data
+  php-legacy:
+    <<: *build
     environment:
-      DOCKERFILE_LIST: /tmp/dockerfiles.txt
-    steps:
-      - checkout
-      - run:
-          name: Lint dockerfiles
-          command: |
-            find * -name Dockerfile > ${DOCKERFILE_LIST}
-            while read DOCKERFILE; do
-              echo linting ${DOCKERFILE};
-              # @todo remove the || once lint issues all resolved.
-              /dockerfilelint/bin/dockerfilelint ${DOCKERFILE}
-            done < ${DOCKERFILE_LIST}
+      - DIR: php
 
-  build_image: &build_image
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build image
-          command: |
-            make $PLATFORM
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              make $PLATFORM-push
-            fi
-
-  php_56:
-    <<: *build_image
+  php-apache:
+    <<: *build
     environment:
-      - PLATFORM: php-5.6
-
-  php_70:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.0
-
-  php_71:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.1
-
-  php_72:
-    <<: *build_image
-    environment:
-      - PLATFORM: php-7.2
+      - DIR: php/apache
 
   solr:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: solr
+      - DIR: solr
 
   apache2:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: apache2
+      - DIR: apache2
 
-  oauth2:
-    <<: *build_image
+  oauth2_proxy:
+    <<: *build
     environment:
-      - PLATFORM: oauth2
+      - DIR: oauth2_proxy
 
   golang:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: golang
+      - DIR: golang
 
   pnx-packager:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: pnx-packager
+      - DIR: pnx-packager
 
   cf-log-analyzer:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: cf-log-analyzer
+      - DIR: cf-log-analyzer
 
   passenger:
-    <<: *build_image
+    <<: *build
     environment:
-      - PLATFORM: passenger
+      - DIR: passenger
 
 workflows:
   version: 2
   build:
     jobs:
-      - lint
-      - php_56
-      - php_70
-      - php_71
-      - php_72
+      - php-legacy
+      - php-apache
       - solr
       - apache2
-      - oauth2
+      - oauth2_proxy
       - golang
       - pnx-packager
       - cf-log-analyzer

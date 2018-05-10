@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
-IMAGE=previousnext/cf-log-analyzer
-VERSION=latest
+IMAGE=previousnext/oauth2_proxy
+VERSION=2.1
 
 # Build and tests
 build:
