@@ -6,9 +6,9 @@
 IMAGE=previousnext/php
 
 define build_test
-	docker build -f 7.x-apache-$(2)/base/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-base 7.x-apache-$(2)/base
-	docker build -f 7.x-apache-$(2)/prod/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-apache 7.x-apache-$(2)/prod
-	docker build -f 7.x-apache-$(2)/dev/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-dev 7.x-apache-$(2)/dev
+	docker build -f $(2)/base/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-base $(2)/base
+	docker build -f $(2)/prod/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-apache $(2)/prod
+	docker build -f $(2)/dev/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-dev $(2)/dev
 endef
 
 define push
@@ -17,19 +17,24 @@ define push
 endef
 
 # Build and tests
-build: 7.1 7.2
+build: 5.6 7.1 7.2
+
+# Build PHP 5.6
+5.6:
+	$(call build_test,5.6,5.6-apache-jessie)
 
 # Build PHP 7.1
 7.1:
-	$(call build_test,7.1,jessie)
+	$(call build_test,7.1,7.x-apache-jessie)
 
 # Build PHP 7.2
 7.2:
-	$(call build_test,7.2,stretch)
+	$(call build_test,7.2,7.x-apache-stretch)
 
 # Build and release
 release: build
+	$(call push,5.6)
 	$(call push,7.1)
 	$(call push,7.2)
 
-.PHONY: build 4.x 5.x release
+.PHONY: build 5.6 7.1 7.2 release
