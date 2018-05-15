@@ -5,3 +5,7 @@ commandTests:
     command: "which"
     args: ["git"]
     expectedOutput: ["/usr/bin/git"]
+  - name: 'command exists: patch'
+    command: "which"
+    args: ["patch"]
+    expectedOutput: ["/usr/bin/patch"]

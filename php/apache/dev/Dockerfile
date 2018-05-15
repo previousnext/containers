@@ -8,6 +8,7 @@ RUN apk add -u php7-xdebug \
                nodejs-current \
                nodejs-current-npm \
                yarn \
+               patch \
                python \
                git \
                make \
