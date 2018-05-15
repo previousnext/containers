@@ -3,17 +3,17 @@ ARG FROM=previousnext/php-apache:latest
 FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
-
-RUN apk add -u php7-xdebug \
-               nodejs-current \
-               nodejs-current-npm \
-               yarn \
-               patch \
-               python \
+RUN apk add -u bash-completion \
+               g++ \
                git \
                make \
+               nodejs-current \
+               nodejs-current-npm \
+               patch \
+               php7-xdebug \
+               python \
                wget \
-               g++ && \
+               yarn && \
     rm -rf /var/cache/apk/*
 
 ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
