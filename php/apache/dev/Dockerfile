@@ -16,6 +16,7 @@ RUN apk add -u bash-completion \
                yarn && \
     rm -rf /var/cache/apk/*
 
+ADD .bashrc /root/.bashrc
 ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
 ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
