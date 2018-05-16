@@ -1,0 +1,13 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'php: error_reporting'
+    command: "php -i | grep display_errors"
+    args: []
+    expectedOutput: ["display_errors => Off => Off"]
+
+commandTests:
+  - name: 'php: xdebug enabled'
+    command: "php -i | grep xdebug.enable=1"
+    args: []
+    expectedOutput: ["xdebug.enable=1"]
