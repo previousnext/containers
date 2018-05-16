@@ -11,6 +11,7 @@ RUN apk update && \
     apk add curl \
             vim \
             bash \
+            bash-completion \
             unzip \
             rsync \
             mysql-client \
@@ -49,6 +50,7 @@ RUN apk update && \
             php7-xmlwriter && \
     rm -rf /var/cache/apk/*
 
+ADD .bashrc /root/.bashrc
 ADD httpd.conf /etc/apache2/httpd.conf
 ADD status.conf /etc/apache2/conf.d/status.conf
 ADD security.conf /etc/apache2/conf.d/security.conf
@@ -64,7 +66,7 @@ RUN export NR_INSTALL_SILENT=true && \
     curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
     cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
     rm -fR /newrelic-php5-8.1.0.209-linux-musl
-ADD newrelic.ini /etc/php7/conf.d/newrelic.ini 
+ADD newrelic.ini /etc/php7/conf.d/newrelic.ini
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \

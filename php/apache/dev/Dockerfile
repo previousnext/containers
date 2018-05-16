@@ -3,8 +3,7 @@ ARG FROM=previousnext/php-apache:latest
 FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
-RUN apk add -u bash-completion \
-               g++ \
+RUN apk add -u g++ \
                git \
                make \
                nodejs-current \
