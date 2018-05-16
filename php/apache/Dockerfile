@@ -17,6 +17,7 @@ RUN apk update && \
             mysql-client \
             apache2 \
             apache2-utils \
+            make \
             php7 \
             php7-apache2 \
             php7-openssl \
