@@ -10,13 +10,3 @@ commandTests:
     command: "which"
     args: ["patch"]
     expectedOutput: ["/usr/bin/patch"]
-
-fileExistenceTests:
-
-  - name: 'file exists: bash_completion'
-    path: '/usr/share/bash-completion/bash_completion'
-    shouldExist: true
-
-  - name: 'file exists: bashrc'
-    path: '/root/.bashrc'
-    shouldExist: true

@@ -3,8 +3,7 @@ ARG FROM=previousnext/php-apache:latest
 FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
-RUN apk add -u bash-completion \
-               g++ \
+RUN apk add -u g++ \
                git \
                make \
                nodejs-current \
@@ -16,7 +15,6 @@ RUN apk add -u bash-completion \
                yarn && \
     rm -rf /var/cache/apk/*
 
-ADD .bashrc /root/.bashrc
 ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
 ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
