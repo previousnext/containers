@@ -1,5 +1,11 @@
 schemaVersion: '2.0.0'
 
+commandTests:
+  - name: 'make exists'
+    command: "which"
+    args: ["make"]
+    expectedOutput: ["/usr/bin/make"]
+
 fileExistenceTests:
 
   - name: 'file exists: bash_completion'

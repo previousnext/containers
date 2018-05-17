@@ -5,7 +5,6 @@ FROM ${FROM}
 ENV PATH "$PATH:/data/node_modules/.bin"
 RUN apk add -u g++ \
                git \
-               make \
                nodejs-current \
                nodejs-current-npm \
                patch \
