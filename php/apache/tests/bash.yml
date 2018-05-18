@@ -1,10 +1,26 @@
 schemaVersion: '2.0.0'
 
 commandTests:
-  - name: 'make exists'
+
+  - name: 'command exists: make'
     command: "which"
     args: ["make"]
     expectedOutput: ["/usr/bin/make"]
+
+  - name: 'command exists: jpegoptim'
+    command: "which"
+    args: ["jpegoptim"]
+    expectedOutput: ["/usr/bin/jpegoptim"]
+
+  - name: 'command exists: optipng'
+    command: "which"
+    args: ["optipng"]
+    expectedOutput: ["/usr/bin/optipng"]
+
+  - name: 'command exists: pngquant'
+    command: "which"
+    args: ["pngquant"]
+    expectedOutput: ["/usr/bin/pngquant"]
 
 fileExistenceTests:
 
