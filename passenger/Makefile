@@ -18,4 +18,4 @@ release: build
 	docker push $(IMAGE):$(VERSION)
 	docker push $(IMAGE):$(VERSION)-dev
 
-.PHONY: build release
+.PHONY: build release build-alpine
