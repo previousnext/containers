@@ -9,6 +9,10 @@ build:
 	docker build -f prod/Dockerfile -t $(IMAGE):$(VERSION) prod
 	docker build -f dev/Dockerfile -t $(IMAGE):$(VERSION)-dev dev
 
+build-alpine:
+	docker build -f Dockerfile -t $(IMAGE):alpine .
+
+
 # Build and release
 release: build
 	docker push $(IMAGE):$(VERSION)
