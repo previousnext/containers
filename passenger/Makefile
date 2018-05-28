@@ -10,8 +10,10 @@ build:
 	docker build -f dev/Dockerfile -t $(IMAGE):$(VERSION)-dev dev
 
 build-alpine:
-	docker build -f Dockerfile -t $(IMAGE):alpine .
-
+	docker build -f alpine/Dockerfile -t $(IMAGE):alpine alpine
+	container-structure-test test --image $(IMAGE):alpine --config alpine/tests/passenger.yml
+	docker build -f alpine/dev/Dockerfile -t $(IMAGE):alpine-dev alpine/dev
+	container-structure-test test --image $(IMAGE):alpine-dev --config alpine/dev/tests/tools.yml
 
 # Build and release
 release: build

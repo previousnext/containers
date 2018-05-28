@@ -1,0 +1,12 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'check ruby version'
+    command: 'ruby'
+    args: ['-v']
+    expectedOutput: ['ruby 2.4']
+
+  - name: 'check passenger valid'
+    command: 'passenger-config'
+    args:  ['validate-install', '--auto']
+    expectedOutput: ['Everything looks good.']
