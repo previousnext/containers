@@ -10,20 +10,23 @@ RUN export EXTRA_PRE_CFLAGS='-O' EXTRA_PRE_CXXFLAGS='-O' EXTRA_LDFLAGS='-lexecin
       apache2-utils \
       bash \
       bash-completion \
+      build-base \
       curl \
+      imagemagick-c++ \
+      imagemagick-dev \
       make \
       mysql-client \
       rsync \
       ruby-bundler \
+      ruby-dev \
+      ruby-nokogiri \
+      ruby-rmagick \
       unzip \
       vim && \
     apk add -u --no-cache --virtual build-packages \
-      build-base \
-      ruby-dev \
       linux-headers \
       curl-dev \
       pcre-dev \
-      ruby-dev \
       libexecinfo-dev \
       zlib-dev && \
     gem install passenger --no-rdoc --no-ri && \

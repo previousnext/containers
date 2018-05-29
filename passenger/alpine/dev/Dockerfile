@@ -1,9 +1,10 @@
 FROM previousnext/passenger:alpine
 
 RUN apk add -u --no-cache \
-       git \
-       patch \
-       wget
+      git \
+      mysql-dev \
+      patch \
+      wget
 
 # Skipper
 RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
