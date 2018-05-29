@@ -16,11 +16,13 @@ RUN export EXTRA_PRE_CFLAGS='-O' EXTRA_PRE_CXXFLAGS='-O' EXTRA_LDFLAGS='-lexecin
       imagemagick-dev \
       make \
       mysql-client \
+      procps \
       rsync \
       ruby-bundler \
       ruby-dev \
       ruby-nokogiri \
       ruby-rmagick \
+      tzdata \
       unzip \
       vim && \
     apk add -u --no-cache --virtual build-packages \

@@ -6,6 +6,8 @@ RUN apk add -u --no-cache \
       patch \
       wget
 
+ADD development.conf /etc/apache2/conf.d/development.conf
+
 # Skipper
 RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
