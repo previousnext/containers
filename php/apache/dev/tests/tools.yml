@@ -10,3 +10,8 @@ commandTests:
     command: "which"
     args: ["patch"]
     expectedOutput: ["/usr/bin/patch"]
+
+  - name: 'command exists: ssh'
+    command: "which"
+    args: ["ssh"]
+    expectedOutput: ["/usr/bin/ssh"]
