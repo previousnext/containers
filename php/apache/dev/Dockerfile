@@ -10,6 +10,7 @@ RUN apk add -u g++ \
                patch \
                php7-xdebug \
                python \
+               openssh-client \
                wget \
                yarn && \
     rm -rf /var/cache/apk/*
