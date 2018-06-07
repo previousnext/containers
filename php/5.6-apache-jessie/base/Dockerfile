@@ -1,4 +1,4 @@
-FROM  php:5.6-apache
+FROM  php:5.6-apache-jessie
 LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data
