@@ -1,5 +1,5 @@
 ARG PHP_VERSION=7.2
-FROM  php:${PHP_VERSION}-apache
+FROM  php:${PHP_VERSION}-apache-stretch
 LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data
