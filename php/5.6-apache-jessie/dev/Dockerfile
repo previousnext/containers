@@ -5,7 +5,7 @@ ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
 ENV NODE_VERSION 8.6.0
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:/data/node_modules/.bin:$PATH
+ENV PATH         $PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:/data/node_modules/.bin
 ENV HUB_VERSION  2.2.9
 ENV HUB_NAME     hub-linux-amd64-$HUB_VERSION
 
