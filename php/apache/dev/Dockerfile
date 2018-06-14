@@ -3,6 +3,7 @@ ARG FROM=previousnext/php-apache:latest
 FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
+
 RUN apk add -u g++ \
                git \
                nodejs-current \
@@ -32,11 +33,8 @@ RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1
     chmod a+x /usr/local/bin/deploy-status
 
 # Hub
-RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz && \
-    tar -zxf hub-linux-amd64-2.2.9.tgz && \
-    mv hub-linux-amd64-2.2.9/bin/hub /usr/local/bin/ && \
-    chmod +x /usr/local/bin/hub && \
-    rm -rf /tmp/hub-linux-amd64-2.2.9
+RUN curl -L http://bins.skpr.io/hub-latest -o /usr/local/bin/hub && \
+      chmod +rx /usr/local/bin/hub
 
 # Notify - https://github.com/previousnext/notify
 RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
