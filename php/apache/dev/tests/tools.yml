@@ -15,3 +15,8 @@ commandTests:
     command: "which"
     args: ["ssh"]
     expectedOutput: ["/usr/bin/ssh"]
+
+  - name: 'command exists: hub'
+    command: "hub"
+    args: ["--help"]
+    expectedOutput: ["GitHub"]
