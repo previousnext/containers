@@ -1,5 +1,5 @@
 ARG PHP_VERSION=7.0
-FROM  php:${PHP_VERSION}-apache
+FROM  php:${PHP_VERSION}-apache-jessie
 LABEL maintainer="admin@previousnext.com.au"
 
 WORKDIR /data

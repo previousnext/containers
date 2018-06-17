@@ -5,7 +5,7 @@ ENV ENV_TYPE     DOCKER
 ENV NVM_DIR      /usr/local/nvm
 ENV NODE_VERSION 8.6.0
 ENV NODE_PATH    $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-ENV PATH         $NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:/data/node_modules/.bin:$PATH
+ENV PATH         $PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin:/root/.yarn/bin:/data/node_modules/.bin
 ENV HUB_VERSION  2.2.9
 ENV HUB_NAME     hub-linux-amd64-$HUB_VERSION
 
@@ -55,7 +55,7 @@ RUN curl -L https://github.com/previousnext/m8s/releases/download/v0.7.0-alpha1/
       chmod a+x /usr/local/bin/m8s
 
 # Github deploy status
-RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha2/deploy-status_linux_amd64-1.0.0-alpha2 -o /usr/local/bin/deploy-status && \
+RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha3/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
       chmod a+x /usr/local/bin/deploy-status
 
 # Skipper v2 CLI toolkit.

@@ -13,6 +13,10 @@ RUN curl -Ls -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/linux-am
     tar -zxf /tmp/skpr-linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
     rm -rf /tmp/*
 
+# Notify - https://github.com/previousnext/notify
+RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+      chmod +rx /usr/local/bin/notify
+
 # Install aws utilities.
 RUN virtualenv --python=python3 /usr/local/share/virtualenv
 RUN echo ". /usr/local/share/virtualenv/bin/activate" >> /root/.bashrc
