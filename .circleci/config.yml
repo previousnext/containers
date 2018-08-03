@@ -7,6 +7,11 @@ build: &build
     - setup_remote_docker
     - checkout
     - run:
+        name: Lint
+        command: |
+          cd $DIR
+          make lint
+    - run:
         name: Build, Test and Release
         command: |
           cd $DIR

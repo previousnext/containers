@@ -11,6 +11,12 @@ define build_test
 	docker build -f $(2)/dev/Dockerfile --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-dev $(2)/dev
 endef
 
+define lint
+	hadolint $(2)/base/Dockerfile
+	hadolint $(2)/base/Dockerfile
+	hadolint $(2)/base/Dockerfile
+endef
+
 define push
 	docker push $(IMAGE):$(1)-apache
 	docker push $(IMAGE):$(1)-dev
@@ -21,7 +27,7 @@ build: 5.6 7.1 7.2
 
 # Build PHP 5.6
 5.6:
-	$(call build_test,5.6,5.6-apache-jessie)
+	$(call build_test,7.2,7.x-apache-stretch)
 
 # Build PHP 7.1
 7.1:
@@ -31,10 +37,15 @@ build: 5.6 7.1 7.2
 7.2:
 	$(call build_test,7.2,7.x-apache-stretch)
 
+lint:
+	$(call lint,7.2,7.x-apache-stretch)
+	$(call lint,7.1,7.x-apache-jessie)
+	$(call lint,7.2,7.x-apache-stretch)
+
 # Build and release
 release: build
 	$(call push,5.6)
 	$(call push,7.1)
 	$(call push,7.2)
 
-.PHONY: build 5.6 7.1 7.2 release
+.PHONY: build 5.6 7.1 7.2 lint release

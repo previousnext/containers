@@ -7,8 +7,11 @@ VERSION=latest
 build:
 	docker build -t $(IMAGE):$(VERSION) .
 
+lint:
+	hadolint Dockerfile
+
 # Build and release
 release: build
 	docker push $(IMAGE):$(VERSION)
 
-.PHONY: build release
+.PHONY: build lint release
