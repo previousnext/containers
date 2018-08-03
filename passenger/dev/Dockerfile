@@ -11,6 +11,7 @@ RUN apt-get update && \
       wget && \
     rm -rf /var/lib/apt/lists/*
 
+# hadolint ignore=SC2016
 RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
