@@ -6,6 +6,7 @@ ENV PATH "$PATH:/data/node_modules/.bin"
 
 RUN apk add -u g++ \
                git \
+               libffi-dev \
                nodejs-current \
                nodejs-current-npm \
                patch \
@@ -14,6 +15,7 @@ RUN apk add -u g++ \
                openssh-client \
                ruby \
                ruby-bundler \
+               ruby-dev \
                wget \
                yarn && \
     rm -rf /var/cache/apk/*
