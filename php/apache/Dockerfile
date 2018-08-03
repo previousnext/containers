@@ -63,6 +63,7 @@ COPY apcu.ini /etc/php7/conf.d/apcu.ini
 COPY liveness /var/www/liveness
 
 # New Relic
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
     curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
