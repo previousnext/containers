@@ -1,11 +1,12 @@
 FROM debian:stable-slim
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y \
       git \
       curl \
       make \
-      virtualenv && \
+      virtualenv \
+      python-pip && \
     rm -rf /var/cache/apt/*
 
 # Docker client.
@@ -20,7 +21,7 @@ RUN curl -Ls -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/linux-am
     rm -rf /tmp/*
 
 # Notify - https://github.com/previousnext/notify
-RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+RUN curl -Ls https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
       chmod +rx /usr/local/bin/notify
 
 # Install aws utilities.
