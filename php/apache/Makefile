@@ -36,9 +36,12 @@ build: 7.1 7.2
 7.2:
 	$(call build_test,7.2,edge)
 
+lint:
+	hadolint Dockerfile
+
 # Build and release
 release: build
 	$(call push,7.1)
 	$(call push,7.2)
 
-.PHONY: build 7.1 7.2 release
+.PHONY: build 7.1 7.2 lint release
