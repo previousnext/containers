@@ -7,6 +7,10 @@ define build_test
 	# @todo, Add tests.
 endef
 
+define lint
+	hadolint $(1)/Dockerfile
+endef
+
 define push
 	docker push $(IMAGE):$(1)
 endef
@@ -21,6 +25,10 @@ build: 4.x 5.x
 # Build Solr 5.x
 5.x:
 	$(call build_test,5.x)
+
+lint:
+	$(call lint,4.x)
+	$(call lint,5.x)
 
 # Build and release
 release: build

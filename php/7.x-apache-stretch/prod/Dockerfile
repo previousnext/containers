@@ -3,5 +3,5 @@ FROM  previousnext/php:${PHP_VERSION}-base
 LABEL maintainer="admin@previousnext.com.au"
 
 # These get run on build.
-ONBUILD ADD . /data
+ONBUILD COPY . /data
 ONBUILD RUN chown -R www-data:www-data /data

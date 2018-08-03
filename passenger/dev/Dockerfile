@@ -9,8 +9,9 @@ RUN apt-get update && \
       bash-completion \
       vim \
       wget && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
+# hadolint ignore=SC2016
 RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
@@ -32,6 +33,7 @@ RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linu
       chmod +rx /usr/local/bin/skpr2
 
 # Github Hub
+# hadolint ignore=DL3003
 RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v$HUB_VERSION/$HUB_NAME.tgz && \
       tar -zxf $HUB_NAME.tgz && \
       mv $HUB_NAME/bin/hub /usr/local/bin/ && \

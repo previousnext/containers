@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     rm -f /etc/apache2/sites-enabled/000-default.conf && \
     rm -rf /var/lib/apt/lists/*
 
-ADD apache2.conf /etc/apache2/apache2.conf
+COPY apache2.conf /etc/apache2/apache2.conf
 
 RUN mkdir -p /etc/apache2/logs && \
     chown -R www-data:www-data /etc/apache2/logs && \
@@ -18,7 +18,7 @@ RUN mkdir -p /etc/apache2/logs && \
 
 EXPOSE 80
 
-ONBUILD ADD . /data
+ONBUILD COPY . /data
 ONBUILD RUN chown -R www-data:www-data /data
 
 ENTRYPOINT [ "/usr/sbin/apache2", "-DFOREGROUND" ]

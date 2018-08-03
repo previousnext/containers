@@ -35,7 +35,7 @@ RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/
     apt-get clean
 
 RUN pecl install apcu-4.0.11
-ADD apcu.ini /usr/local/etc/php/conf.d/apcu.ini
+COPY apcu.ini /usr/local/etc/php/conf.d/apcu.ini
 RUN pecl install memcached-2.2.0 && \
       echo 'extension = memcached.so' > /usr/local/etc/php/conf.d/memcached.ini
 
@@ -54,17 +54,17 @@ RUN docker-php-ext-install \
       mcrypt
 
 RUN a2enmod rewrite actions negotiation headers authz_groupfile
-ADD apache2.conf /etc/apache2/apache2.conf
-ADD security.conf /etc/apache2/conf-enabled/security.conf
-ADD status.conf /etc/apache2/conf-enabled/status.conf
-ADD other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
-ADD php.ini /usr/local/etc/php/php.ini
+COPY apache2.conf /etc/apache2/apache2.conf
+COPY security.conf /etc/apache2/conf-enabled/security.conf
+COPY status.conf /etc/apache2/conf-enabled/status.conf
+COPY other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
+COPY php.ini /usr/local/etc/php/php.ini
 # Removes other site specific configuration.
 RUN rm -f /etc/apache2/sites-enabled/*
 
 # Configuration
-ADD drushrc.php /etc/drush/drushrc.php
-ADD skpr.php /etc/skpr.php
+COPY drushrc.php /etc/drush/drushrc.php
+COPY skpr.php /etc/skpr.php
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
@@ -80,11 +80,11 @@ RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0
       chmod +rx /usr/local/bin/backup
 
 # Script that kicks it all off
-ADD start.sh /usr/local/bin/start
+COPY start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
 
 # New Relic.
-ADD scripts/configure-new-relic.sh /usr/local/bin/configure-new-relic
+COPY scripts/configure-new-relic.sh /usr/local/bin/configure-new-relic
 RUN chmod a+x /usr/local/bin/configure-new-relic
 
 # Cleanup.

@@ -30,7 +30,7 @@ RUN mkdir -p /data/$FTP_USER && \
     chmod 755 /data/${FTP_USER}
 
 # Custom on build configuration.
-ONBUILD ADD authorized_keys /home/${FTP_USER}/.ssh/authorized_keys
+ONBUILD COPY authorized_keys /home/${FTP_USER}/.ssh/authorized_keys
 ONBUILD RUN chown -R ${FTP_USER}:${FTP_USER} /home/${FTP_USER} && \
             chmod 400 /home/${FTP_USER}/.ssh/authorized_keys
 

@@ -6,9 +6,8 @@ ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
 
-RUN apk update && \
-    apk upgrade && \
-    apk add apache2 \
+RUN apk --no-cache add \
+            apache2 \
             apache2-utils \
             bash \
             bash-completion \
@@ -51,33 +50,33 @@ RUN apk update && \
             pngquant \
             rsync \
             unzip \
-            vim \
-            && \
-    rm -rf /var/cache/apk/*
+            vim
 
-ADD .bashrc /root/.bashrc
-ADD httpd.conf /etc/apache2/httpd.conf
-ADD status.conf /etc/apache2/conf.d/status.conf
-ADD security.conf /etc/apache2/conf.d/security.conf
-ADD drushrc.php /etc/drush/drushrc.php
-ADD apcu.ini /etc/php7/conf.d/apcu.ini
+COPY .bashrc /root/.bashrc
+COPY httpd.conf /etc/apache2/httpd.conf
+COPY status.conf /etc/apache2/conf.d/status.conf
+COPY security.conf /etc/apache2/conf.d/security.conf
+COPY drushrc.php /etc/drush/drushrc.php
+COPY apcu.ini /etc/php7/conf.d/apcu.ini
 
 # Liveness
 COPY liveness /var/www/liveness
 
 # New Relic
+# hadolint ignore=DL3003,DL4006
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
     curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
     cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
     rm -fR /newrelic-php5-8.1.0.209-linux-musl
-ADD newrelic.ini /etc/php7/conf.d/newrelic.ini
+COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
 # Composer
+# hadolint ignore=DL4006
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
@@ -96,7 +95,7 @@ VOLUME /var/run/tuner/php
 
 WORKDIR /data
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 CMD ["/entrypoint.sh"]

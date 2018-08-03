@@ -12,7 +12,7 @@ RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     mkdir /run/clamav && \
     chown clamav:clamav /run/clamav
 
-ADD clamd.conf /etc/clamav/clamd.conf
+COPY clamd.conf /etc/clamav/clamd.conf
 
 EXPOSE 3310
 
