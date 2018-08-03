@@ -1,6 +1,12 @@
 FROM debian:stable-slim
 
-RUN apt-get update && apt-get install -y git curl make virtualenv && rm -rf /var/cache/apt/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      git \
+      curl \
+      make \
+      virtualenv && \
+    rm -rf /var/cache/apt/*
 
 # Docker client.
 RUN curl -Ls -o /tmp/docker-17.09.0-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-17.09.0-ce.tgz && \
@@ -20,5 +26,4 @@ RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notif
 # Install aws utilities.
 RUN virtualenv --python=python3 /usr/local/share/virtualenv
 RUN echo ". /usr/local/share/virtualenv/bin/activate" >> /root/.bashrc
-RUN . /root/.bashrc && \
-    pip install awscli
+RUN pip install awscli
