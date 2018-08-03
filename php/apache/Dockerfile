@@ -63,8 +63,7 @@ COPY apcu.ini /etc/php7/conf.d/apcu.ini
 COPY liveness /var/www/liveness
 
 # New Relic
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-# hadolint ignore=DL3003
+# hadolint ignore=DL3003,DL4006
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
     curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
@@ -77,6 +76,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
 # Composer
+# hadolint ignore=DL4006
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
