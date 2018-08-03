@@ -9,7 +9,7 @@ RUN apt-get update && \
       bash-completion \
       vim \
       wget && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
 RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
