@@ -33,6 +33,10 @@ jobs:
     <<: *build
     environment:
       - DIR: clamav
+  gastonjs:
+    <<: *build
+    environment:
+      - DIR: gastonjs
   golang:
     <<: *build
     environment:
@@ -70,6 +74,7 @@ workflows:
       - cf-log-analyzer
       - chrome_headless
       - clamav
+      - gastonjs
       - golang
       - oauth2_proxy
       - passenger
@@ -83,6 +88,7 @@ workflows:
       - cf-log-analyzer
       - chrome_headless
       - clamav
+      - gastonjs
       - golang
       - oauth2_proxy
       - passenger
