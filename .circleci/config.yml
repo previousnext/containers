@@ -45,6 +45,10 @@ jobs:
     <<: *build
     environment:
       - DIR: oauth2_proxy
+  mailhog:
+    <<: *build
+    environment:
+      - DIR: mailhog
   passenger:
     <<: *build
     environment:
@@ -76,6 +80,7 @@ workflows:
       - clamav
       - gastonjs
       - golang
+      - mailhog
       - oauth2_proxy
       - passenger
       - php-apache
@@ -90,6 +95,7 @@ workflows:
       - clamav
       - gastonjs
       - golang
+      - mailhog
       - oauth2_proxy
       - passenger
       - php-apache
