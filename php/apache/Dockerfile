@@ -6,9 +6,8 @@ ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
 
-RUN apk update && \
-    apk upgrade && \
-    apk add apache2 \
+RUN apk --no-cache add \
+            apache2 \
             apache2-utils \
             bash \
             bash-completion \
@@ -51,9 +50,7 @@ RUN apk update && \
             pngquant \
             rsync \
             unzip \
-            vim \
-            && \
-    rm -rf /var/cache/apk/*
+            vim
 
 COPY .bashrc /root/.bashrc
 COPY httpd.conf /etc/apache2/httpd.conf
