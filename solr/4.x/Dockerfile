@@ -16,11 +16,11 @@ RUN cd /tmp && \
 
 # Drupal specific configuration provided by
 # http://cgit.drupalcode.org/search_api_solr/tree/solr-conf/4.x
-ADD conf/solr /opt/search_api
+COPY conf/solr /opt/search_api
 RUN mv /opt/search_api/* /opt/solr/core/solr/collection1/conf/ && \
     rm -fR /opt/search_api
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
 # Where we store our persistent data.

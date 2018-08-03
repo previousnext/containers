@@ -38,12 +38,12 @@ RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
 # https://github.com/docker-library/php/issues/77#issuecomment-88936146
 RUN pecl install -o -f xdebug-2.5.5 && \
     rm -rf /tmp/pear
-ADD xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
-ADD scripts/xdebug-set.sh /usr/local/bin/xdebug-set.sh
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY scripts/xdebug-set.sh /usr/local/bin/xdebug-set.sh
 RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 
 # Overrides for local development.
-ADD dev.ini /usr/local/etc/php/conf.d/dev.ini
+COPY dev.ini /usr/local/etc/php/conf.d/dev.ini
 
 # Skipper CLI toolkit.
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \

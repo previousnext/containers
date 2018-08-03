@@ -47,7 +47,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
 RUN a2enmod passenger rewrite headers
-ADD vhost.conf /etc/apache2/sites-enabled/000-default.conf
+COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY apache2-foreground /usr/local/bin/
 
 # Tuner - https://github.com/previousnext/tuner
@@ -59,7 +59,7 @@ RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/0.0
       chmod +rx /usr/local/bin/backup
 
 # Script that kicks it all off
-ADD start.sh /usr/local/bin/start
+COPY start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
 
 CMD ["start"]
