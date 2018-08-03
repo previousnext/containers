@@ -65,6 +65,10 @@ jobs:
     <<: *build
     environment:
       - DIR: pnx-packager
+  sftp:
+    <<: *build
+    environment:
+      - DIR: sftp
   solr:
     <<: *build
     environment:
@@ -86,6 +90,7 @@ workflows:
       - php-apache
       - php-legacy
       - pnx-packager
+      - sftp
       - solr
   weekly:
     jobs:
@@ -101,6 +106,7 @@ workflows:
       - php-apache
       - php-legacy
       - pnx-packager
+      - sftp
       - solr
     triggers:
       - schedule:
