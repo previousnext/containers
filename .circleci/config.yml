@@ -25,6 +25,10 @@ jobs:
     <<: *build
     environment:
       - DIR: cf-log-analyzer
+  clamav:
+    <<: *build
+    environment:
+      - DIR: clamav
   golang:
     <<: *build
     environment:
@@ -60,6 +64,7 @@ workflows:
     jobs:
       - apache2
       - cf-log-analyzer
+      - clamav
       - golang
       - oauth2_proxy
       - passenger
@@ -71,6 +76,7 @@ workflows:
     jobs:
       - apache2
       - cf-log-analyzer
+      - clamav
       - golang
       - oauth2_proxy
       - passenger
