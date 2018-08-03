@@ -38,7 +38,7 @@ RUN apt-get update && \
       ruby2.3-dev \
       tzdata \
       zlib1g-dev && \
-    apt-get clean
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN gem install bundler
 
