@@ -12,6 +12,8 @@ RUN apk add -u g++ \
                php7-xdebug \
                python \
                openssh-client \
+               ruby \
+               ruby-bundler \
                wget \
                yarn && \
     rm -rf /var/cache/apk/*

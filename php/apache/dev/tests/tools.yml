@@ -20,3 +20,13 @@ commandTests:
     command: "hub"
     args: ["--help"]
     expectedOutput: ["GitHub"]
+
+  - name: 'command exists: ruby'
+    command: "which"
+    args: ["ruby"]
+    expectedOutput: ["/usr/bin/ruby"]
+
+  - name: 'command exists: bundle'
+    command: "which"
+    args: ["bundle"]
+    expectedOutput: ["/usr/bin/bundle"]
