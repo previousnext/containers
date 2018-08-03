@@ -21,7 +21,12 @@ commandTests:
     args: ["--help"]
     expectedOutput: ["GitHub"]
 
-  - name: 'command exists: bundler'
+  - name: 'command exists: ruby'
     command: "which"
-    args: ["bundler"]
-    expectedOutput: ["/usr/bin/bundler"]
+    args: ["ruby"]
+    expectedOutput: ["/usr/bin/ruby"]
+
+  - name: 'command exists: bundle'
+    command: "which"
+    args: ["bundle"]
+    expectedOutput: ["/usr/bin/bundle"]
