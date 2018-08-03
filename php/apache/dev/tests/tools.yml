@@ -20,3 +20,8 @@ commandTests:
     command: "hub"
     args: ["--help"]
     expectedOutput: ["GitHub"]
+
+  - name: 'command exists: bundler'
+    command: "which"
+    args: ["bundler"]
+    expectedOutput: ["/usr/bin/bundler"]
