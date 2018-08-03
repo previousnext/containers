@@ -75,3 +75,22 @@ workflows:
       - pnx-packager
       - cf-log-analyzer
       - passenger
+  weekly:
+    jobs:
+      - php-legacy
+      - php-apache
+      - solr
+      - apache2
+      - oauth2_proxy
+      - golang
+      - pnx-packager
+      - cf-log-analyzer
+      - passenger
+    triggers:
+      - schedule:
+          # Scheduled build for 9pm AEST on Sunday.
+          cron: "0 23 * * 6"
+          filters:
+            branches:
+              only:
+                - master
