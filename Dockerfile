@@ -13,7 +13,10 @@ RUN curl -Ls -o /tmp/docker-17.09.0-ce.tgz https://download.docker.com/linux/sta
     rm -rf /tmp/docker
 
 # Testing.
-RUN curl -LO https://storage.googleapis.com/container-structure-test/v1.4.0/container-structure-test-linux-amd64 && mv container-structure-test-linux-amd64 container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/
+RUN curl -LO https://storage.googleapis.com/container-structure-test/v1.4.0/container-structure-test-linux-amd64 && \
+      mv container-structure-test-linux-amd64 container-structure-test && \
+      chmod +x container-structure-test && \
+      sudo mv container-structure-test /usr/local/bin/
 
 # Linting
 # @todo, Add linting.
