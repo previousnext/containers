@@ -25,6 +25,10 @@ jobs:
     <<: *build
     environment:
       - DIR: cf-log-analyzer
+  chrome_headless:
+    <<: *build
+    environment:
+      - DIR: chrome-headless
   clamav:
     <<: *build
     environment:
@@ -64,6 +68,7 @@ workflows:
     jobs:
       - apache2
       - cf-log-analyzer
+      - chrome_headless
       - clamav
       - golang
       - oauth2_proxy
@@ -76,6 +81,7 @@ workflows:
     jobs:
       - apache2
       - cf-log-analyzer
+      - chrome_headless
       - clamav
       - golang
       - oauth2_proxy
