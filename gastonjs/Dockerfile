@@ -18,7 +18,7 @@ RUN apt-get update && \
 # hadolint ignore=DL3003
 RUN cd /tmp && \
     echo $PHANTOMJS_HASH > phantomjs.sha1 && \
-    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    wget --quiet https://s3-ap-southeast-2.amazonaws.com/pnx-misc/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
     sha1sum -c phantomjs.sha1 && \
     tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
     mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin && \
