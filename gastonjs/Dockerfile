@@ -15,6 +15,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# hadolint ignore=DL3003
 RUN cd /tmp && \
     echo $PHANTOMJS_HASH > phantomjs.sha1 && \
     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
@@ -23,6 +24,7 @@ RUN cd /tmp && \
     mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin && \
     rm phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
 
+# hadolint ignore=DL3003
 RUN mkdir /data && \
     cd /tmp && \
     wget https://github.com/jcalderonzumba/gastonjs/archive/v1.0.2.zip && \
