@@ -64,6 +64,9 @@ RUN rm -f /etc/apache2/sites-enabled/*
 COPY drushrc.php /etc/drush/drushrc.php
 COPY skpr.php /etc/skpr.php
 
+# Add Amazon RDS TLS public certificate.
+ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/certs/rds-combined-ca-bundle.pem
+
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
