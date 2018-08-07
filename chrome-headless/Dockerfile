@@ -1,11 +1,11 @@
 FROM debian:sid
+ARG CHROME_VERSION=68
+VOLUME /tmp
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl gnupg && \
-    curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends google-chrome-stable && \
+    apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl && \
+    curl -Ls -o /tmp/google-chrome.deb https://s3-ap-southeast-2.amazonaws.com/pnx-misc/apt-archive/google-chrome-stable/${CHROME_VERSION}-amd64-linux.deb && \
+    apt install -y /tmp/google-chrome.deb && \
     apt-get purge --auto-remove -y curl gnupg && \
     rm -rf /var/lib/apt/lists/*
 
