@@ -75,6 +75,9 @@ COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
+# Add Amazon RDS TLS public certificate.
+ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/certs/rds-combined-ca-bundle.pem
+
 # Composer
 # hadolint ignore=DL4006
 RUN curl -sS https://getcomposer.org/installer | php && \
