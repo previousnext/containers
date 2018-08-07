@@ -34,10 +34,10 @@ jobs:
     <<: *build
     environment:
       - DIR: chrome-headless
-  clamav:
+  clamd:
     <<: *build
     environment:
-      - DIR: clamav
+      - DIR: clamd
   gastonjs:
     <<: *build
     environment:
@@ -86,7 +86,7 @@ workflows:
       - apache2
       - cf-log-analyzer
       - chrome_headless
-      - clamav
+      - clamd
       - gastonjs
       - golang
       - mailhog
@@ -102,7 +102,7 @@ workflows:
       - apache2
       - cf-log-analyzer
       - chrome_headless
-      - clamav
+      - clamd
       - gastonjs
       - golang
       - mailhog

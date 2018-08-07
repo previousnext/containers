@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-IMAGE=previousnext/clamav
+IMAGE=previousnext/clamd
 VERSION=latest
 
 # Build and tests

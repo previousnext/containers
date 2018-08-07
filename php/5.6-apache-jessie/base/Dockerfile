@@ -32,7 +32,8 @@ RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/
     wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add - && \
     apt-get update && \
     apt-get install -y newrelic-php5 && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN pecl install apcu-4.0.11
 COPY apcu.ini /usr/local/etc/php/conf.d/apcu.ini

@@ -27,7 +27,7 @@ build: 5.6 7.1 7.2
 
 # Build PHP 5.6
 5.6:
-	$(call build_test,7.2,7.x-apache-stretch)
+	$(call build_test,5.6,5.6-apache-jessie)
 
 # Build PHP 7.1
 7.1:
@@ -38,7 +38,7 @@ build: 5.6 7.1 7.2
 	$(call build_test,7.2,7.x-apache-stretch)
 
 lint:
-	$(call lint,7.2,7.x-apache-stretch)
+	$(call lint,5.6,5.6-apache-jessie)
 	$(call lint,7.1,7.x-apache-jessie)
 	$(call lint,7.2,7.x-apache-stretch)
 
