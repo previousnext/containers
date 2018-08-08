@@ -26,6 +26,10 @@ jobs:
     <<: *build
     environment:
       - DIR: apache2
+  athenapdf:
+    <<: *build
+    environment:
+      - DIR: athenapdf
   cf-log-analyzer:
     <<: *build
     environment:
