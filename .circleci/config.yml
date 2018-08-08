@@ -88,6 +88,7 @@ workflows:
   build:
     jobs:
       - apache2
+      - athenapdf
       - cf-log-analyzer
       - chrome_headless
       - clamd
@@ -104,6 +105,7 @@ workflows:
   weekly:
     jobs:
       - apache2
+      - athenapdf
       - cf-log-analyzer
       - chrome_headless
       - clamd
