@@ -78,6 +78,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 # Add Amazon RDS TLS public certificate.
 ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/certs/rds-combined-ca-bundle.pem
+RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
 # Tuner - https://github.com/previousnext/tuner
 RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \

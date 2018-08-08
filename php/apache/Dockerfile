@@ -77,6 +77,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 
 # Add Amazon RDS TLS public certificate.
 ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/certs/rds-combined-ca-bundle.pem
+RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
 # Composer
 # hadolint ignore=DL4006
