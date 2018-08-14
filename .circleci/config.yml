@@ -38,6 +38,10 @@ jobs:
     <<: *build
     environment:
       - DIR: chrome-headless
+  chrome_driver_headless:
+    <<: *build
+    environment:
+      - DIR: chrome-driver-headless
   clamd:
     <<: *build
     environment:
@@ -91,6 +95,7 @@ workflows:
       - athenapdf
       - cf-log-analyzer
       - chrome_headless
+      - chrome_driver_headless
       - clamd
       - gastonjs
       - golang
@@ -108,6 +113,7 @@ workflows:
       - athenapdf
       - cf-log-analyzer
       - chrome_headless
+      - chrome_driver_headless
       - clamd
       - gastonjs
       - golang
