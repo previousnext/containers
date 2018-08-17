@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:9.5-slim
 LABEL maintainer="admin@previousnext.com.au"
 
 ENV SOLR_USER="solr"
