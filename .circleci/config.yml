@@ -74,6 +74,10 @@ jobs:
     <<: *build
     environment:
       - DIR: pnx-packager
+  puppeteer:
+    <<: *build
+    environment:
+      - DIR: puppeteer
   sftp:
     <<: *build
     environment:
@@ -100,6 +104,7 @@ workflows:
       - php-apache
       - php-legacy
       - pnx-packager
+      - puppeteer
       - sftp
       - solr
   weekly:
@@ -117,6 +122,7 @@ workflows:
       - php-apache
       - php-legacy
       - pnx-packager
+      - puppeteer
       - sftp
       - solr
     triggers:
