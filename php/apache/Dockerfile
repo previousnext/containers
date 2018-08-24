@@ -89,6 +89,10 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
     chmod +rx /usr/local/bin/tuner
 
+# Ruby errors if a sticky bit isn't set on /tmp.
+# @expire 2019-06-30
+RUN chmod +t /tmp
+
 # These volumes allow us to run our containers in "readonly" mode.
 VOLUME /run/apache2
 VOLUME /run/lock/apache2
