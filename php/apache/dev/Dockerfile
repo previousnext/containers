@@ -23,6 +23,9 @@ RUN apk add -u g++ \
 COPY dev.ini /etc/php7/conf.d/dev.ini
 COPY xdebug.ini /etc/php7/conf.d/xdebug.ini
 
+# Update npm
+RUN npm install -g npm@latest && npm -v
+
 # Skipper
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
