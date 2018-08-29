@@ -59,7 +59,7 @@ router.route("/pdf").post(async function(req, res) {
 router.route("/healthz").get(async function(req, res) {
   getChromeEndpoint()
     .then(async (endpoint) => {
-      const browser = await puppeteer.connect({
+      await puppeteer.connect({
         browserWSEndpoint: endpoint
       });
       res.send(`Connected to ${endpoint} with no hassles`);
