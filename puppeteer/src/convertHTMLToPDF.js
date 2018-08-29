@@ -18,6 +18,7 @@ let convertHTMLToPDF = async (browser, html, params, callback, options = null) =
     console.error('Error generating PDF');
     console.error(error);
   });
+  await page.close();
 };
 
 module.exports = convertHTMLToPDF;
