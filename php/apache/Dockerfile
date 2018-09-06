@@ -66,7 +66,7 @@ COPY liveness /var/www/liveness
 # hadolint ignore=DL3003,DL4006
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
-    curl -sS http://download.newrelic.com/php_agent/release/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
+    curl -sS https://download.newrelic.com/php_agent/archive/8.1.0.209/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
     cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
     rm -fR /newrelic-php5-8.1.0.209-linux-musl
 COPY newrelic.ini /etc/php7/conf.d/newrelic.ini

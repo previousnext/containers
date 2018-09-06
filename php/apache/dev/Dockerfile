@@ -7,6 +7,7 @@ ENV PATH "$PATH:/data/node_modules/.bin"
 RUN apk add -u g++ \
                git \
                libffi-dev \
+               jq \
                nodejs-current \
                nodejs-current-npm \
                patch \
