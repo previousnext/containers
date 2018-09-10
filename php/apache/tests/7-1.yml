@@ -6,7 +6,6 @@ commandTests:
     args: ['-v']
     expectedOutput: ['PHP 7.1']
 
-commandTests:
   - name: 'check http is running'
     command: 'httpd'
     expectedOutput: ['already running']
