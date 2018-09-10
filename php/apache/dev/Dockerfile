@@ -4,8 +4,9 @@ FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
 
-RUN apk add -u g++ \
-               git \
+# Temporarily removing g++ to fix dns issue.
+#RUN apk add -u g++
+RUN apk add -u git \
                libffi-dev \
                jq \
                nodejs-current \
