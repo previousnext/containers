@@ -10,3 +10,7 @@ commandTests:
     command: "php"
     args: ["-i"]
     expectedOutput: ["xdebug support => enabled"]
+
+  - name: 'check http is running'
+    command: 'httpd'
+    expectedOutput: ['already running']
