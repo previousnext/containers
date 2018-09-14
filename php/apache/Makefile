@@ -5,7 +5,7 @@ VERSION=3.x
 
 # Allows for providing unique tags for images based on when they were built.
 # Ideal for debugging!
-TIMESTAMP=$(shell date +%s)
+TIMESTAMP=$(shell date +%F_%H-%M)
 
 define build_test
 	# Building and testing PROD...
