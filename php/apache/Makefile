@@ -25,10 +25,10 @@ endef
 define push
 	# Pushing PROD...
 	docker push $(IMAGE):$(1)-$(VERSION)
-	docker push $(IMAGE):$(1)-$(TIMETSTAMP)
+	docker push $(IMAGE):$(1)-$(TIMESTAMP)
 	# Pushing DEV...
 	docker push $(IMAGE):$(1)-$(VERSION)-dev
-	docker push $(IMAGE):$(1)-$(TIMETSTAMP)-dev
+	docker push $(IMAGE):$(1)-$(TIMESTAMP)-dev
 endef
 
 # Build all PHP versions
