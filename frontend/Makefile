@@ -9,7 +9,7 @@ lint:
 	hadolint Dockerfile
 
 test:
-	container-structure-test test --image $(IMAGE):$(1)-$(VERSION) --config tests/frontend.yml
+	container-structure-test test --image $(IMAGE):$(VERSION) --config tests/frontend.yml
 
 # Build and release
 release: build
