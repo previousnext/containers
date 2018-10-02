@@ -4,12 +4,10 @@ VERSION=latest
 # Build and tests
 build:
 	docker build -t $(IMAGE):$(VERSION) .
+	container-structure-test test --image $(IMAGE):$(VERSION) --config tests/frontend.yml
 
 lint:
-	hadolint Dockerfile
-
-test:
-	container-structure-test test --image $(IMAGE):$(VERSION) --config tests/frontend.yml
+	hadolint Dockerfile	
 
 # Build and release
 release: build
