@@ -42,6 +42,10 @@ jobs:
     <<: *build
     environment:
       - DIR: clamd
+  frontend:
+    <<: *build
+    environment:
+      - DIR: frontend
   gastonjs:
     <<: *build
     environment:
