@@ -4,7 +4,6 @@ FROM alpine:${ALPINE_VERSION}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
 
-# Temporarily removing g++ to fix dns issue.
 RUN apk add --no-cache -u \
     bash \
     bash-completion \
