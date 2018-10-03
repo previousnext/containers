@@ -1,6 +1,6 @@
-ARG ALPINE_VERSION=3.8
+ARG NODE_VERSION=8
 
-FROM alpine:${ALPINE_VERSION}
+FROM node:${NODE_VERSION}-alpine
 
 ENV PATH "$PATH:/data/node_modules/.bin"
 
@@ -9,10 +9,4 @@ RUN apk add --no-cache -u \
     bash-completion \
     curl \
     make \
-    g++ \
-    jq \
-    libffi-dev \
-    nodejs \
-    npm \
-    python2 \
-    yarn
+    python2
