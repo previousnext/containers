@@ -24,6 +24,6 @@ build:
 
 # Build and release
 release: build
-	$(call build_test,8)
+	$(call push,8)
 
 .PHONY: build test lint release
