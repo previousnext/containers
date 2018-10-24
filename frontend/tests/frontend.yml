@@ -1,0 +1,17 @@
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'command exists: npm'
+    command: "npm"
+    args: ["-v"]
+    expectedOutput: ["5.6"]
+
+  - name: 'command exists: yarn'
+    command: "yarn"
+    args: ["-v"]
+    expectedOutput: ["1.7"]
+
+  - name: 'check node version'
+    command: 'node'
+    args: ['-v']
+    expectedOutput: ['v8']
