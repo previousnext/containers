@@ -49,3 +49,12 @@ RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notif
 # MicroCron - https://github.com/previousnext/microcron
 RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
     chmod +rx /usr/local/bin/microcron
+
+# Install blackfire.io probe
+RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
+    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/$version \
+    && mkdir -p /tmp/blackfire \
+    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire \
+    && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
+    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $(php -r "echo PHP_CONFIG_FILE_SCAN_DIR;")/blackfire.ini \
+    && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
