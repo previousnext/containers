@@ -10,3 +10,8 @@ commandTests:
     command: "php"
     args: ["-i"]
     expectedOutput: ["xdebug support => enabled"]
+
+  - name: 'php: blackfire enabled'
+    command: "php"
+    args: ["-m"]
+    expectedOutput: ["blackfire"]
