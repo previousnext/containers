@@ -4,6 +4,8 @@
 # Author:  Nick Schuch
 # Comment: A lightweight script for configuring and starting Apache
 
+# @todo, Move these to use "valueFrom' (https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information)
+
 if [ -f /etc/skpr/nr.install.key ]; then
   export NEW_RELIC_LICENSE_KEY=$(cat /etc/skpr/nr.install.key 2> /dev/null)
   echo "New Relic: Found Skipper config: nr.install.key"
@@ -18,8 +20,5 @@ if [ "$NEW_RELIC_LICENSE_KEY" != "" ] && [ "$NEW_RELIC_APP_NAME" != "" ]; then
   export NEW_RELIC_ENABLED=true
   echo "New Relic: Enabled"
 fi
-
-tuner --conf=apache > /var/run/tuner/apache2/tuner.conf
-tuner --conf=php > /var/run/tuner/php/tuner.ini
 
 httpd -D FOREGROUND

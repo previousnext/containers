@@ -4,6 +4,8 @@ FROM ${FROM}
 
 ENV PATH "$PATH:/data/node_modules/.bin"
 
+ENV XDEBUG_ENABLED=yes
+
 # Temporarily removing g++ to fix dns issue.
 RUN apk add -u g++ \
                git \
@@ -22,8 +24,20 @@ RUN apk add -u g++ \
                yarn && \
     rm -rf /var/cache/apk/*
 
+# https://blog.blackfire.io/alpine-linux-support.html
+RUN PHP_VERISON=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
+    curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/$PHP_VERISON && \
+    mkdir -p /tmp/blackfire && \
+    tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire && \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
+
+# Example config files for docker-entrypoint.d toggles.
+RUN mkdir /etc/php7/conf.d/example
+COPY blackfire.ini /etc/php7/conf.d/example/blackfire.ini
+COPY xdebug.ini /etc/php7/conf.d/example/xdebug.ini
+
 COPY dev.ini /etc/php7/conf.d/dev.ini
-COPY xdebug.ini /etc/php7/conf.d/xdebug.ini
 
 # Skipper
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
@@ -49,3 +63,5 @@ RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notif
 # MicroCron - https://github.com/previousnext/microcron
 RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
     chmod +rx /usr/local/bin/microcron
+
+COPY /docker-entrypoint.d/* /docker-entrypoint.d/
