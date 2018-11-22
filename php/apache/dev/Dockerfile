@@ -49,3 +49,7 @@ RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notif
 # MicroCron - https://github.com/previousnext/microcron
 RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
     chmod +rx /usr/local/bin/microcron
+
+# Semantic - https://github.com/nickschuch/semantic
+RUN curl -L https://github.com/nickschuch/semantic/releases/download/0.0.2/semantic-linux-amd64 -o /usr/local/bin/semantic && \
+    chmod +rx /usr/local/bin/semantic

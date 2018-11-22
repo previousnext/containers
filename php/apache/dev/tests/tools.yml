@@ -30,3 +30,18 @@ commandTests:
     command: "which"
     args: ["bundle"]
     expectedOutput: ["/usr/bin/bundle"]
+
+  - name: 'command exists: semantic'
+    command: "which"
+    args: ["semantic"]
+    expectedOutput: ["/usr/local/bin/semantic"]
+
+  - name: 'command exists: notify'
+    command: "which"
+    args: ["notify"]
+    expectedOutput: ["/usr/local/bin/notify"]
+
+  - name: 'command exists: microcron'
+    command: "which"
+    args: ["microcron"]
+    expectedOutput: ["/usr/local/bin/microcron"]
