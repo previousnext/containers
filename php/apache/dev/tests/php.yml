@@ -12,7 +12,7 @@ commandTests:
     # This should be set by default in the Dockerfile.
     # - key: "XDEBUG_ENABLED"
     #   value: "yes"
-    entrypoint: "/entrypoint.sh"
+    setup: [["/entrypoint.sh"]]
     command: "php"
     args: ["-i"]
     expectedOutput: ["xdebug support => enabled"]
@@ -21,7 +21,7 @@ commandTests:
     env:
       - key: "BLACKFIRE_ENABLED"
         value: "yes"
-    entrypoint: "/entrypoint.sh"
+    setup: [["/entrypoint.sh"]]
     command: "php"
     args: ["-m"]
     expectedOutput: ["blackfire"]
