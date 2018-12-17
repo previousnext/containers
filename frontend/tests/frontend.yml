@@ -4,7 +4,7 @@ commandTests:
   - name: 'command exists: npm'
     command: "npm"
     args: ["-v"]
-    expectedOutput: ["5.6"]
+    expectedOutput: ["6.4"]
 
   - name: 'command exists: yarn'
     command: "yarn"
