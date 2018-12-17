@@ -9,7 +9,7 @@ TIMESTAMP=$(shell date +%F)
 
 define build_test
 	# Building and testing PROD...
-	docker build --build-arg ALPINE_VERSION=$(2) -t $(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(TIMESTAMP) .
+	docker build --pull --build-arg ALPINE_VERSION=$(2) -t $(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(TIMESTAMP) .
 	container-structure-test test --image $(IMAGE):$(1)-$(VERSION) --config tests/$(subst .,-,$(1)).yml \
 	                                                               --config tests/bash.yml \
 								       --config tests/composer.yml \

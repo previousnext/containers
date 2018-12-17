@@ -2,26 +2,25 @@ schemaVersion: '2.0.0'
 
 commandTests:
   - name: 'php: error_reporting'
-    entrypoint: "/entrypoint.sh"
     command: "php"
     args: ["-i"]
     expectedOutput: ["display_errors => STDOUT => STDOUT"]
 
   - name: 'php: xdebug enabled'
-    env:
+    envVars:
     # This should be set by default in the Dockerfile.
     # - key: "XDEBUG_ENABLED"
     #   value: "yes"
-    setup: [["/entrypoint.sh"]]
+    setup: [["/docker-entrypoint.sh"]]
     command: "php"
     args: ["-i"]
     expectedOutput: ["xdebug support => enabled"]
 
   - name: 'php: xdebug enabled'
-    env:
+    envVars:
       - key: "BLACKFIRE_ENABLED"
         value: "yes"
-    setup: [["/entrypoint.sh"]]
+    setup: [["/docker-entrypoint.sh"]]
     command: "php"
     args: ["-m"]
     expectedOutput: ["blackfire"]
