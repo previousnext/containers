@@ -18,6 +18,7 @@ RUN apk add -u g++ \
                ruby \
                ruby-bundler \
                ruby-dev \
+               sqlite \
                wget \
                yarn && \
     rm -rf /var/cache/apk/*
