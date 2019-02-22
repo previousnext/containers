@@ -9,14 +9,14 @@ TIMESTAMP=$(shell date +%F)
 
 define build_test
 	# Building and testing PROD...
-	docker build --build-arg ALPINE_VERSION=$(2) -t $(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(TIMESTAMP) .
+	docker build --build-arg ALPINE_VERSION=$(2) --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(TIMESTAMP) .
 	container-structure-test test --image $(IMAGE):$(1)-$(VERSION) --config tests/$(subst .,-,$(1)).yml \
 	                                                               --config tests/bash.yml \
 								       --config tests/composer.yml \
 	                                                               --config tests/drush.yml \
 	                                                               --config tests/tuner.yml
 	# Building and testing DEV...
-	docker build -f dev/Dockerfile --build-arg FROM=$(IMAGE):$(1)-$(VERSION) -t $(IMAGE):$(1)-$(VERSION)-dev -t $(IMAGE):$(1)-$(TIMESTAMP)-dev dev
+	docker build -f dev/Dockerfile --build-arg FROM=$(IMAGE):$(1)-$(VERSION) --build-arg PHP_VERSION=$(1) -t $(IMAGE):$(1)-$(VERSION)-dev -t $(IMAGE):$(1)-$(TIMESTAMP)-dev dev
 	container-structure-test test --image $(IMAGE):$(1)-$(VERSION)-dev --config dev/tests/frontend.yml \
 		                                                           --config dev/tests/php.yml \
 	                                                                   --config dev/tests/tools.yml
@@ -32,7 +32,7 @@ define push
 endef
 
 # Build all PHP versions
-build: 7.1 7.2
+build: 7.1 7.2 7.3
 
 # Build PHP 7.1
 7.1:
@@ -41,6 +41,10 @@ build: 7.1 7.2
 # Build PHP 7.2
 7.2:
 	$(call build_test,7.2,3.8)
+
+# Build PHP 7.3
+7.3:
+	$(call build_test,7.3,3.9)
 
 lint:
 	hadolint Dockerfile

@@ -1,12 +1,24 @@
 ARG ALPINE_VERSION=3.7
+ARG PHP_VERSION=7.3
 
 FROM alpine:${ALPINE_VERSION}
+
+# trust this project public key to trust the packages.
+ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+
+## you may join the multiple run lines here to make it a single layer
+
+# make sure you can use HTTPS
+RUN apk --update add ca-certificates
+
+# add the repository, make sure you replace the correct versions if you want.
+RUN echo "@php https://dl.bintray.com/php-alpine/v${ALPINE_VERSION}/php-${PHP_VERSION}" >> /etc/apk/repositories
 
 ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
 
-RUN apk --no-cache add \
+RUN apk --update --no-cache add \
             apache2 \
             apache2-utils \
             bash \
@@ -16,41 +28,42 @@ RUN apk --no-cache add \
             make \
             mysql-client \
             optipng \
-            php7 \
-            php7-apache2 \
-            php7-apcu \
-            php7-bcmath \
-            php7-ctype \
-            php7-curl \
-            php7-dom \
-            php7-ftp \
-            php7-gd \
-            php7-iconv \
-            php7-json \
-            php7-mbstring \
-            php7-mcrypt \
-            php7-memcached \
-            php7-opcache \
-            php7-openssl \
-            php7-pcntl \
-            php7-pdo \
-            php7-pdo_mysql \
-            php7-pdo_sqlite \
-            php7-phar \
-            php7-posix \
-            php7-session \
-            php7-simplexml \
-            php7-soap \
-            php7-sqlite3 \
-            php7-tokenizer \
-            php7-xml \
-            php7-xmlreader \
-            php7-xmlwriter \
-            php7-zip \
+            php@php \
+            php-apache2@php \
+            php-apcu@php \
+            php-bcmath@php \
+            php-ctype@php \
+            php-curl@php \
+            php-dom@php \
+            php-ftp@php \
+            php-gd@php \
+            php-iconv@php \
+            php-json@php \
+            php-mbstring@php \
+            php-memcached@php \
+            php-opcache@php \
+            php-openssl@php \
+            php-pcntl@php \
+            php-pdo@php \
+            php-pdo_mysql@php \
+            php-pdo_sqlite@php \
+            php-phar@php \
+            php-posix@php \
+            php-session@php \
+            php-simplexml@php \
+            php-soap@php \
+            php-sqlite3@php \
+            php-tokenizer@php \
+            php-xml@php \
+            php-xmlreader@php \
+            php-xmlwriter@php \
+            php-zip@php \
             pngquant \
             rsync \
             unzip \
             vim
+
+RUN ln -sv /usr/bin/php7 /usr/bin/php
 
 COPY .bashrc /root/.bashrc
 COPY httpd.conf /etc/apache2/httpd.conf
