@@ -1,7 +1,8 @@
-ARG ALPINE_VERSION=3.7
-ARG PHP_VERSION=7.3
+ARG ALPINE_VERSION=3.9
 
 FROM alpine:${ALPINE_VERSION}
+ARG ALPINE_VERSION=3.9
+ARG PHP_VERSION=7.3
 
 # trust this project public key to trust the packages.
 ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
@@ -80,9 +81,11 @@ COPY liveness /var/www/liveness
 # hadolint ignore=DL3003,DL4006
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
-    curl -sS https://download.newrelic.com/php_agent/archive/8.1.0.209/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
-    cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
-    rm -fR /newrelic-php5-8.1.0.209-linux-musl
+    export NR_VERSION=8.5.0.235 && \
+    export NR_FILENAME=newrelic-php5-${NR_VERSION}-linux-musl && \
+    curl -sS https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
+    cd ${NR_FILENAME} && ./newrelic-install install && \
+    rm -fR /${NR_FILENAME}
 COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
 
 # Logging
