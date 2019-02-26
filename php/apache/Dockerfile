@@ -4,8 +4,8 @@ FROM alpine:${ALPINE_VERSION}
 ARG ALPINE_VERSION=3.8
 ARG PHP_VERSION=7.3
 
-RUN apk add --no-cache ca-certificates && \
-    curl -O https://repos.php.earth/alpine/phpearth.rsa.pub /etc/apk/keys/phpearth.rsa.pub && \
+RUN apk add --no-cache curl ca-certificates && \
+    curl https://repos.php.earth/alpine/phpearth.rsa.pub -o /etc/apk/keys/phpearth.rsa.pub && \
     echo "@phpearth https://repos.php.earth/alpine/v${ALPINE_VERSION}" >> /etc/apk/repositories
 
 ENV PATH "$PATH:/data/bin"
@@ -17,7 +17,6 @@ RUN apk --update --no-cache add \
             apache2-utils \
             bash \
             bash-completion \
-            curl \
             jpegoptim \
             make \
             mysql-client \
@@ -69,7 +68,7 @@ COPY apcu.ini /etc/php/${PHP_VERSION}/conf.d/apcu.ini
 COPY liveness /var/www/liveness
 
 # New Relic
-# hadolint ignore=DL3003,DL4006
+# hadolint ignore=DL3003,DL4006,SC2115
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
     export NR_VERSION=8.5.0.235 && \
