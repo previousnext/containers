@@ -1,21 +1,16 @@
 ARG ALPINE_VERSION=3.9
 
 FROM alpine:${ALPINE_VERSION}
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION=3.8
 ARG PHP_VERSION=7.3
 
-# trust this project public key to trust the packages.
-ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
-# make sure you can use HTTPS
-RUN apk --update add ca-certificates
-
-# add the repository, make sure you replace the correct versions if you want.
-RUN echo "@cast https://php.codecasts.rocks/v${ALPINE_VERSION}/php-${PHP_VERSION}" >> /etc/apk/repositories
+RUN apk add --no-cache wget ca-certificates && \
+    wget -O /etc/apk/keys/phpearth.rsa.pub https://repos.php.earth/alpine/phpearth.rsa.pub && \
+    echo "@phpearth https://repos.php.earth/alpine/v${ALPINE_VERSION}" >> /etc/apk/repositories
 
 ENV PATH "$PATH:/data/bin"
 
-ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
+ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
 
 RUN apk --update --no-cache add \
             apache2 \
@@ -27,42 +22,40 @@ RUN apk --update --no-cache add \
             make \
             mysql-client \
             optipng \
-            php@cast \
-            php-apache2@cast \
-            php-apcu@cast \
-            php-bcmath@cast \
-            php-ctype@cast \
-            php-curl@cast \
-            php-dom@cast \
-            php-ftp@cast \
-            php-gd@cast \
-            php-iconv@cast \
-            php-json@cast \
-            php-mbstring@cast \
-            php-memcached@cast \
-            php-opcache@cast \
-            php-openssl@cast \
-            php-pcntl@cast \
-            php-pdo@cast \
-            php-pdo_mysql@cast \
-            php-pdo_sqlite@cast \
-            php-phar@cast \
-            php-posix@cast \
-            php-session@cast \
-            php-simplexml@cast \
-            php-soap@cast \
-            php-sqlite3@cast \
-            php-tokenizer@cast \
-            php-xml@cast \
-            php-xmlreader@cast \
-            php-xmlwriter@cast \
-            php-zip@cast \
+            php${PHP_VERSION}@phpearth \
+            php${PHP_VERSION}-apache2@phpearth \
+            php${PHP_VERSION}-apcu@phpearth \
+            php${PHP_VERSION}-bcmath@phpearth \
+            php${PHP_VERSION}-ctype@phpearth \
+            php${PHP_VERSION}-curl@phpearth \
+            php${PHP_VERSION}-dom@phpearth \
+            php${PHP_VERSION}-ftp@phpearth \
+            php${PHP_VERSION}-gd@phpearth \
+            php${PHP_VERSION}-iconv@phpearth \
+            php${PHP_VERSION}-json@phpearth \
+            php${PHP_VERSION}-mbstring@phpearth \
+            php${PHP_VERSION}-memcached@phpearth \
+            php${PHP_VERSION}-opcache@phpearth \
+            php${PHP_VERSION}-openssl@phpearth \
+            php${PHP_VERSION}-pcntl@phpearth \
+            php${PHP_VERSION}-pdo@phpearth \
+            php${PHP_VERSION}-pdo_mysql@phpearth \
+            php${PHP_VERSION}-pdo_sqlite@phpearth \
+            php${PHP_VERSION}-phar@phpearth \
+            php${PHP_VERSION}-posix@phpearth \
+            php${PHP_VERSION}-session@phpearth \
+            php${PHP_VERSION}-simplexml@phpearth \
+            php${PHP_VERSION}-soap@phpearth \
+            php${PHP_VERSION}-sqlite3@phpearth \
+            php${PHP_VERSION}-tokenizer@phpearth \
+            php${PHP_VERSION}-xml@phpearth \
+            php${PHP_VERSION}-xmlreader@phpearth \
+            php${PHP_VERSION}-xmlwriter@phpearth \
+            php${PHP_VERSION}-zip@phpearth \
             pngquant \
             rsync \
             unzip \
             vim
-
-RUN ln -sv /usr/bin/php7 /usr/bin/php
 
 COPY .bashrc /root/.bashrc
 COPY httpd.conf /etc/apache2/httpd.conf
@@ -70,7 +63,7 @@ COPY status.conf /etc/apache2/conf.d/status.conf
 COPY security.conf /etc/apache2/conf.d/security.conf
 COPY drushrc.php /etc/drush/drushrc.php
 COPY drush.yml /etc/drush/drush.yml
-COPY apcu.ini /etc/php7/conf.d/apcu.ini
+COPY apcu.ini /etc/php/${PHP_VERSION}/conf.d/apcu.ini
 
 # Liveness
 COPY liveness /var/www/liveness
@@ -84,7 +77,7 @@ RUN export NR_INSTALL_SILENT=true && \
     curl -sS https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
     cd ${NR_FILENAME} && ./newrelic-install install && \
     rm -fR /${NR_FILENAME}
-COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
+COPY newrelic.ini /etc/php/${PHP_VERSION}/conf.d/newrelic.ini
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
