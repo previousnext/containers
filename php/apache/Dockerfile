@@ -7,13 +7,11 @@ ARG PHP_VERSION=7.3
 # trust this project public key to trust the packages.
 ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
-## you may join the multiple run lines here to make it a single layer
-
 # make sure you can use HTTPS
 RUN apk --update add ca-certificates
 
 # add the repository, make sure you replace the correct versions if you want.
-RUN echo "@php https://dl.bintray.com/php-alpine/v${ALPINE_VERSION}/php-${PHP_VERSION}" >> /etc/apk/repositories
+RUN echo "@cast https://php.codecasts.rocks/v${ALPINE_VERSION}/php-${PHP_VERSION}" >> /etc/apk/repositories
 
 ENV PATH "$PATH:/data/bin"
 
@@ -29,36 +27,36 @@ RUN apk --update --no-cache add \
             make \
             mysql-client \
             optipng \
-            php@php \
-            php-apache2@php \
-            php-apcu@php \
-            php-bcmath@php \
-            php-ctype@php \
-            php-curl@php \
-            php-dom@php \
-            php-ftp@php \
-            php-gd@php \
-            php-iconv@php \
-            php-json@php \
-            php-mbstring@php \
-            php-memcached@php \
-            php-opcache@php \
-            php-openssl@php \
-            php-pcntl@php \
-            php-pdo@php \
-            php-pdo_mysql@php \
-            php-pdo_sqlite@php \
-            php-phar@php \
-            php-posix@php \
-            php-session@php \
-            php-simplexml@php \
-            php-soap@php \
-            php-sqlite3@php \
-            php-tokenizer@php \
-            php-xml@php \
-            php-xmlreader@php \
-            php-xmlwriter@php \
-            php-zip@php \
+            php@cast \
+            php-apache2@cast \
+            php-apcu@cast \
+            php-bcmath@cast \
+            php-ctype@cast \
+            php-curl@cast \
+            php-dom@cast \
+            php-ftp@cast \
+            php-gd@cast \
+            php-iconv@cast \
+            php-json@cast \
+            php-mbstring@cast \
+            php-memcached@cast \
+            php-opcache@cast \
+            php-openssl@cast \
+            php-pcntl@cast \
+            php-pdo@cast \
+            php-pdo_mysql@cast \
+            php-pdo_sqlite@cast \
+            php-phar@cast \
+            php-posix@cast \
+            php-session@cast \
+            php-simplexml@cast \
+            php-soap@cast \
+            php-sqlite3@cast \
+            php-tokenizer@cast \
+            php-xml@cast \
+            php-xmlreader@cast \
+            php-xmlwriter@cast \
+            php-zip@cast \
             pngquant \
             rsync \
             unzip \
