@@ -4,8 +4,8 @@ FROM alpine:${ALPINE_VERSION}
 ARG ALPINE_VERSION=3.8
 ARG PHP_VERSION=7.3
 
-RUN apk add --no-cache wget ca-certificates && \
-    wget -O /etc/apk/keys/phpearth.rsa.pub https://repos.php.earth/alpine/phpearth.rsa.pub && \
+RUN apk add --no-cache ca-certificates && \
+    curl -O https://repos.php.earth/alpine/phpearth.rsa.pub /etc/apk/keys/phpearth.rsa.pub && \
     echo "@phpearth https://repos.php.earth/alpine/v${ALPINE_VERSION}" >> /etc/apk/repositories
 
 ENV PATH "$PATH:/data/bin"
