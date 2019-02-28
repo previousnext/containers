@@ -24,8 +24,8 @@ RUN apk add -u g++ \
                yarn && \
     rm -rf /var/cache/apk/*
 
-COPY dev.ini /etc/php/${PHP_VERSION}/conf.d/dev.ini
-COPY xdebug.ini /etc/php/${PHP_VERSION}/conf.d/xdebug.ini
+COPY dev.ini /etc/php7/conf.d/dev.ini
+COPY xdebug.ini /etc/php7/conf.d/xdebug.ini
 
 # Skipper
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
