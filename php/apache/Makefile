@@ -31,6 +31,7 @@ define build_test
 	container-structure-test test --image $(IMAGE):$(1)-$(VERSION)-dev \
 	                              --config dev/tests/frontend.yml \
                                       --config dev/tests/php.yml \
+                                      --config dev/tests/alpine$(2).yml \
 	                              --config dev/tests/tools.yml
 endef
 
@@ -44,7 +45,7 @@ define push
 endef
 
 # Build all PHP versions
-build: 7.1 7.2
+build: 7.1 7.2 7.3
 
 # Build PHP 7.1
 7.1:
@@ -56,7 +57,7 @@ build: 7.1 7.2
 
 # Build PHP 7.3
 7.3:
-	$(call build_test,7.3,3.9)
+	$(call build_test,7.3,3.8)
 
 lint:
 	hadolint Dockerfile

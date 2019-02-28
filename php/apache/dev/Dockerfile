@@ -2,7 +2,7 @@ ARG FROM=previousnext/php-apache:latest
 
 FROM ${FROM}
 
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION=3.8
 ARG PHP_VERSION=7.3
 
 ENV PATH "$PATH:/data/node_modules/.bin"
