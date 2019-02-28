@@ -1,16 +1,16 @@
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION=3.8
 
 FROM alpine:${ALPINE_VERSION}
 ARG ALPINE_VERSION=3.8
 ARG PHP_VERSION=7.3
 
-RUN apk add --no-cache curl ca-certificates && \
-    curl https://repos.php.earth/alpine/phpearth.rsa.pub -o /etc/apk/keys/phpearth.rsa.pub && \
-    echo "@phpearth https://repos.php.earth/alpine/v${ALPINE_VERSION}" >> /etc/apk/repositories
-
 ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
+
+RUN apk add --no-cache curl ca-certificates && \
+    curl -L https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
+    echo "https://packages.skpr.io/php-alpine/${ALPINE_VERSION}/php${PHP_VERSION}" >> /etc/apk/repositories
 
 RUN apk --update --no-cache add \
             apache2 \
@@ -21,36 +21,36 @@ RUN apk --update --no-cache add \
             make \
             mysql-client \
             optipng \
-            php${PHP_VERSION}@phpearth \
-            php${PHP_VERSION}-apache2@phpearth \
-            php${PHP_VERSION}-apcu@phpearth \
-            php${PHP_VERSION}-bcmath@phpearth \
-            php${PHP_VERSION}-ctype@phpearth \
-            php${PHP_VERSION}-curl@phpearth \
-            php${PHP_VERSION}-dom@phpearth \
-            php${PHP_VERSION}-ftp@phpearth \
-            php${PHP_VERSION}-gd@phpearth \
-            php${PHP_VERSION}-iconv@phpearth \
-            php${PHP_VERSION}-json@phpearth \
-            php${PHP_VERSION}-mbstring@phpearth \
-            php${PHP_VERSION}-memcached@phpearth \
-            php${PHP_VERSION}-opcache@phpearth \
-            php${PHP_VERSION}-openssl@phpearth \
-            php${PHP_VERSION}-pcntl@phpearth \
-            php${PHP_VERSION}-pdo@phpearth \
-            php${PHP_VERSION}-pdo_mysql@phpearth \
-            php${PHP_VERSION}-pdo_sqlite@phpearth \
-            php${PHP_VERSION}-phar@phpearth \
-            php${PHP_VERSION}-posix@phpearth \
-            php${PHP_VERSION}-session@phpearth \
-            php${PHP_VERSION}-simplexml@phpearth \
-            php${PHP_VERSION}-soap@phpearth \
-            php${PHP_VERSION}-sqlite3@phpearth \
-            php${PHP_VERSION}-tokenizer@phpearth \
-            php${PHP_VERSION}-xml@phpearth \
-            php${PHP_VERSION}-xmlreader@phpearth \
-            php${PHP_VERSION}-xmlwriter@phpearth \
-            php${PHP_VERSION}-zip@phpearth \
+            php${PHP_VERSION} \
+            php${PHP_VERSION}-apache2 \
+            php${PHP_VERSION}-apcu \
+            php${PHP_VERSION}-bcmath \
+            php${PHP_VERSION}-ctype \
+            php${PHP_VERSION}-curl \
+            php${PHP_VERSION}-dom \
+            php${PHP_VERSION}-ftp \
+            php${PHP_VERSION}-gd \
+            php${PHP_VERSION}-iconv \
+            php${PHP_VERSION}-json \
+            php${PHP_VERSION}-mbstring \
+            php${PHP_VERSION}-memcached \
+            php${PHP_VERSION}-opcache \
+            php${PHP_VERSION}-openssl \
+            php${PHP_VERSION}-pcntl \
+            php${PHP_VERSION}-pdo \
+            php${PHP_VERSION}-pdo_mysql \
+            php${PHP_VERSION}-pdo_sqlite \
+            php${PHP_VERSION}-phar \
+            php${PHP_VERSION}-posix \
+            php${PHP_VERSION}-session \
+            php${PHP_VERSION}-simplexml \
+            php${PHP_VERSION}-soap \
+            php${PHP_VERSION}-sqlite3 \
+            php${PHP_VERSION}-tokenizer \
+            php${PHP_VERSION}-xml \
+            php${PHP_VERSION}-xmlreader \
+            php${PHP_VERSION}-xmlwriter \
+            php${PHP_VERSION}-zip \
             pngquant \
             rsync \
             unzip \
