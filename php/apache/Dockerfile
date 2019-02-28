@@ -1,52 +1,56 @@
-ARG ALPINE_VERSION=3.7
+ARG ALPINE_VERSION=3.8
 
 FROM alpine:${ALPINE_VERSION}
+ARG ALPINE_VERSION=3.8
+ARG PHP_VERSION=7.3
 
 ENV PATH "$PATH:/data/bin"
 
-ENV PHP_INI_SCAN_DIR=/etc/php7/conf.d:/var/run/tuner/php
+ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
 
-RUN apk --no-cache add \
+RUN apk add --no-cache curl ca-certificates && \
+    curl -L https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
+    echo "https://packages.skpr.io/php-alpine/${ALPINE_VERSION}/php${PHP_VERSION}" >> /etc/apk/repositories
+
+RUN apk --update --no-cache add \
             apache2 \
             apache2-utils \
             bash \
             bash-completion \
-            curl \
             jpegoptim \
             make \
             mysql-client \
             optipng \
-            php7 \
-            php7-apache2 \
-            php7-apcu \
-            php7-bcmath \
-            php7-ctype \
-            php7-curl \
-            php7-dom \
-            php7-ftp \
-            php7-gd \
-            php7-iconv \
-            php7-json \
-            php7-mbstring \
-            php7-mcrypt \
-            php7-memcached \
-            php7-opcache \
-            php7-openssl \
-            php7-pcntl \
-            php7-pdo \
-            php7-pdo_mysql \
-            php7-pdo_sqlite \
-            php7-phar \
-            php7-posix \
-            php7-session \
-            php7-simplexml \
-            php7-soap \
-            php7-sqlite3 \
-            php7-tokenizer \
-            php7-xml \
-            php7-xmlreader \
-            php7-xmlwriter \
-            php7-zip \
+            php${PHP_VERSION} \
+            php${PHP_VERSION}-apache2 \
+            php${PHP_VERSION}-apcu \
+            php${PHP_VERSION}-bcmath \
+            php${PHP_VERSION}-ctype \
+            php${PHP_VERSION}-curl \
+            php${PHP_VERSION}-dom \
+            php${PHP_VERSION}-ftp \
+            php${PHP_VERSION}-gd \
+            php${PHP_VERSION}-iconv \
+            php${PHP_VERSION}-json \
+            php${PHP_VERSION}-mbstring \
+            php${PHP_VERSION}-memcached \
+            php${PHP_VERSION}-opcache \
+            php${PHP_VERSION}-openssl \
+            php${PHP_VERSION}-pcntl \
+            php${PHP_VERSION}-pdo \
+            php${PHP_VERSION}-pdo_mysql \
+            php${PHP_VERSION}-pdo_sqlite \
+            php${PHP_VERSION}-phar \
+            php${PHP_VERSION}-posix \
+            php${PHP_VERSION}-session \
+            php${PHP_VERSION}-simplexml \
+            php${PHP_VERSION}-soap \
+            php${PHP_VERSION}-sqlite3 \
+            php${PHP_VERSION}-tokenizer \
+            php${PHP_VERSION}-xml \
+            php${PHP_VERSION}-xmlreader \
+            php${PHP_VERSION}-xmlwriter \
+            php${PHP_VERSION}-zip \
             pngquant \
             rsync \
             unzip \
@@ -58,19 +62,21 @@ COPY status.conf /etc/apache2/conf.d/status.conf
 COPY security.conf /etc/apache2/conf.d/security.conf
 COPY drushrc.php /etc/drush/drushrc.php
 COPY drush.yml /etc/drush/drush.yml
-COPY apcu.ini /etc/php7/conf.d/apcu.ini
+COPY apcu.ini /etc/php/${PHP_VERSION}/conf.d/apcu.ini
 
 # Liveness
 COPY liveness /var/www/liveness
 
 # New Relic
-# hadolint ignore=DL3003,DL4006
+# hadolint ignore=DL3003,DL4006,SC2115
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
-    curl -sS https://download.newrelic.com/php_agent/archive/8.1.0.209/newrelic-php5-8.1.0.209-linux-musl.tar.gz | gzip -dc | tar xf - && \
-    cd newrelic-php5-8.1.0.209-linux-musl && ./newrelic-install install && \
-    rm -fR /newrelic-php5-8.1.0.209-linux-musl
-COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
+    export NR_VERSION=8.5.0.235 && \
+    export NR_FILENAME=newrelic-php5-${NR_VERSION}-linux-musl && \
+    curl -sS https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
+    cd ${NR_FILENAME} && ./newrelic-install install && \
+    rm -fR /${NR_FILENAME}
+COPY newrelic.ini /etc/php/${PHP_VERSION}/conf.d/newrelic.ini
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \

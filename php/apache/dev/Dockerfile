@@ -2,9 +2,11 @@ ARG FROM=previousnext/php-apache:latest
 
 FROM ${FROM}
 
+ARG ALPINE_VERSION=3.8
+ARG PHP_VERSION=7.3
+
 ENV PATH "$PATH:/data/node_modules/.bin"
 
-# Temporarily removing g++ to fix dns issue.
 RUN apk add -u g++ \
                git \
                libffi-dev \
@@ -12,7 +14,7 @@ RUN apk add -u g++ \
                nodejs-current \
                nodejs-current-npm \
                patch \
-               php7-xdebug \
+               php${PHP_VERSION}-xdebug \
                python \
                openssh-client \
                ruby \
@@ -22,8 +24,8 @@ RUN apk add -u g++ \
                yarn && \
     rm -rf /var/cache/apk/*
 
-COPY dev.ini /etc/php7/conf.d/dev.ini
-COPY xdebug.ini /etc/php7/conf.d/xdebug.ini
+COPY dev.ini /etc/php/${PHP_VERSION}/conf.d/dev.ini
+COPY xdebug.ini /etc/php/${PHP_VERSION}/conf.d/xdebug.ini
 
 # Skipper
 RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
