@@ -30,7 +30,7 @@ RUN apt-get update && \
                        python \
                        ruby2.1 \
                        ruby2.1-dev && \
-    gem2.1 install bundler && \
+    gem2.1 install bundler -v '1.16.1' && \
     apt-get clean
 
 RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
