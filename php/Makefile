@@ -36,7 +36,6 @@ build: 5.6 7.1
 lint:
 	$(call lint,5.6,5.6-apache-jessie)
 	$(call lint,7.1,7.x-apache-jessie)
-	$(call lint,7.2,7.x-apache-stretch)
 
 # Build and release
 release: build
