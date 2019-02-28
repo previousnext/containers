@@ -57,7 +57,7 @@ build: 7.1 7.2 7.3
 
 # Build PHP 7.3
 7.3:
-	$(call build_test,7.3,3.8)
+	$(call build_test,7.3,3.9)
 
 lint:
 	hadolint Dockerfile
