@@ -66,5 +66,6 @@ lint:
 release: build
 	$(call push,7.1)
 	$(call push,7.2)
+	$(call push,7.3)
 
 .PHONY: build 7.1 7.2 lint release
