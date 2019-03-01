@@ -56,13 +56,18 @@ RUN apk --update --no-cache add \
             unzip \
             vim
 
+# This provides a compatibility layer for developer who are adding
+# custom php.ini files to their projects.
+# Bumping PHP versions should not result in changes to their Dockerfiles.
+RUN ln -s /etc/php/${PHP_VERSION} /etc/php7
+
 COPY .bashrc /root/.bashrc
 COPY httpd.conf /etc/apache2/httpd.conf
 COPY status.conf /etc/apache2/conf.d/status.conf
 COPY security.conf /etc/apache2/conf.d/security.conf
 COPY drushrc.php /etc/drush/drushrc.php
 COPY drush.yml /etc/drush/drush.yml
-COPY apcu.ini /etc/php/${PHP_VERSION}/conf.d/apcu.ini
+COPY apcu.ini /etc/php7/conf.d/apcu.ini
 
 # Liveness
 COPY liveness /var/www/liveness
@@ -76,7 +81,7 @@ RUN export NR_INSTALL_SILENT=true && \
     curl -sS https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
     cd ${NR_FILENAME} && ./newrelic-install install && \
     rm -fR /${NR_FILENAME}
-COPY newrelic.ini /etc/php/${PHP_VERSION}/conf.d/newrelic.ini
+COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
