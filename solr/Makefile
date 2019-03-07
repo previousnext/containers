@@ -16,7 +16,7 @@ define push
 endef
 
 # Build and tests
-build: 4.x 5.x init
+build: 4.x 5.x 7.x init
 
 # Build Solr 4.x
 4.x:
@@ -26,6 +26,10 @@ build: 4.x 5.x init
 5.x:
 	$(call build_test,5.x)
 
+# Build Solr 7.x
+7.x:
+	$(call build_test,7.x)
+
 # Build Solr init
 init:
 	$(call build_test,init)
@@ -33,12 +37,14 @@ init:
 lint:
 	$(call lint,4.x)
 	$(call lint,5.x)
+	$(call lint,7.x)
 	$(call lint,init)
 
 # Build and release
 release: build
 	$(call push,4.x)
 	$(call push,5.x)
+	$(call push,7.x)
 	$(call push,init)
 
-.PHONY: build 4.x 5.x init release
+.PHONY: build 4.x 5.x 7.x init release
