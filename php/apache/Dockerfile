@@ -115,7 +115,14 @@ VOLUME /var/run/tuner/php
 
 WORKDIR /data
 
+# https://www.camptocamp.com/en/actualite/flexible-docker-entrypoints-scripts/
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+COPY /docker-entrypoint.d/* /docker-entrypoint.d/
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+ENTRYPOINT ["/docker-entrypoint.sh"]
+# @todo, Change to use "httpd -D FOREGROUND" once entrypoint.sh can be retired.
 CMD ["/entrypoint.sh"]

@@ -17,7 +17,7 @@ define build_test
 	container-structure-test test --image $(IMAGE):$(1)-$(VERSION) \
 	                              --config tests/$(subst .,-,$(1)).yml \
 	                              --config tests/bash.yml \
-                                      --config tests/composer.yml \
+                                  --config tests/composer.yml \
 	                              --config tests/drush.yml \
 	                              --config tests/tuner.yml
 	# Building and testing DEV...
