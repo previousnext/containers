@@ -10,8 +10,3 @@ commandTests:
     command: "which"
     args: ["yarn"]
     expectedOutput: ["/usr/bin/yarn"]
-
-  - name: 'check node version'
-    command: 'node'
-    args: ['-v']
-    expectedOutput: ['v9']
