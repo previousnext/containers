@@ -51,7 +51,7 @@ RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       rm -rf linux-amd64-latest.tar.gz
 
 # Temporary environment builder.
-RUN curl -L https://github.com/previousnext/m8s/releases/download/v0.7.1/m8s_linux_amd64 -o /usr/local/bin/m8s && \
+RUN curl -L https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
       chmod a+x /usr/local/bin/m8s
 
 # Github deploy status
