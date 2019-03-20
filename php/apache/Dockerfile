@@ -28,6 +28,7 @@ RUN apk --update --no-cache add \
             php${PHP_VERSION}-ctype \
             php${PHP_VERSION}-curl \
             php${PHP_VERSION}-dom \
+            php${PHP_VERSION}-fileinfo \
             php${PHP_VERSION}-ftp \
             php${PHP_VERSION}-gd \
             php${PHP_VERSION}-iconv \
