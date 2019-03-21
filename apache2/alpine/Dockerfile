@@ -15,13 +15,12 @@ RUN apk add --update --no-cache \
   vim
 
 # Tuner - https://github.com/previousnext/tuner
-RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
+RUN curl -sL https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
     chmod +rx /usr/local/bin/tuner
 
 # Logging
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
-
 
 COPY .bashrc /root/.bashrc
 COPY httpd.conf /etc/apache2/httpd.conf
@@ -37,4 +36,14 @@ VOLUME /var/run/tuner/apache2
 
 WORKDIR /data
 
-CMD ["httpd -D FOREGROUND"]
+# https://www.camptocamp.com/en/actualite/flexible-docker-entrypoints-scripts/
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+COPY /docker-entrypoint.d/* /docker-entrypoint.d/
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+# @todo, Change to use "httpd -D FOREGROUND" once entrypoint.sh can be retired.
+CMD ["/entrypoint.sh"]
