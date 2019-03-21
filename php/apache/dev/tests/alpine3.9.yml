@@ -4,4 +4,4 @@ commandTests:
   - name: 'check node version'
     command: 'node'
     args: ['-v']
-    expectedOutput: ['v11.3.0']
+    expectedOutput: ['v10']
