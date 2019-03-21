@@ -22,10 +22,14 @@ build: &build
           fi
 
 jobs:
-  apache2:
+  apache2-legacy:
     <<: *build
     environment:
       - DIR: apache2
+  apache2:
+    <<: *build
+    environment:
+      - DIR: apache2/alpine
   athenapdf:
     <<: *build
     environment:
@@ -95,7 +99,8 @@ workflows:
   version: 2
   build:
     jobs:
-      - apache2
+      - apache2-legacy
+      - apache2-alpine
       - athenapdf
       - cf-log-analyzer
       - chrome_headless
@@ -114,7 +119,8 @@ workflows:
       - solr
   weekly:
     jobs:
-      - apache2
+      - apache2-legacy
+      - apache2-alpine
       - athenapdf
       - cf-log-analyzer
       - chrome_headless
