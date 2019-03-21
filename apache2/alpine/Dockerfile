@@ -2,6 +2,7 @@ ARG ALPINE_VERSION=3.9
 
 FROM alpine:${ALPINE_VERSION}
 
+# hadolint ignore=DL3018
 RUN apk add --update --no-cache \
   apache2 \
   apache2-utils \

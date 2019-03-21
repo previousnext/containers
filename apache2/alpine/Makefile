@@ -29,6 +29,8 @@ build:
 
 lint:
 	hadolint Dockerfile
+	hadolint dev/Dockerfile
+	
 
 # Build and release
 release: build

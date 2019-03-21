@@ -1,16 +1,15 @@
 FROM previousnext/apache2-alpine:1.x
 
+# hadolint ignore=DL3018
 RUN apk add --update --no-cache \
    git \
    nodejs \
    npm \
-   patch \
    openssh-client \
-   wget \
    yarn
 
 # Skipper
-RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN curl -LO http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
     rm -rf linux-amd64-latest.tar.gz
 
