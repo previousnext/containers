@@ -49,11 +49,11 @@ build: 7.1 7.2 7.3
 
 # Build PHP 7.1
 7.1:
-	$(call build_test,7.1,3.8)
+	$(call build_test,7.1,3.9)
 
 # Build PHP 7.2
 7.2:
-	$(call build_test,7.2,3.8)
+	$(call build_test,7.2,3.9)
 
 # Build PHP 7.3
 7.3:

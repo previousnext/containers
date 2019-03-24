@@ -13,8 +13,8 @@ RUN apk add -u g++ \
                git \
                libffi-dev \
                jq \
-               nodejs-current \
-               nodejs-current-npm \
+               nodejs \
+               npm \
                patch \
                php${PHP_VERSION}-xdebug \
                python \
