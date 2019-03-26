@@ -8,6 +8,9 @@ endef
 
 all: 8 10
 
+lint:
+	hadolint Dockerfile
+
 8:
 	$(call build,8)
 
