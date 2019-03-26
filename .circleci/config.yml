@@ -66,6 +66,10 @@ jobs:
     <<: *build
     environment:
       - DIR: passenger
+  node:
+    <<: *build
+    environment:
+      - DIR: node
   php-apache:
     <<: *build
     environment:
@@ -104,6 +108,7 @@ workflows:
       - gastonjs
       - golang
       - mailhog
+      - node
       - oauth2_proxy
       - passenger
       - php-apache
@@ -123,6 +128,7 @@ workflows:
       - gastonjs
       - golang
       - mailhog
+      - node
       - oauth2_proxy
       - passenger
       - php-apache
