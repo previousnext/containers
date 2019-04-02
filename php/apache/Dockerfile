@@ -1,12 +1,14 @@
-ARG ALPINE_VERSION=3.8
+ARG ALPINE_VERSION=3.9
 
 FROM alpine:${ALPINE_VERSION}
-ARG ALPINE_VERSION=3.8
+ARG ALPINE_VERSION=3.9
 ARG PHP_VERSION=7.3
 
 ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
+
+RUN apk upgrade
 
 RUN apk add --no-cache curl ca-certificates && \
     curl -L https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
