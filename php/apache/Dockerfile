@@ -8,8 +8,6 @@ ENV PATH "$PATH:/data/bin"
 
 ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
 
-RUN apk upgrade
-
 RUN apk add --no-cache curl ca-certificates && \
     curl -L https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
     echo "https://packages.skpr.io/php-alpine/${ALPINE_VERSION}/php${PHP_VERSION}" >> /etc/apk/repositories
