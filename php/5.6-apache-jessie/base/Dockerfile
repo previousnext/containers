@@ -6,7 +6,7 @@ WORKDIR /data
 ENV PATH "$PATH:/data/bin"
 
 # Apache + PHP
-RUN RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y \
       mysql-client \

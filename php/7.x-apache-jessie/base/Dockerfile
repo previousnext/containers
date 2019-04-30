@@ -5,7 +5,7 @@ LABEL maintainer="admin@previousnext.com.au"
 WORKDIR /data
 
 ENV PATH "$PATH:/data/bin"
-
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 # Add backport apt repository for git.
 RUN echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main" >> /etc/apt/sources.list && \
     echo "deb-src http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main" >> /etc/apt/sources.list && \

@@ -5,7 +5,7 @@ ENV PHANTOMJS_HASH "f8afc8a24eec34c2badccc93812879a3d6f2caf3 phantomjs-2.1.1-lin
 
 WORKDIR /usr/local
 
-RUN RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     wget \
