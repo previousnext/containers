@@ -1,5 +1,6 @@
 FROM arachnysdocker/athenapdf-service:2
 
+RUN RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       unzip && \
