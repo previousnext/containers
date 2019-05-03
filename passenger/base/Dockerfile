@@ -42,7 +42,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN gem install bundler
+# Rails not compatible with bundler >=2.0
+RUN gem install bundler -v 1.17.3
 
 # Enable STDOUT and STDERR.
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
