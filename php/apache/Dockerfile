@@ -70,6 +70,7 @@ COPY drushrc.php /etc/drush/drushrc.php
 COPY drush.yml /etc/drush/drush.yml
 COPY apcu.ini /etc/php7/conf.d/apcu.ini
 COPY skpr.php /etc/skpr/skpr.php
+COPY fileinfo.ini /etc/php7/conf.d/fileinfo.ini
 
 # Liveness
 COPY liveness /var/www/liveness
