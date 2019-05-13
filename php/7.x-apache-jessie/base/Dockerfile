@@ -50,6 +50,7 @@ RUN docker-php-ext-install \
       zip \
       pdo \
       pdo_mysql \
+      fileinfo \
       gd \
       mbstring \
       opcache \
