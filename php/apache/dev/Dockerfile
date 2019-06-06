@@ -73,7 +73,4 @@ RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/m
 RUN curl -L https://github.com/nickschuch/semantic/releases/download/0.0.2/semantic-linux-amd64 -o /usr/local/bin/semantic && \
     chmod +rx /usr/local/bin/semantic
 
-RUN curl -L https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine3.9 -o /usr/local/bin/docconv && \
-    chmod +rx /usr/local/bin/docconv
-
 COPY /docker-entrypoint.d/* /docker-entrypoint.d/
