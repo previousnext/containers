@@ -7,7 +7,7 @@ ENV SOLR_HEAP 256m
 RUN apk add --no-cache openjdk7-jre tar wget
 
 WORKDIR /tmp
-RUN wget http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz && \
+RUN wget -nv http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz && \
  	tar -C /tmp --extract --file /tmp/solr-$SOLR_VERSION.tgz && \
  	rm /tmp/solr-$SOLR_VERSION.tgz && \
     mkdir -p /opt && \
