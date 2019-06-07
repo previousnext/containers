@@ -16,7 +16,7 @@ RUN echo '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
               . /usr/share/bash-completion/bash_completion' >> ~/.bashrc
 
 # Skipper CLI toolkit.
-RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
       rm -rf linux-amd64-latest.tar.gz
 

@@ -46,7 +46,7 @@ RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 COPY dev.ini /usr/local/etc/php/conf.d/dev.ini
 
 # Skipper CLI toolkit.
-RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
       rm -rf linux-amd64-latest.tar.gz
 

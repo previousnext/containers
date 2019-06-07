@@ -45,7 +45,7 @@ COPY xdebug.ini /etc/php7/conf.d/example/xdebug.ini
 COPY dev.ini /etc/php7/conf.d/dev.ini
 
 # Skipper
-RUN wget http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
     rm -rf linux-amd64-latest.tar.gz
 

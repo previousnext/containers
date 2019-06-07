@@ -6,7 +6,7 @@ RUN apt-get update && \
       unzip && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget http://www.latofonts.com/download/Lato2OFL.zip && unzip Lato2OFL.zip -d /usr/share/fonts
+RUN wget -nv http://www.latofonts.com/download/Lato2OFL.zip && unzip Lato2OFL.zip -d /usr/share/fonts
 
 COPY fonts.conf /etc/fonts/conf.d/100-athena.conf
 
