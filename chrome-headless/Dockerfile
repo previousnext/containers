@@ -4,9 +4,9 @@ VOLUME /tmp
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl unzip && \
-    curl -Ls -o /tmp/google-chrome.deb https://s3-ap-southeast-2.amazonaws.com/pnx-misc/apt-archive/google-chrome-stable/${CHROME_VERSION}-amd64-linux.deb && \
+    curl -sSL -o /tmp/google-chrome.deb https://s3-ap-southeast-2.amazonaws.com/pnx-misc/apt-archive/google-chrome-stable/${CHROME_VERSION}-amd64-linux.deb && \
     apt install -y /tmp/google-chrome.deb && \
-    curl -Ls -o /tmp/Lato2OFL.zip http://www.latofonts.com/download/Lato2OFL.zip && \
+    curl -sSL -o /tmp/Lato2OFL.zip http://www.latofonts.com/download/Lato2OFL.zip && \
     unzip /tmp/Lato2OFL.zip -d /usr/share/fonts && \
     apt-get purge --auto-remove -y curl gnupg unzip && \
     rm -rf /var/lib/apt/lists/*

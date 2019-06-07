@@ -73,7 +73,7 @@ COPY drushrc.php /etc/drush/drushrc.php
 COPY skpr.php /etc/skpr.php
 
 # Composer
-RUN curl -sS https://getcomposer.org/installer | php \
+RUN curl -sSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer
 
@@ -82,11 +82,11 @@ ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/
 RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
 # Tuner - https://github.com/previousnext/tuner
-RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
+RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
       chmod +rx /usr/local/bin/tuner
 
 # Backup - https://github.com/previousnext/skipper-backup
-RUN curl -L https://github.com/previousnext/skipper-backup/releases/download/v1.0.1/skipper-backup-linux-amd64 -o /usr/local/bin/backup && \
+RUN curl -sSL https://github.com/previousnext/skipper-backup/releases/download/v1.0.1/skipper-backup-linux-amd64 -o /usr/local/bin/backup && \
       chmod +rx /usr/local/bin/backup
 
 # Script that kicks it all off

@@ -9,7 +9,7 @@ ENV PATH "$PATH:/data/bin"
 ENV PHP_INI_SCAN_DIR=/etc/php/${PHP_VERSION}/conf.d:/var/run/tuner/php
 
 RUN apk add --no-cache curl ca-certificates && \
-    curl -L https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
+    curl -sSL https://packages.skpr.io/php-alpine/skpr.rsa.pub -o /etc/apk/keys/skpr.rsa.pub && \
     echo "https://packages.skpr.io/php-alpine/${ALPINE_VERSION}/php${PHP_VERSION}" >> /etc/apk/repositories
 
 RUN apk --update --no-cache add \
@@ -80,7 +80,7 @@ RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
     export NR_VERSION=8.5.0.235 && \
     export NR_FILENAME=newrelic-php5-${NR_VERSION}-linux-musl && \
-    curl -sS https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
+    curl -sSL https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
     cd ${NR_FILENAME} && ./newrelic-install install && \
     rm -fR /${NR_FILENAME}
 COPY newrelic.ini /etc/php7/conf.d/newrelic.ini
@@ -95,15 +95,15 @@ RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
 # Composer
 # hadolint ignore=DL4006
-RUN curl -sS https://getcomposer.org/installer | php && \
+RUN curl -sSL https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
 
 # Tuner - https://github.com/previousnext/tuner
-RUN curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
+RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
     chmod +rx /usr/local/bin/tuner
 
-RUN curl -L https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine3.9 -o /usr/local/bin/docconv && \
+RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine3.9 -o /usr/local/bin/docconv && \
     chmod +rx /usr/local/bin/docconv
 
 # Ruby errors if a sticky bit isn't set on /tmp.

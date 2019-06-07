@@ -10,18 +10,18 @@ RUN apt-get update && \
     rm -rf /var/cache/apt/*
 
 # Docker client.
-RUN curl -Ls -o /tmp/docker-17.09.0-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-17.09.0-ce.tgz && \
+RUN curl -sSL -o /tmp/docker-17.09.0-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-17.09.0-ce.tgz && \
 	  tar -xz -C /tmp -f /tmp/docker-17.09.0-ce.tgz && \
     mv /tmp/docker/* /usr/local/bin && \
     rm -rf /tmp/docker
 
 # Skipper binaries.
-RUN curl -Ls -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN curl -sSL -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     tar -zxf /tmp/skpr-linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
     rm -rf /tmp/*
 
 # Notify - https://github.com/previousnext/notify
-RUN curl -Ls https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+RUN curl -sSL https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
       chmod +rx /usr/local/bin/notify
 
 # Install aws utilities.
