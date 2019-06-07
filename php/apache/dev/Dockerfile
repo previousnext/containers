@@ -23,9 +23,6 @@ RUN apk add -u g++ \
                ruby-bundler \
                ruby-dev \
                wget \
-               tesseract-ocr \
-               tesseract-ocr-dev \
-               poppler-utils \
                yarn && \
     rm -rf /var/cache/apk/*
 

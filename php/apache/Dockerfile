@@ -54,6 +54,9 @@ RUN apk --update --no-cache add \
             php${PHP_VERSION}-zip \
             pngquant \
             rsync \
+            tesseract-ocr \
+            tesseract-ocr-dev \
+            poppler-utils \
             unzip \
             vim
 
