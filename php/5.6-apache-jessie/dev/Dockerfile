@@ -12,13 +12,13 @@ ENV HUB_NAME     hub-linux-amd64-$HUB_VERSION
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
+RUN curl -sSL -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash && \
     source $NVM_DIR/nvm.sh && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
     nvm use default
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN curl -o- -sSL https://yarnpkg.com/install.sh | bash
 
 RUN apt-get update && \
     apt-get install -y git \
@@ -51,32 +51,32 @@ RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
       rm -rf linux-amd64-latest.tar.gz
 
 # Temporary environment builder.
-RUN curl -L https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
+RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
       chmod a+x /usr/local/bin/m8s
 
 # Github deploy status
-RUN curl -L https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha3/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
+RUN curl -sSL https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha3/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
       chmod a+x /usr/local/bin/deploy-status
 
 # Skipper v2 CLI toolkit.
-RUN curl -L https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
+RUN curl -sSL https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
       chmod +rx /usr/local/bin/skpr2
 
 # Github Hub
-RUN cd /tmp && curl -L -O https://github.com/github/hub/releases/download/v$HUB_VERSION/$HUB_NAME.tgz && \
+RUN cd /tmp && curl -sSL -O https://github.com/github/hub/releases/download/v$HUB_VERSION/$HUB_NAME.tgz && \
       tar -zxf $HUB_NAME.tgz && \
       mv $HUB_NAME/bin/hub /usr/local/bin/ && \
       chmod +x /usr/local/bin/hub && \
       rm -rf /tmp/$HUB_NAME
 
 # gosu
-RUN curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 -o /usr/local/bin/gosu && \
+RUN curl -sSL https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 -o /usr/local/bin/gosu && \
       chmod a+x /usr/local/bin/gosu
 
 # Notify - https://github.com/previousnext/notify
-RUN curl -L https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
+RUN curl -sSL https://github.com/previousnext/notify/releases/download/2.1.0/notify_linux_amd64 -o /usr/local/bin/notify && \
       chmod +rx /usr/local/bin/notify
 
 # MicroCron - https://github.com/previousnext/microcron
-RUN curl -L https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
+RUN curl -sSL https://github.com/previousnext/microcron/releases/download/v0.0.1/microcron_linux_amd64 -o /usr/local/bin/microcron && \
       chmod +rx /usr/local/bin/microcron
