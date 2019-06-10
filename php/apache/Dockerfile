@@ -62,7 +62,7 @@ RUN apk --update --no-cache add \
 
 # Libsodium is only avaiable in PHP versions > 7.1
 # @todo, Remove once 7.1 is EOL.
-RUN if [ "$PHP_VERSION" != "7.1" ]; then apk add php${PHP_VERSION}-sodium libsodium; fi
+RUN if [ "$PHP_VERSION" != "7.1" ]; then apk add --no-cache php${PHP_VERSION}-sodium libsodium; fi
 
 # This provides a compatibility layer for developer who are adding
 # custom php.ini files to their projects.
