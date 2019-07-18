@@ -49,15 +49,15 @@ build: 7.1 7.2 7.3
 
 # Build PHP 7.1
 7.1:
-	$(call build_test,7.1,3.9)
+	$(call build_test,7.1,3.10)
 
 # Build PHP 7.2
 7.2:
-	$(call build_test,7.2,3.9)
+	$(call build_test,7.2,3.10)
 
 # Build PHP 7.3
 7.3:
-	$(call build_test,7.3,3.9)
+	$(call build_test,7.3,3.10)
 
 lint:
 	hadolint Dockerfile
@@ -68,4 +68,4 @@ release: build
 	$(call push,7.2)
 	$(call push,7.3)
 
-.PHONY: build 7.1 7.2 lint release
+.PHONY: build 7.1 7.2 7.3 lint release
