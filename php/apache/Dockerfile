@@ -110,7 +110,7 @@ RUN curl -sSL https://getcomposer.org/installer | php && \
 RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
     chmod +rx /usr/local/bin/tuner
 
-RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine3.9 -o /usr/local/bin/docconv && \
+RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine${ALPINE_VERSION} -o /usr/local/bin/docconv && \
     chmod +rx /usr/local/bin/docconv
 
 # Ruby errors if a sticky bit isn't set on /tmp.
