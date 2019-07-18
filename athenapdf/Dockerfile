@@ -1,6 +1,6 @@
 FROM arachnysdocker/athenapdf-service:2
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50 04EE7237B7D453EC 648ACFD622F3D138 EF0F382A1A7B6500 DCC9EFBF77E11517
 RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
