@@ -37,7 +37,9 @@ RUN PHP_VERISON=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
 # Example config files for docker-entrypoint.d toggles.
 RUN mkdir /etc/php7/conf.d/example
 COPY blackfire.ini /etc/php7/conf.d/example/blackfire.ini
+
 COPY xdebug.ini /etc/php7/conf.d/example/xdebug.ini
+RUN rm -f /etc/php7/conf.d/xdebug.ini
 
 COPY dev.ini /etc/php7/conf.d/dev.ini
 
