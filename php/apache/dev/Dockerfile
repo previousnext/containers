@@ -16,7 +16,7 @@ RUN apk add -u g++ \
                nodejs \
                npm \
                patch \
-               php${PHP_VERSION}-xdebug \
+               php${PHP_VERSION}-pecl-xdebug \
                python \
                openssh-client \
                ruby \
