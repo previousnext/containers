@@ -49,7 +49,7 @@ RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     rm -rf linux-amd64-latest.tar.gz
 
 # M8s
-RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
+RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.9.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
     chmod a+x /usr/local/bin/m8s
 
 # Github deploy status
