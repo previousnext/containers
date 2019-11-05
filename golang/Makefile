@@ -12,7 +12,7 @@ define push
 endef
 
 # Build all Go
-build: 1.9 1.10 1.11 1.12
+build: 1.9 1.10 1.11 1.12 1.13
 
 # Build Go 1.9
 1.9:
@@ -30,6 +30,10 @@ build: 1.9 1.10 1.11 1.12
 1.12:
 	$(call build_test,1.12)
 
+# Build Go 1.12
+1.13:
+	$(call build_test,1.13)
+
 lint:
 	hadolint Dockerfile
 
@@ -39,5 +43,6 @@ release: build
 	$(call push,1.10)
 	$(call push,1.11)
 	$(call push,1.12)
+	$(call push,1.13)
 
 .PHONY: build 1.9 1.10 1.11 1.12 lint release
