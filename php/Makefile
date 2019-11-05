@@ -23,23 +23,17 @@ define push
 endef
 
 # Build and tests
-build: 5.6 7.1
-
-# Build PHP 5.6
-5.6:
-	$(call build_test,5.6,5.6-apache-jessie)
+build: 7.1
 
 # Build PHP 7.1
 7.1:
 	$(call build_test,7.1,7.x-apache-jessie)
 
 lint:
-	$(call lint,5.6,5.6-apache-jessie)
 	$(call lint,7.1,7.x-apache-jessie)
 
 # Build and release
 release: build
-	$(call push,5.6)
 	$(call push,7.1)
 
-.PHONY: build 5.6 7.1 lint release
+.PHONY: *
