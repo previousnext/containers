@@ -54,8 +54,15 @@ RUN apk --update --no-cache add \
             php${PHP_VERSION}-zip \
             pngquant \
             rsync \
+            tesseract-ocr \
+            tesseract-ocr-dev \
+            poppler-utils \
             unzip \
             vim
+
+# Libsodium is only avaiable in PHP versions > 7.1
+# @todo, Remove once 7.1 is EOL.
+RUN if [ "$PHP_VERSION" != "7.1" ]; then apk add --no-cache php${PHP_VERSION}-sodium libsodium; fi
 
 # This provides a compatibility layer for developer who are adding
 # custom php.ini files to their projects.
@@ -78,7 +85,7 @@ COPY liveness /var/www/liveness
 # hadolint ignore=DL3003,DL4006,SC2115
 RUN export NR_INSTALL_SILENT=true && \
     export NR_INSTALL_USE_CP_NOT_LN=true && \
-    export NR_VERSION=8.5.0.235 && \
+    export NR_VERSION=8.7.0.242 && \
     export NR_FILENAME=newrelic-php5-${NR_VERSION}-linux-musl && \
     curl -sSL https://download.newrelic.com/php_agent/archive/${NR_VERSION}/${NR_FILENAME}.tar.gz | gzip -dc | tar xf - && \
     cd ${NR_FILENAME} && ./newrelic-install install && \
@@ -103,7 +110,8 @@ RUN curl -sSL https://getcomposer.org/installer | php && \
 RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner && \
     chmod +rx /usr/local/bin/tuner
 
-RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine3.9 -o /usr/local/bin/docconv && \
+RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine${ALPINE_VERSION} -o /usr/local/bin/docconv && \
+
     chmod +rx /usr/local/bin/docconv
 
 # Ruby errors if a sticky bit isn't set on /tmp.

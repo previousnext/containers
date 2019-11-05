@@ -23,9 +23,6 @@ RUN apk add -u g++ \
                ruby-bundler \
                ruby-dev \
                wget \
-               tesseract-ocr \
-               tesseract-ocr-dev \
-               poppler-utils \
                yarn && \
     rm -rf /var/cache/apk/*
 
@@ -40,7 +37,9 @@ RUN PHP_VERISON=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
 # Example config files for docker-entrypoint.d toggles.
 RUN mkdir /etc/php7/conf.d/example
 COPY blackfire.ini /etc/php7/conf.d/example/blackfire.ini
+
 COPY xdebug.ini /etc/php7/conf.d/example/xdebug.ini
+RUN rm -f /etc/php7/conf.d/xdebug.ini
 
 COPY dev.ini /etc/php7/conf.d/dev.ini
 
@@ -50,7 +49,7 @@ RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
     rm -rf linux-amd64-latest.tar.gz
 
 # M8s
-RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
+RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.9.0/m8s_linux_amd64 -o /usr/local/bin/m8s && \
     chmod a+x /usr/local/bin/m8s
 
 # Github deploy status

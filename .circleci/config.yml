@@ -94,6 +94,10 @@ jobs:
     <<: *build
     environment:
       - DIR: solr
+  tl:
+    <<: *build
+    environment:
+      - DIR: tl
 
 workflows:
   version: 2
@@ -117,6 +121,7 @@ workflows:
       - puppeteer
       - sftp
       - solr
+      - tl
   weekly:
     jobs:
       - apache2
@@ -137,6 +142,7 @@ workflows:
       - puppeteer
       - sftp
       - solr
+      - tl
     triggers:
       - schedule:
           # Scheduled build for 9pm AEST on Sunday.
