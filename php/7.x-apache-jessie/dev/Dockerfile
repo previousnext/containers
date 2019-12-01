@@ -47,7 +47,7 @@ RUN /usr/local/bin/xdebug-set.sh /usr/local/etc/php/conf.d/xdebug.ini
 COPY dev.ini /usr/local/etc/php/conf.d/dev.ini
 
 # Skipper CLI toolkit.
-RUN wget -nv http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN wget -nv http://bins.skpr.io/v1/linux-amd64-latest.tar.gz && \
       tar -zxf linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
       rm -rf linux-amd64-latest.tar.gz
 
@@ -58,10 +58,6 @@ RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.8.0/m8s_l
 # Github deploy status
 RUN curl -sSL https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha3/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
       chmod a+x /usr/local/bin/deploy-status
-
-# Skipper v2 CLI toolkit.
-RUN curl -sSL https://s3-ap-southeast-2.amazonaws.com/bins.skpr.io/2.0.0/skpr-linux -o /usr/local/bin/skpr2 && \
-      chmod +rx /usr/local/bin/skpr2
 
 # Github Hub
 RUN cd /tmp && curl -sSL -O https://github.com/github/hub/releases/download/v$HUB_VERSION/$HUB_NAME.tgz && \

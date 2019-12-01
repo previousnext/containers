@@ -16,7 +16,7 @@ RUN curl -sSL -o /tmp/docker-17.09.0-ce.tgz https://download.docker.com/linux/st
     rm -rf /tmp/docker
 
 # Skipper binaries.
-RUN curl -sSL -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/linux-amd64-latest.tar.gz && \
+RUN curl -sSL -o /tmp/skpr-linux-amd64-latest.tar.gz http://bins.skpr.io/v1/linux-amd64-latest.tar.gz && \
     tar -zxf /tmp/skpr-linux-amd64-latest.tar.gz -C /usr/local/bin/ && \
     rm -rf /tmp/*
 
