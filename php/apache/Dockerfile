@@ -44,6 +44,7 @@ RUN apk --update --no-cache add \
             php${PHP_VERSION}-phar \
             php${PHP_VERSION}-posix \
             php${PHP_VERSION}-session \
+            php${PHP_VERSION}-sockets \
             php${PHP_VERSION}-simplexml \
             php${PHP_VERSION}-soap \
             php${PHP_VERSION}-sqlite3 \
