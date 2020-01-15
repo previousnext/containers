@@ -112,7 +112,6 @@ workflows:
       - oauth2_proxy
       - passenger
       - php-apache
-      - php-legacy
       - pnx-packager
       - puppeteer
       - sftp
@@ -133,7 +132,6 @@ workflows:
       - oauth2_proxy
       - passenger
       - php-apache
-      - php-legacy
       - pnx-packager
       - puppeteer
       - sftp
