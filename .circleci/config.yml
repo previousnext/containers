@@ -74,10 +74,6 @@ jobs:
     <<: *build
     environment:
       - DIR: php/apache
-  php-legacy:
-    <<: *build
-    environment:
-      - DIR: php
   pnx-packager:
     <<: *build
     environment:
