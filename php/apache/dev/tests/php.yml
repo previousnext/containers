@@ -13,10 +13,10 @@ commandTests:
     #   value: "yes"
     setup: [["/docker-entrypoint.sh"]]
     command: "php"
-    args: ["-i"]
-    expectedOutput: ["xdebug support => enabled"]
+    args: ["-m"]
+    expectedOutput: ["xdebug"]
 
-  - name: 'php: xdebug enabled'
+  - name: 'php: blackfire enabled'
     envVars:
       - key: "BLACKFIRE_ENABLED"
         value: "yes"

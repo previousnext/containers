@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION=3.10
 
 FROM alpine:${ALPINE_VERSION}
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION=3.10
 ARG PHP_VERSION=7.3
 
 ENV PATH "$PATH:/data/bin"
@@ -18,6 +18,7 @@ RUN apk --update --no-cache add \
             bash \
             bash-completion \
             jpegoptim \
+            libsodium \
             make \
             mysql-client \
             optipng \
@@ -44,9 +45,10 @@ RUN apk --update --no-cache add \
             php${PHP_VERSION}-phar \
             php${PHP_VERSION}-posix \
             php${PHP_VERSION}-session \
-            php${PHP_VERSION}-sockets \
             php${PHP_VERSION}-simplexml \
             php${PHP_VERSION}-soap \
+            php${PHP_VERSION}-sockets \
+            php${PHP_VERSION}-sodium \
             php${PHP_VERSION}-sqlite3 \
             php${PHP_VERSION}-tokenizer \
             php${PHP_VERSION}-xml \
@@ -60,10 +62,6 @@ RUN apk --update --no-cache add \
             poppler-utils \
             unzip \
             vim
-
-# Libsodium is only avaiable in PHP versions > 7.1
-# @todo, Remove once 7.1 is EOL.
-RUN if [ "$PHP_VERSION" != "7.1" ]; then apk add --no-cache php${PHP_VERSION}-sodium libsodium; fi
 
 # This provides a compatibility layer for developer who are adding
 # custom php.ini files to their projects.

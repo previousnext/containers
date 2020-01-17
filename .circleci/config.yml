@@ -74,10 +74,6 @@ jobs:
     <<: *build
     environment:
       - DIR: php/apache
-  php-legacy:
-    <<: *build
-    environment:
-      - DIR: php
   pnx-packager:
     <<: *build
     environment:
@@ -116,7 +112,6 @@ workflows:
       - oauth2_proxy
       - passenger
       - php-apache
-      - php-legacy
       - pnx-packager
       - puppeteer
       - sftp
@@ -137,7 +132,6 @@ workflows:
       - oauth2_proxy
       - passenger
       - php-apache
-      - php-legacy
       - pnx-packager
       - puppeteer
       - sftp
