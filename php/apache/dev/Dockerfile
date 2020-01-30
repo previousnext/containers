@@ -39,7 +39,7 @@ RUN mkdir /etc/php7/conf.d/example
 COPY blackfire.ini /etc/php7/conf.d/example/blackfire.ini
 
 COPY xdebug.ini /etc/php7/conf.d/example/xdebug.ini
-RUN rm -f /etc/php7/conf.d/xdebug.ini
+RUN rm -f /etc/php7/conf.d/01_xdebug.ini
 
 COPY dev.ini /etc/php7/conf.d/dev.ini
 

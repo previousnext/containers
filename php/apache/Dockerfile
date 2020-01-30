@@ -74,7 +74,7 @@ COPY status.conf /etc/apache2/conf.d/status.conf
 COPY security.conf /etc/apache2/conf.d/security.conf
 COPY drushrc.php /etc/drush/drushrc.php
 COPY drush.yml /etc/drush/drush.yml
-COPY apcu.ini /etc/php7/conf.d/apcu.ini
+COPY apcu.ini /etc/php7/conf.d/01_apcu.ini
 COPY skpr.php /etc/skpr/skpr.php
 
 # Liveness
