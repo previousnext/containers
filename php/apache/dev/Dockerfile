@@ -56,6 +56,10 @@ RUN curl -sSL https://github.com/previousnext/m8s/releases/download/v0.9.0/m8s_l
 RUN curl -sSL https://github.com/previousnext/go-deploy-status/releases/download/1.0.0-alpha3/deploy-status_linux_amd64 -o /usr/local/bin/deploy-status && \
     chmod a+x /usr/local/bin/deploy-status
 
+# Acquia CLI - https://github.com/previousnext/acquia-cli
+RUN curl -sSL https://github.com/previousnext/acquia-cli/releases/download/v0.0.1/acquia-cli_linux_amd64 -o /usr/local/bin/acquia-cli && \
+    chmod +rx /usr/local/bin/acquia-cli
+
 # Hub
 RUN curl -sSL http://bins.skpr.io/hub-latest -o /usr/local/bin/hub && \
       chmod +rx /usr/local/bin/hub
