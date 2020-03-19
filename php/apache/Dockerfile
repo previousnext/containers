@@ -113,6 +113,10 @@ RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tune
 RUN curl -sSL https://s3.amazonaws.com/pnx-bins/docconv-v1.0.0-129-geedabc4-alpine${ALPINE_VERSION} -o /usr/local/bin/docconv && \
     chmod +rx /usr/local/bin/docconv
 
+# Acquia CLI - https://github.com/previousnext/acquia-cli
+RUN curl -sSL https://github.com/previousnext/acquia-cli/releases/download/v0.0.1/acquia-cli_linux_amd64 -o /usr/local/bin/acquia-cli && \
+    chmod +rx /usr/local/bin/acquia-cli
+
 # Ruby errors if a sticky bit isn't set on /tmp.
 # @expire 2019-06-30
 RUN chmod +t /tmp
