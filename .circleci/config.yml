@@ -1,145 +1,68 @@
-version: 2
+version: 2.1
 
-build: &build
-  docker:
-    - image: previousnext/container-builder:latest
-  steps:
-    - setup_remote_docker
-    - checkout
-    - run:
-        name: Lint
-        command: |
-          cd $DIR
-          make lint
-    - run:
-        name: Build, Test and Release
-        command: |
-          cd $DIR
-          make
-          if [ "$CIRCLE_BRANCH" == "master" ]; then
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            make release
-          fi
+dirs: &dirs
+  - apache2
+  - athenapdf
+  - cf-log-analyzer
+  - chrome-headless
+  - clamd
+  - frontend
+  - gastonjs
+  - golang
+  - oauth2_proxy
+  - mailhog
+  - passenger
+  - node
+  - php-apache
+  - pnx-packager
+  - puppeteer
+  - sftp
+  - solr
+  - tl
 
 jobs:
-  apache2:
-    <<: *build
-    environment:
-      - DIR: apache2
-  athenapdf:
-    <<: *build
-    environment:
-      - DIR: athenapdf
-  cf-log-analyzer:
-    <<: *build
-    environment:
-      - DIR: cf-log-analyzer
-  chrome_headless:
-    <<: *build
-    environment:
-      - DIR: chrome-headless
-  clamd:
-    <<: *build
-    environment:
-      - DIR: clamd
-  frontend:
-    <<: *build
-    environment:
-      - DIR: frontend
-  gastonjs:
-    <<: *build
-    environment:
-      - DIR: gastonjs
-  golang:
-    <<: *build
-    environment:
-      - DIR: golang
-  oauth2_proxy:
-    <<: *build
-    environment:
-      - DIR: oauth2_proxy
-  mailhog:
-    <<: *build
-    environment:
-      - DIR: mailhog
-  passenger:
-    <<: *build
-    environment:
-      - DIR: passenger
-  node:
-    <<: *build
-    environment:
-      - DIR: node
-  php-apache:
-    <<: *build
-    environment:
-      - DIR: php/apache
-  pnx-packager:
-    <<: *build
-    environment:
-      - DIR: pnx-packager
-  puppeteer:
-    <<: *build
-    environment:
-      - DIR: puppeteer
-  sftp:
-    <<: *build
-    environment:
-      - DIR: sftp
-  solr:
-    <<: *build
-    environment:
-      - DIR: solr
-  tl:
-    <<: *build
-    environment:
-      - DIR: tl
+  build:
+    parameters:
+      dir:
+        type: string
+        default: ""
+    docker:
+      - image: previousnext/container-builder:latest
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Lint
+          command: |
+            cd << parameters.dir >>
+            make lint
+      - run:
+          name: Build, Test and Release
+          command: |
+            cd << parameters.dir >>
+            make
+            if [ "$CIRCLE_BRANCH" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              make release
+            fi
 
 workflows:
-  version: 2
   build:
     jobs:
-      - apache2
-      - athenapdf
-      - cf-log-analyzer
-      - chrome_headless
-      - clamd
-      - frontend
-      - gastonjs
-      - golang
-      - mailhog
-      - node
-      - oauth2_proxy
-      - passenger
-      - php-apache
-      - pnx-packager
-      - puppeteer
-      - sftp
-      - solr
-      - tl
+      - build:
+          matrix:
+            parameters:
+              dir: *dirs
+
   nightly:
     jobs:
-      - apache2
-      - athenapdf
-      - cf-log-analyzer
-      - chrome_headless
-      - clamd
-      - frontend
-      - gastonjs
-      - golang
-      - mailhog
-      - node
-      - oauth2_proxy
-      - passenger
-      - php-apache
-      - pnx-packager
-      - puppeteer
-      - sftp
-      - solr
-      - tl
+      - build:
+          matrix:
+            parameters:
+              dir: *dirs
     triggers:
       - schedule:
-          # Scheduled build for 2am AEST nightly
+          # Scheduled build for 2am AEST nightly.
           cron: "0 15 * * *"
           filters:
             branches:
