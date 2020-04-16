@@ -41,7 +41,7 @@ jobs:
           name: Build
           command: |
             cd << parameters.dir >>
-            make build
+            make
 
   release:
     parameters:
@@ -63,7 +63,7 @@ jobs:
           command: |
             cd << parameters.dir >>
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            make build release
+            make release
 
 workflows:
   build:
