@@ -21,6 +21,7 @@ dirs: &dirs
   - tl
 
 jobs:
+
   build:
     parameters:
       dir:
@@ -37,14 +38,32 @@ jobs:
             cd << parameters.dir >>
             make lint
       - run:
-          name: Build, Test and Release
+          name: Build
           command: |
             cd << parameters.dir >>
-            make
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              make release
-            fi
+            make build
+
+  release:
+    parameters:
+      dir:
+        type: string
+        default: ""
+    docker:
+      - image: previousnext/container-builder:latest
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Lint
+          command: |
+            cd << parameters.dir >>
+            make lint
+      - run:
+          name: Build and Release
+          command: |
+            cd << parameters.dir >>
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            make build release
 
 workflows:
   build:
@@ -53,10 +72,20 @@ workflows:
           matrix:
             parameters:
               dir: *dirs
+          filters:
+            branches:
+              ignore: master
+      - release:
+          matrix:
+            parameters:
+              dir: *dirs
+          filters:
+            branches:
+              only: master
 
   nightly:
     jobs:
-      - build:
+      - release:
           matrix:
             parameters:
               dir: *dirs
