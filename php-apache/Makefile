@@ -45,7 +45,7 @@ define push
 endef
 
 # Build all PHP versions
-build: 7.2 7.3
+build: 7.2 7.3 7.4
 
 # Build PHP 7.2
 7.2:
@@ -55,6 +55,10 @@ build: 7.2 7.3
 7.3:
 	$(call build_test,7.3,3.10)
 
+# Build PHP 7.3
+7.4:
+	$(call build_test,7.3,3.10)
+
 lint:
 	hadolint Dockerfile
 
@@ -62,5 +66,6 @@ lint:
 release: build
 	$(call push,7.2)
 	$(call push,7.3)
+	$(call push,7.4)
 
-.PHONY: build 7.2 7.3 lint release
+.PHONY: build 7.2 7.3 7.4 lint release
