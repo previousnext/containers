@@ -15,7 +15,6 @@ dirs: &dirs
   - node
   - php-apache
   - pnx-packager
-  - puppeteer
   - sftp
   - solr
   - tl
