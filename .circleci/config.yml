@@ -13,6 +13,7 @@ dirs: &dirs
   - mailhog
   - passenger
   - node
+  - node-legacy
   - php-apache
   - pnx-packager
   - sftp
