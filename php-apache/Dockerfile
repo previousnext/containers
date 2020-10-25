@@ -102,7 +102,7 @@ RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
 # Composer
 # hadolint ignore=DL4006
-RUN curl -sSL https://getcomposer.org/installer | php && \
+RUN curl -sS https://getcomposer.org/composer-1.phar -o composer.phar && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
 
