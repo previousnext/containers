@@ -100,11 +100,12 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem  /etc/ssl/certs/rds-combined-ca-bundle.pem
 RUN chmod 755 /etc/ssl/certs/rds-combined-ca-bundle.pem
 
-# Composer
+# Composer 1 & 2
 # hadolint ignore=DL4006
-RUN curl -sS https://getcomposer.org/composer-1.phar -o composer.phar && \
-    mv composer.phar /usr/local/bin/composer && \
+RUN curl -sS https://getcomposer.org/composer-1.phar -o /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/composer-2.phar -o /usr/local/bin/composer2 && \
+    chmod +x /usr/local/bin/composer2
 
 # Tuner - https://github.com/previousnext/tuner
 RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.1.0/tuner_linux_amd64 -o /usr/local/bin/tuner && \
