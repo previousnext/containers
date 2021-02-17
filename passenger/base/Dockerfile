@@ -61,6 +61,9 @@ RUN curl -sSL https://github.com/previousnext/tuner/releases/download/1.0.0/tune
 RUN curl -sSL https://github.com/previousnext/skipper-backup/releases/download/v1.0.1/skipper-backup-linux-amd64 -o /usr/local/bin/backup && \
       chmod +rx /usr/local/bin/backup
 
+RUN curl -sSL https://github.com/skpr/mail/releases/download/v0.0.6/skprmail_linux_amd64 -o /usr/local/bin/skprmail && \
+    chmod +rx /usr/local/bin/skprmail
+
 # Script that kicks it all off
 COPY start.sh /usr/local/bin/start
 RUN chmod a+x /usr/local/bin/start
