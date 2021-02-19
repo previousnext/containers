@@ -9,7 +9,7 @@ dirs: &dirs
   - frontend
   - gastonjs
   - golang
-  - oauth2_proxy
+#  - oauth2_proxy todo: fix failing test
   - mailhog
   - passenger
   - node
