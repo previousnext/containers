@@ -10,7 +10,7 @@ define push
 	docker push $(IMAGE):$(1)
 endef
 
-all: 8 10 12 14
+all: 8 10 12 14 16
 
 lint:
 	hadolint Dockerfile
@@ -27,10 +27,14 @@ lint:
 14:
 	$(call build,14)
 
+16:
+	$(call build,16)
+
 release: all
 	$(call push,8)
 	$(call push,10)
 	$(call push,12)
 	$(call push,14)
+	$(call push,16)
 
 .PHONY: *
